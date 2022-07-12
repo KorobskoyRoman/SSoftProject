@@ -9,8 +9,8 @@ import UIKit
 
 extension UIColor {
     static func mainBackground() -> UIColor {
-        return UIColor(red: 239.0 / 255.0, green: 243/0 / 255.0, blue: 246/0 / 255.0, alpha: 1)
-//        return #colorLiteral(red: 0.937254902, green: 0.9529411765, blue: 0.9647058824, alpha: 1)
+//        return UIColor(red: 239.0 / 255.0, green: 243/0 / 255.0, blue: 246/0 / 255.0, alpha: 1)
+        return #colorLiteral(red: 0.937254902, green: 0.9529411765, blue: 0.9647058824, alpha: 1)
     }
 }
 

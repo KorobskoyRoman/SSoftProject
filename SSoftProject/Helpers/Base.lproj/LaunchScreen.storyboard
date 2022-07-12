@@ -40,7 +40,7 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="utp-Ry-qtf" secondAttribute="trailing" constant="137" id="PCz-Sm-648"/>
                             <constraint firstItem="Ger-ew-tS9" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="74" id="hvu-Xt-c1q"/>
                             <constraint firstAttribute="bottom" secondItem="utp-Ry-qtf" secondAttribute="bottom" constant="48.5" id="xOw-mK-jWC"/>
-                            <constraint firstItem="Ger-ew-tS9" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="197" id="xiY-LB-0cQ"/>
+                            <constraint firstItem="Ger-ew-tS9" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" constant="197" id="xiY-LB-0cQ"/>
                         </constraints>
                     </view>
                 </viewController>

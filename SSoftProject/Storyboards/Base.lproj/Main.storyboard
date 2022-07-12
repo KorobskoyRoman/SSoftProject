@@ -11,7 +11,7 @@
         <!--Splash Screen View Controller-->
         <scene sceneID="UZa-mf-mvT">
             <objects>
-                <viewController id="4oY-Ne-haE" customClass="SplashScreenViewController" customModule="SSoftProject" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SplashScreenViewController" id="4oY-Ne-haE" customClass="SplashScreenViewController" customModule="SSoftProject" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="rdr-za-gei">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -60,7 +60,7 @@
                             <constraint firstItem="ocO-2x-vbh" firstAttribute="top" secondItem="RkQ-Aw-hbE" secondAttribute="top" constant="357" id="a8J-sN-KA8"/>
                             <constraint firstItem="ocO-2x-vbh" firstAttribute="leading" secondItem="RkQ-Aw-hbE" secondAttribute="leading" constant="157" id="ll8-UG-sth"/>
                             <constraint firstItem="RkQ-Aw-hbE" firstAttribute="trailing" secondItem="ocO-2x-vbh" secondAttribute="trailing" constant="150" id="pwC-zo-u9D"/>
-                            <constraint firstItem="qn8-gL-WPa" firstAttribute="top" secondItem="RkQ-Aw-hbE" secondAttribute="top" constant="197" id="qIN-6r-i6z"/>
+                            <constraint firstItem="qn8-gL-WPa" firstAttribute="top" secondItem="rdr-za-gei" secondAttribute="top" constant="197" id="qIN-6r-i6z"/>
                             <constraint firstItem="RkQ-Aw-hbE" firstAttribute="bottom" secondItem="ocO-2x-vbh" secondAttribute="bottom" constant="239" id="tb5-0l-sYU"/>
                             <constraint firstItem="qn8-gL-WPa" firstAttribute="leading" secondItem="RkQ-Aw-hbE" secondAttribute="leading" constant="74" id="v4p-bu-QVG"/>
                         </constraints>
