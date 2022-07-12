@@ -19,6 +19,7 @@ class HelpCategoriesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "Помочь"
         view.backgroundColor = .mainBackground()
         categories = setupCategories.createItems()
         setupCollectionView()
@@ -77,7 +78,7 @@ extension HelpCategoriesViewController {
     }
     
     private func createHeader() -> NSCollectionLayoutBoundarySupplementaryItem {
-        let sectionHeaderSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.5), heightDimension: .estimated(1.5))
+        let sectionHeaderSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.5), heightDimension: .fractionalHeight(0.05))
         let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: sectionHeaderSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
         
         return sectionHeader
