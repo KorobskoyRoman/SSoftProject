@@ -23,6 +23,8 @@
 		9CA69FEE287DF6140073817D /* SectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA69FED287DF6140073817D /* SectionHeader.swift */; };
 		9CA69FF0287DF90B0073817D /* SetupCategories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA69FEF287DF90B0073817D /* SetupCategories.swift */; };
 		9CA69FF3287E0A8D0073817D /* OfficinaSansExtraBoldSCC.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9CA69FF2287E0A760073817D /* OfficinaSansExtraBoldSCC.otf */; };
+		9CA69FF7287F12D90073817D /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA69FF6287F12D90073817D /* MainTabBarController.swift */; };
+		9CA69FF9287F13E20073817D /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA69FF8287F13E20073817D /* CustomTabBar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +48,8 @@
 		9CA69FED287DF6140073817D /* SectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeader.swift; sourceTree = "<group>"; };
 		9CA69FEF287DF90B0073817D /* SetupCategories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupCategories.swift; sourceTree = "<group>"; };
 		9CA69FF2287E0A760073817D /* OfficinaSansExtraBoldSCC.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = OfficinaSansExtraBoldSCC.otf; sourceTree = "<group>"; };
+		9CA69FF6287F12D90073817D /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		9CA69FF8287F13E20073817D /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +145,7 @@
 		9CA69FDF287DE0520073817D /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				9CA69FF6287F12D90073817D /* MainTabBarController.swift */,
 				9C773A7827CD4B7C00B6B589 /* SplashScreenViewController.swift */,
 				9CA69FE3287DEB5F0073817D /* HelpCategoriesViewController.swift */,
 			);
@@ -160,6 +165,7 @@
 			children = (
 				9CA69FEB287DF5010073817D /* HelpCategoriesViewControllerCell.swift */,
 				9CA69FED287DF6140073817D /* SectionHeader.swift */,
+				9CA69FF8287F13E20073817D /* CustomTabBar.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -300,6 +306,8 @@
 			files = (
 				9CA69FEC287DF5010073817D /* HelpCategoriesViewControllerCell.swift in Sources */,
 				9C773A7927CD4B7C00B6B589 /* SplashScreenViewController.swift in Sources */,
+				9CA69FF7287F12D90073817D /* MainTabBarController.swift in Sources */,
+				9CA69FF9287F13E20073817D /* CustomTabBar.swift in Sources */,
 				9CA69FF0287DF90B0073817D /* SetupCategories.swift in Sources */,
 				9CA69FEE287DF6140073817D /* SectionHeader.swift in Sources */,
 				9CA69FE8287DF2B00073817D /* Categories.swift in Sources */,
