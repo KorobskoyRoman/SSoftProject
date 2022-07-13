@@ -7,4 +7,5 @@ target 'SSoftProject' do
 
   # Pods for SSoftProject
 pod 'Alamofire'
+pod 'SwiftLint'
 end

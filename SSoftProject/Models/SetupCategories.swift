@@ -15,7 +15,7 @@ final class SetupCategories {
 //                                     UIImageView(image: UIImage(named: "animals")),
 //                                     UIImageView(image: UIImage(named: "events"))]
     private let mainSectionImages = ["childs", "adults", "aged", "animals", "events"]
-    
+
     private func createModel(titles: [String], images: [String]) -> [Categories] {
         var models = [Categories]()
         guard !titles.isEmpty && !images.isEmpty else { return models }
@@ -25,7 +25,7 @@ final class SetupCategories {
         }
         return models
     }
-    
+
     public func createItems() -> [Categories] {
         var model = [Categories]()
         model.append(contentsOf: createModel(titles: mainSectionTitles, images: mainSectionImages))

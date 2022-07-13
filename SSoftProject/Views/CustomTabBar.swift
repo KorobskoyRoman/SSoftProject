@@ -8,15 +8,15 @@
 import UIKit
 
 final class CustomTabBar: UITabBar {
-    
+
     private var tabBarWidth: CGFloat { self.bounds.width }
     private var tabBarHeight: CGFloat { self.bounds.height }
     private var centerWidth: CGFloat { self.bounds.width / 2 }
     private let circleRadius: CGFloat = 27
-    
+
     private var shapeLayer: CALayer?
     private var circleLayer: CALayer?
-    
+
     private func shapePath() -> CGPath {
         let path = UIBezierPath()
         path.move(to: CGPoint(x: 0, y: 0))
@@ -26,7 +26,7 @@ final class CustomTabBar: UITabBar {
         path.close()
         return path.cgPath
     }
-    
+
     private func circlePath() -> CGPath {
         let path = UIBezierPath()
         path.addArc(withCenter: CGPoint(x: centerWidth, y: 12),
@@ -36,7 +36,7 @@ final class CustomTabBar: UITabBar {
                     clockwise: true)
         return path.cgPath
     }
-    
+
     private func drawTabBar() {
         let shapeLayer = CAShapeLayer()
         shapeLayer.path = shapePath()
@@ -65,13 +65,13 @@ final class CustomTabBar: UITabBar {
         self.shapeLayer = shapeLayer
         self.circleLayer = circleLayer
     }
-    
+
     override func draw(_ rect: CGRect) {
         drawTabBar()
     }
-    
+
     override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
-        let pointIsInside = super.point(inside: point, with: event) 
+        let pointIsInside = super.point(inside: point, with: event)
         if pointIsInside == false {
             for subview in subviews {
                 let pointInSubview = subview.convert(point, from: self)

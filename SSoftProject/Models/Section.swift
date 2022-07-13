@@ -9,7 +9,7 @@ import Foundation
 
 enum Section: Int, CaseIterable {
     case mainSection
-    
+
     func description() -> String {
         switch self {
         case .mainSection:
@@ -18,6 +18,6 @@ enum Section: Int, CaseIterable {
     }
 }
 
-fileprivate enum SectionInfo {
+private enum SectionInfo {
     static let name = "Выберите категорию помощи"
 }

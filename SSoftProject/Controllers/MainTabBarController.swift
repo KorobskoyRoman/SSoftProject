@@ -21,7 +21,7 @@ final class MainTabBarController: UITabBarController {
         middleButton.addTarget(self, action: #selector(didPressMiddleButton), for: .touchUpInside)
         return middleButton
     }()
-    
+
     private lazy var heartImageView: UIImageView = {
         let heartImageView = UIImageView()
         heartImageView.image = TabBarConstants.heartButtonImage
@@ -29,32 +29,33 @@ final class MainTabBarController: UITabBarController {
         heartImageView.translatesAutoresizingMaskIntoConstraints = false
         return heartImageView
     }()
-    
+    let WRONGNAME = 234
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setValue(CustomTabBar(frame: tabBar.frame), forKey: "tabBar")
         makeUI()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = false
     }
-    
+
     @objc private func didPressMiddleButton() {
         selectedIndex = TabBarConstants.currentIndexOfMiddleButton
         middleButton.backgroundColor = greenColor
     }
-    
+
     private func makeUI() {
         tabBar.addSubview(middleButton)
         middleButton.addSubview(heartImageView)
-                
+
         let newsVC = UIViewController()
         newsVC.view.backgroundColor = .yellow
         newsVC.tabBarItem.title = TabBarConstants.newsVCTitle
         newsVC.tabBarItem.image = TabBarConstants.newsVCImage
-        
+
         let searchVC = UIViewController()
         searchVC.view.backgroundColor = .systemRed
         searchVC.tabBarItem.title = TabBarConstants.searchVCTitle
@@ -68,7 +69,7 @@ final class MainTabBarController: UITabBarController {
         historyVC.view.backgroundColor = .systemFill
         historyVC.tabBarItem.title = TabBarConstants.historyVCTitle
         historyVC.tabBarItem.image = TabBarConstants.historyVCImage
-        
+
         let profileVC = UIViewController()
         profileVC.view.backgroundColor = .charcoalGrey
         profileVC.tabBarItem.title = TabBarConstants.profileVCTitle
@@ -76,21 +77,24 @@ final class MainTabBarController: UITabBarController {
 
         tabBar.tintColor = greenColor
         UITabBarItem.appearance().setTitleTextAttributes([.foregroundColor: greenColor], for: .selected)
-    
+
         viewControllers = [newsVC, searchVC, helpVC, historyVC, profileVC]
         selectedViewController = viewControllers?[TabBarConstants.currentIndexOfMiddleButton]
         selectedIndex = TabBarConstants.currentIndexOfMiddleButton
-        
+
         NSLayoutConstraint.activate([
             middleButton.heightAnchor.constraint(equalToConstant: middleButtonDiameter),
             middleButton.widthAnchor.constraint(equalToConstant: middleButtonDiameter),
             middleButton.centerXAnchor.constraint(equalTo: tabBar.centerXAnchor),
-            middleButton.topAnchor.constraint(equalTo: tabBar.topAnchor, constant: TabBarConstants.Constraints.middleButtonTopAnchor)
+            middleButton.topAnchor.constraint(equalTo: tabBar.topAnchor,
+                                              constant: TabBarConstants.Constraints.middleButtonTopAnchor)
         ])
 
         NSLayoutConstraint.activate([
-            heartImageView.heightAnchor.constraint(equalToConstant: TabBarConstants.Constraints.heartImageViewHeightAnchor),
-            heartImageView.widthAnchor.constraint(equalToConstant: TabBarConstants.Constraints.heartImageViewWidthAnchor),
+            heartImageView.heightAnchor.constraint(
+                equalToConstant: TabBarConstants.Constraints.heartImageViewHeightAnchor),
+            heartImageView.widthAnchor.constraint(
+                equalToConstant: TabBarConstants.Constraints.heartImageViewWidthAnchor),
             heartImageView.centerXAnchor.constraint(equalTo: middleButton.centerXAnchor),
             heartImageView.centerYAnchor.constraint(equalTo: middleButton.centerYAnchor)
         ])
@@ -108,24 +112,24 @@ extension MainTabBarController: UITabBarControllerDelegate {
     }
 }
 
-fileprivate enum TabBarConstants {
+private enum TabBarConstants {
     static let currentIndexOfMiddleButton = 2
     static let heartButtonImage = UIImage(systemName: "heart.fill")
-    
+
     static let newsVCTitle = "Новости"
     static let newsVCImage = UIImage(systemName: "list.bullet")
-    
+
     static let searchVCTitle = "Поиск"
     static let searchVCImage = UIImage(systemName: "magnifyingglass")
-    
+
     static let helpVCTitle = "Помочь"
-    
+
     static let historyVCTitle = "История"
     static let historyVCImage = UIImage(systemName: "clock.arrow.circlepath")
-    
+
     static let profileVCTitle = "Профиль"
     static let profileVCImage = UIImage(systemName: "person.crop.circle")
-    
+
     enum Constraints {
         static let heartImageViewHeightAnchor: CGFloat = 15
         static let heartImageViewWidthAnchor: CGFloat = 18
