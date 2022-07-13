@@ -15,7 +15,7 @@ class HelpCategoriesCell: UICollectionViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        self.layer.cornerRadius = 10
+        self.layer.cornerRadius = self.frame.height / Constraints.cornerMultiply
         self.image.clipsToBounds = true
     }
     
@@ -29,9 +29,9 @@ class HelpCategoriesCell: UICollectionViewCell {
         
         self.image.contentMode = .scaleAspectFit
         self.layer.shadowColor = UIColor.black.cgColor
-        self.layer.shadowRadius = 3
-        self.layer.shadowOpacity = 0.5
-        self.layer.shadowOffset = CGSize(width: 0, height: 4)
+        self.layer.shadowRadius = Constraints.shadowRadius
+        self.layer.shadowOpacity = Constraints.shadowOpacity
+        self.layer.shadowOffset = CGSize(width: .zero, height: Constraints.shadowOffsetHeight)
     }
     
     required init?(coder: NSCoder) {
@@ -51,18 +51,35 @@ class HelpCategoriesCell: UICollectionViewCell {
         addSubview(title)
         
         NSLayoutConstraint.activate([
-            image.topAnchor.constraint(equalTo: self.topAnchor, constant: 37),
-            image.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 43),
-            image.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -37),
-            image.widthAnchor.constraint(equalToConstant: 94),
-            image.heightAnchor.constraint(equalToConstant: 63),
+            image.topAnchor.constraint(equalTo: self.topAnchor, constant: Constraints.imageTopBot),
+            image.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Constraints.imageLeading),
+            image.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -Constraints.imageTopBot),
+            image.widthAnchor.constraint(equalToConstant: Constraints.imageWidth),
+            image.heightAnchor.constraint(equalToConstant: Constraints.imageHeight),
             
-            title.topAnchor.constraint(lessThanOrEqualTo: image.bottomAnchor, constant: 38),
+            title.topAnchor.constraint(lessThanOrEqualTo: image.bottomAnchor, constant: Constraints.titleTop),
             title.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-//            title.leadingAnchor.constraint(lessThanOrEqualTo: self.leadingAnchor, constant: 72),
-//            title.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -71),
-            title.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -10),
-            title.heightAnchor.constraint(equalToConstant: 18)
+//            title.leadingAnchor.constraint(lessThanOrEqualTo: self.leadingAnchor, constant: Constraints.titleLeadTrail),
+//            title.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -Constraints.titleLeadTrail),
+            title.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -Constraints.titleBot),
+            title.heightAnchor.constraint(equalToConstant: Constraints.titleHeight)
         ])
     }
+}
+
+fileprivate enum Constraints {
+    static let imageTopBot: CGFloat = 37
+    static let imageLeading: CGFloat = 43
+    static let imageWidth: CGFloat = 94
+    static let imageHeight: CGFloat = 63
+    
+    static let titleTop: CGFloat = 38
+    static let titleLeadTrail: CGFloat = 71
+    static let titleBot: CGFloat = 10
+    static let titleHeight: CGFloat = 18
+    
+    static let cornerMultiply: CGFloat = 10
+    static let shadowRadius: CGFloat = 3
+    static let shadowOpacity: Float = 0.5
+    static let shadowOffsetHeight = 4
 }
