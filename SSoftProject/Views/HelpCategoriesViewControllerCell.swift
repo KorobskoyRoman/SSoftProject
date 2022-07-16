@@ -59,8 +59,6 @@ class HelpCategoriesCell: UICollectionViewCell {
 
             title.topAnchor.constraint(lessThanOrEqualTo: image.bottomAnchor, constant: Constraints.titleTop),
             title.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-//            title.leadingAnchor.constraint(lessThanOrEqualTo: self.leadingAnchor, constant: Constraints.titleLeadTrail),
-//            title.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -Constraints.titleLeadTrail),
             title.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -Constraints.titleBot),
             title.heightAnchor.constraint(equalToConstant: Constraints.titleHeight)
         ])

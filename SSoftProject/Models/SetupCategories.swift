@@ -9,11 +9,6 @@ import UIKit
 
 final class SetupCategories {
     private let mainSectionTitles = ["Дети", "Взрослые", "Пожилые", "Животные", "Мероприятия"]
-//    private let mainSectionImages = [UIImageView(image: UIImage(named: "childs")), // так не работало почему-то
-//                                     UIImageView(image: UIImage(named: "adults")),
-//                                     UIImageView(image: UIImage(named: "aged")),
-//                                     UIImageView(image: UIImage(named: "animals")),
-//                                     UIImageView(image: UIImage(named: "events"))]
     private let mainSectionImages = ["childs", "adults", "aged", "animals", "events"]
 
     private func createModel(titles: [String], images: [String]) -> [Categories] {
