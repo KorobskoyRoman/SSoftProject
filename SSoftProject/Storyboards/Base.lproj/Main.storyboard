@@ -18,16 +18,11 @@
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launchscreenLogo" translatesAutoresizingMaskIntoConstraints="NO" id="qn8-gL-WPa">
                                 <rect key="frame" x="74" y="197" width="247" height="74"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="74" id="TfD-d3-4ia"/>
-                                    <constraint firstAttribute="width" constant="247" id="kfS-cR-q4V"/>
-                                </constraints>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="simbirSoft" translatesAutoresizingMaskIntoConstraints="NO" id="DHF-sh-LQ9">
                                 <rect key="frame" x="122" y="603" width="116" height="15.5"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="15.5" id="YrM-8e-iWM"/>
-                                    <constraint firstAttribute="width" constant="116" id="ldC-5u-UAq"/>
                                 </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="top" axis="vertical" alignment="center" spacing="20" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ocO-2x-vbh">
