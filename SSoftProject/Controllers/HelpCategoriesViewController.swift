@@ -17,6 +17,7 @@ class HelpCategoriesViewController: UIViewController {
     private lazy var dataSource = createDiffableDataSource()
     private var categories = [Categories]()
     private let setupCategories = SetupCategories()
+
     private lazy var backButton: UIBarButtonItem = {
         return UIBarButtonItem(image: HelpConstants.backImage,
                                style: .plain,
@@ -24,14 +25,23 @@ class HelpCategoriesViewController: UIViewController {
                                action: #selector(backButtonTapped))
     }()
 
+    private lazy var titleLabel: UILabel = { // для фикса высоты тайтла
+        let label = UILabel()
+        label.text = HelpConstants.title
+        label.textAlignment = .center
+        label.tintColor = .white
+        label.font = .textStyle3
+        label.textColor = .white
+        label.heightAnchor
+            .constraint(equalToConstant: self.navigationController?.navigationBar.frame.height
+                        ?? HelpConstants.Constraints.defaultNavBarHeight)
+            .isActive = true
+        return label
+    }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-    }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        navigationController?.navigationBar.topItem?.title = HelpConstants.title
     }
 
     private func setupCollectionView() {
@@ -48,12 +58,40 @@ class HelpCategoriesViewController: UIViewController {
         navigationController?.navigationBar.isHidden = false
         navigationItem.hidesBackButton = true
         view.backgroundColor = .mainBackground()
+        setupNavBar()
         categories = setupCategories.createItems()
         setupCollectionView()
         applySnapshot()
     }
 
-    // Почему-то не работает, скорее всего как-то криво вставил навигейшн, нужна помощь
+    private func setupNavBar() {
+        navigationController?.navigationBar.standardAppearance = configureNavBarAppearence()
+        navigationController?.navigationBar.compactAppearance = configureNavBarAppearence()
+        navigationController?.navigationBar.scrollEdgeAppearance = configureNavBarAppearence()
+        navigationItem.leftBarButtonItem = backButton
+        navigationItem.leftBarButtonItem?.tintColor = .white
+        navigationItem.titleView = titleLabel
+    }
+
+    private func configureNavBarAppearence() -> UINavigationBarAppearance {
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = .leaf
+        appearance.titleTextAttributes = [.foregroundColor: UIColor.white, .font: UIFont.textStyle3]
+
+        let backButtonAppearance = UIBarButtonItemAppearance(style: .plain)
+        backButtonAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.clear]
+
+        appearance.backButtonAppearance = backButtonAppearance
+        UINavigationBar.appearance().tintColor = .white
+
+        UINavigationBar.appearance().scrollEdgeAppearance = appearance
+        UINavigationBar.appearance().standardAppearance = appearance
+        UINavigationBar.appearance().compactAppearance = appearance
+
+        return appearance
+    }
+
     @objc private func backButtonTapped() {
         print("backButtonTapped")
         exit(0)
@@ -79,19 +117,18 @@ extension HelpCategoriesViewController {
     }
 
     private func createMainSection() -> NSCollectionLayoutSection {
-//        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
-//                                              heightDimension: .fractionalHeight(1.0))
         let itemSize = NSCollectionLayoutSize(widthDimension: .absolute(HelpConstants.Constraints.cellWidth),
                                               heightDimension: .absolute(HelpConstants.Constraints.cellHeight))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
 
-        item.contentInsets = NSDirectionalEdgeInsets(top: .zero,
-                                                     leading: HelpConstants.Constraints.itemInset,
-                                                     bottom: HelpConstants.Constraints.itemInset,
-                                                     trailing: HelpConstants.Constraints.itemInset)
+        item.contentInsets = NSDirectionalEdgeInsets(
+            //            top: HelpConstants.Constraints.itemInset,
+            top: HelpConstants.Constraints.topItemInset,
+            leading: HelpConstants.Constraints.itemInset,
+            bottom: HelpConstants.Constraints.itemInset,
+            trailing: HelpConstants.Constraints.itemInset)
 
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
-                                               // тут и ниже оставил тк это пропорции
                                                heightDimension: .fractionalWidth(0.4))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
                                                        subitem: item,
@@ -100,10 +137,12 @@ extension HelpCategoriesViewController {
         let section = NSCollectionLayoutSection(group: group)
 
         section.interGroupSpacing = HelpConstants.Constraints.interGroupSpacing
-        section.contentInsets = NSDirectionalEdgeInsets(top: HelpConstants.Constraints.interSectionSpacing,
-                                                        leading: HelpConstants.Constraints.itemInset,
-                                                        bottom: HelpConstants.Constraints.itemInset,
-                                                        trailing: HelpConstants.Constraints.itemInset)
+        section.contentInsets = NSDirectionalEdgeInsets(
+            //            top: HelpConstants.Constraints.interSectionSpacing,
+            top: HelpConstants.Constraints.topItemInset,
+            leading: HelpConstants.Constraints.itemInset,
+            bottom: .zero,
+            trailing: HelpConstants.Constraints.itemInset)
 
         let sectionHeader = createHeader()
         section.boundarySupplementaryItems = [sectionHeader]
@@ -173,8 +212,11 @@ private enum HelpConstants {
         static let cellHeight: CGFloat = 160
 
         static let itemInset: CGFloat = 9
+        static let topItemInset: CGFloat = UIDevice.current.name.contains("Max") ? 0 : 9
         static let groupSize = 2
         static let interGroupSpacing: CGFloat = 5
         static let interSectionSpacing: CGFloat = 20
+
+        static let defaultNavBarHeight: CGFloat = 44.0
     }
 }

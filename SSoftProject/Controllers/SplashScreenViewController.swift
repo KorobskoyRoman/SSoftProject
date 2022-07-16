@@ -7,9 +7,9 @@
 
 import UIKit
 
-class SplashScreenViewController: UIViewController {
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    @IBOutlet weak var stackView: UIStackView!
+final class SplashScreenViewController: UIViewController {
+    @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet private weak var stackView: UIStackView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,10 +25,13 @@ class SplashScreenViewController: UIViewController {
             self.stackView.alpha = 1
         }, completion: nil)
 
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
+            guard let self = self else { return }
             let tabBarVC = MainTabBarController()
             tabBarVC.modalPresentationStyle = .fullScreen
-            self.navigationController?.pushViewController(tabBarVC, animated: true)
+            tabBarVC.modalTransitionStyle = .flipHorizontal
+            self.dismiss(animated: false)
+            self.present(tabBarVC, animated: true)
         }
     }
 

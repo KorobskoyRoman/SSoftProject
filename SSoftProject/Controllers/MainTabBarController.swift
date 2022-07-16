@@ -29,7 +29,6 @@ final class MainTabBarController: UITabBarController {
         heartImageView.translatesAutoresizingMaskIntoConstraints = false
         return heartImageView
     }()
-    let WRONGNAME = 234
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,16 +36,12 @@ final class MainTabBarController: UITabBarController {
         makeUI()
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.navigationBar.isHidden = false
-    }
-
     @objc private func didPressMiddleButton() {
         selectedIndex = TabBarConstants.currentIndexOfMiddleButton
         middleButton.backgroundColor = greenColor
     }
 
+    /// При добавлении новых контроллеров нужно настроить NavigationController
     private func makeUI() {
         tabBar.addSubview(middleButton)
         middleButton.addSubview(heartImageView)
@@ -61,9 +56,9 @@ final class MainTabBarController: UITabBarController {
         searchVC.tabBarItem.title = TabBarConstants.searchVCTitle
         searchVC.tabBarItem.image = TabBarConstants.searchVCImage
 
-//        let helpVC = UIStoryboard(name: "Main", bundle: .main).instantiateViewController(withIdentifier: "SplashScreenViewController")
         let helpVC = HelpCategoriesViewController() // heart button
-        helpVC.tabBarItem.title = TabBarConstants.helpVCTitle
+        let helpVCNav = UINavigationController(rootViewController: helpVC)
+        helpVCNav.tabBarItem.title = TabBarConstants.helpVCTitle
 
         let historyVC = UIViewController()
         historyVC.view.backgroundColor = .systemFill
@@ -78,7 +73,7 @@ final class MainTabBarController: UITabBarController {
         tabBar.tintColor = greenColor
         UITabBarItem.appearance().setTitleTextAttributes([.foregroundColor: greenColor], for: .selected)
 
-        viewControllers = [newsVC, searchVC, helpVC, historyVC, profileVC]
+        viewControllers = [newsVC, searchVC, helpVCNav, historyVC, profileVC]
         selectedViewController = viewControllers?[TabBarConstants.currentIndexOfMiddleButton]
         selectedIndex = TabBarConstants.currentIndexOfMiddleButton
 
@@ -113,6 +108,7 @@ extension MainTabBarController: UITabBarControllerDelegate {
 }
 
 private enum TabBarConstants {
+    /// Индекс центральной кнопки
     static let currentIndexOfMiddleButton = 2
     static let heartButtonImage = UIImage(systemName: "heart.fill")
 
@@ -135,4 +131,8 @@ private enum TabBarConstants {
         static let heartImageViewWidthAnchor: CGFloat = 18
         static let middleButtonTopAnchor: CGFloat = -10
     }
+}
+
+private enum HelpConstants {
+    static let backImage = UIImage(named: "backButton")
 }
