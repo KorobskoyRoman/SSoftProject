@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="4oY-Ne-haE">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Splash Screen View Controller-->
+        <scene sceneID="UZa-mf-mvT">
+            <objects>
+                <viewController storyboardIdentifier="SplashScreenViewController" id="4oY-Ne-haE" customClass="SplashScreenViewController" customModule="SSoftProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="rdr-za-gei">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launchscreenLogo" translatesAutoresizingMaskIntoConstraints="NO" id="qn8-gL-WPa">
+                                <rect key="frame" x="74" y="197" width="247" height="74"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="simbirSoft" translatesAutoresizingMaskIntoConstraints="NO" id="DHF-sh-LQ9">
+                                <rect key="frame" x="122" y="603" width="116" height="15.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="15.5" id="YrM-8e-iWM"/>
+                                </constraints>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="top" axis="vertical" alignment="center" spacing="20" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ocO-2x-vbh">
+                                <rect key="frame" x="157" y="357" width="68" height="71"/>
+                                <subviews>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="vRl-IE-cDR">
+                                        <rect key="frame" x="15.5" y="0.0" width="37" height="48.5"/>
+                                    </activityIndicatorView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Загрузка..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dGZ-1l-GMh">
+                                        <rect key="frame" x="0.0" y="56" width="68" height="15"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="68" id="XtH-N0-ds6"/>
+                                            <constraint firstAttribute="height" constant="15" id="qiP-cg-t4e"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="13"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="RkQ-Aw-hbE"/>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.95294117649999999" blue="0.96470588239999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="RkQ-Aw-hbE" firstAttribute="bottom" secondItem="qn8-gL-WPa" secondAttribute="bottom" constant="396" id="0Ig-Ro-gkk"/>
+                            <constraint firstItem="RkQ-Aw-hbE" firstAttribute="trailing" secondItem="DHF-sh-LQ9" secondAttribute="trailing" constant="137" id="1aO-an-fis"/>
+                            <constraint firstItem="RkQ-Aw-hbE" firstAttribute="trailing" secondItem="qn8-gL-WPa" secondAttribute="trailing" constant="54" id="1pm-az-9sN"/>
+                            <constraint firstAttribute="bottom" secondItem="DHF-sh-LQ9" secondAttribute="bottom" constant="48.5" id="8T0-bD-fTf"/>
+                            <constraint firstItem="DHF-sh-LQ9" firstAttribute="leading" secondItem="RkQ-Aw-hbE" secondAttribute="leading" constant="122" id="9Vy-Gr-F8c"/>
+                            <constraint firstItem="ocO-2x-vbh" firstAttribute="top" secondItem="RkQ-Aw-hbE" secondAttribute="top" constant="357" id="a8J-sN-KA8"/>
+                            <constraint firstItem="ocO-2x-vbh" firstAttribute="leading" secondItem="RkQ-Aw-hbE" secondAttribute="leading" constant="157" id="ll8-UG-sth"/>
+                            <constraint firstItem="RkQ-Aw-hbE" firstAttribute="trailing" secondItem="ocO-2x-vbh" secondAttribute="trailing" constant="150" id="pwC-zo-u9D"/>
+                            <constraint firstItem="qn8-gL-WPa" firstAttribute="top" secondItem="rdr-za-gei" secondAttribute="top" constant="197" id="qIN-6r-i6z"/>
+                            <constraint firstItem="RkQ-Aw-hbE" firstAttribute="bottom" secondItem="ocO-2x-vbh" secondAttribute="bottom" constant="239" id="tb5-0l-sYU"/>
+                            <constraint firstItem="qn8-gL-WPa" firstAttribute="leading" secondItem="RkQ-Aw-hbE" secondAttribute="leading" constant="74" id="v4p-bu-QVG"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="activityIndicator" destination="vRl-IE-cDR" id="1Bg-MV-KmS"/>
+                        <outlet property="stackView" destination="ocO-2x-vbh" id="c0Y-AP-WvR"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="azk-Au-cHR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="156" y="143"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="launchscreenLogo" width="251" height="77"/>
+        <image name="simbirSoft" width="116" height="16"/>
+    </resources>
+</document>
