@@ -122,7 +122,6 @@ extension HelpCategoriesViewController {
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
 
         item.contentInsets = NSDirectionalEdgeInsets(
-            //            top: HelpConstants.Constraints.itemInset,
             top: HelpConstants.Constraints.topItemInset,
             leading: HelpConstants.Constraints.itemInset,
             bottom: HelpConstants.Constraints.itemInset,
@@ -138,7 +137,6 @@ extension HelpCategoriesViewController {
 
         section.interGroupSpacing = HelpConstants.Constraints.interGroupSpacing
         section.contentInsets = NSDirectionalEdgeInsets(
-            //            top: HelpConstants.Constraints.interSectionSpacing,
             top: HelpConstants.Constraints.topItemInset,
             leading: HelpConstants.Constraints.itemInset,
             bottom: .zero,

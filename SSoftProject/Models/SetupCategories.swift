@@ -22,8 +22,6 @@ final class SetupCategories {
     }
 
     public func createItems() -> [Categories] {
-        var model = [Categories]()
-        model.append(contentsOf: createModel(titles: mainSectionTitles, images: mainSectionImages))
-        return model
+        return createModel(titles: mainSectionTitles, images: mainSectionImages)
     }
 }

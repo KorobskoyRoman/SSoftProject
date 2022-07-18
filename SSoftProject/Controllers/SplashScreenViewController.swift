@@ -30,8 +30,10 @@ final class SplashScreenViewController: UIViewController {
             let tabBarVC = MainTabBarController()
             tabBarVC.modalPresentationStyle = .fullScreen
             tabBarVC.modalTransitionStyle = .flipHorizontal
-            self.dismiss(animated: false)
-            self.present(tabBarVC, animated: true)
+            self.dismiss(animated: false) {
+                self.activityIndicator.stopAnimating()
+                self.present(tabBarVC, animated: true)
+            }
         }
     }
 
