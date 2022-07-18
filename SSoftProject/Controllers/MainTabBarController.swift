@@ -30,6 +30,19 @@ final class MainTabBarController: UITabBarController {
         return heartImageView
     }()
 
+    private lazy var titleLabel: UILabel = { // для фикса высоты тайтла
+        let label = UILabel()
+        label.textAlignment = .center
+        label.tintColor = .white
+        label.font = .textStyle3
+        label.textColor = .white
+        label.heightAnchor
+            .constraint(equalToConstant: self.navigationController?.navigationBar.frame.height
+                        ?? 0)
+            .isActive = true
+        return label
+    }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setValue(CustomTabBar(frame: tabBar.frame), forKey: "tabBar")
@@ -58,6 +71,9 @@ final class MainTabBarController: UITabBarController {
 
         let helpVC = HelpCategoriesViewController() // heart button
         let helpVCNav = UINavigationController(rootViewController: helpVC)
+        helpVCNav.navigationBar.standardAppearance = configureNavBarAppearence()
+        helpVCNav.navigationBar.compactAppearance = configureNavBarAppearence()
+        helpVCNav.navigationBar.scrollEdgeAppearance = configureNavBarAppearence()
         helpVCNav.tabBarItem.title = TabBarConstants.helpVCTitle
 
         let historyVC = UIViewController()
@@ -77,6 +93,10 @@ final class MainTabBarController: UITabBarController {
         selectedViewController = viewControllers?[TabBarConstants.currentIndexOfMiddleButton]
         selectedIndex = TabBarConstants.currentIndexOfMiddleButton
 
+        setConstraints()
+    }
+
+    private func setConstraints() {
         NSLayoutConstraint.activate([
             middleButton.heightAnchor.constraint(equalToConstant: middleButtonDiameter),
             middleButton.widthAnchor.constraint(equalToConstant: middleButtonDiameter),
@@ -104,6 +124,27 @@ extension MainTabBarController: UITabBarControllerDelegate {
         } else {
             middleButton.backgroundColor = greenColor
         }
+    }
+}
+
+extension MainTabBarController {
+    private func configureNavBarAppearence() -> UINavigationBarAppearance {
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = .leaf
+        appearance.titleTextAttributes = [.foregroundColor: UIColor.white, .font: UIFont.textStyle3]
+
+        let backButtonAppearance = UIBarButtonItemAppearance(style: .plain)
+        backButtonAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.clear]
+
+        appearance.backButtonAppearance = backButtonAppearance
+        UINavigationBar.appearance().tintColor = .white
+
+        UINavigationBar.appearance().scrollEdgeAppearance = appearance
+        UINavigationBar.appearance().standardAppearance = appearance
+        UINavigationBar.appearance().compactAppearance = appearance
+
+        return appearance
     }
 }
 

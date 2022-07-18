@@ -58,6 +58,7 @@ class HelpCategoriesViewController: UIViewController {
         navigationController?.navigationBar.isHidden = false
         navigationItem.hidesBackButton = true
         view.backgroundColor = .mainBackground()
+        collectionView.delegate = self
         setupNavBar()
         categories = setupCategories.createItems()
         setupCollectionView()
@@ -198,6 +199,20 @@ extension HelpCategoriesViewController {
         snapshot.appendSections([.mainSection])
         snapshot.appendItems(categories, toSection: .mainSection)
         dataSource.apply(snapshot, animatingDifferences: animatingDifferences)
+    }
+}
+
+extension HelpCategoriesViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let section = Section(rawValue: indexPath.section) else { fatalError("No section") }
+        switch section {
+        case .mainSection:
+            let cell = collectionView.cellForItem(at: indexPath) as? HelpCategoriesCell
+            guard let cell = cell else { return }
+            let charityVC = CharityEventsViewController()
+            charityVC.title = cell.navBarTitle
+            navigationController?.pushViewController(charityVC, animated: true)
+        }
     }
 }
 

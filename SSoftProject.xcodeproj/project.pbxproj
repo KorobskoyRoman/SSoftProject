@@ -14,6 +14,11 @@
 		9C773A7C27CD4B7C00B6B589 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C773A7A27CD4B7C00B6B589 /* Main.storyboard */; };
 		9C773A7E27CD4B7F00B6B589 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C773A7D27CD4B7F00B6B589 /* Assets.xcassets */; };
 		9C773A8127CD4B7F00B6B589 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C773A7F27CD4B7F00B6B589 /* LaunchScreen.storyboard */; };
+		9C84CDA52885C4B000B643F5 /* ChildsEvents.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C84CDA42885C4B000B643F5 /* ChildsEvents.json */; };
+		9C84CDA82885C8EA00B643F5 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C84CDA72885C8EA00B643F5 /* Event.swift */; };
+		9C84CDAA2885CB5300B643F5 /* CharityEventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C84CDA92885CB5300B643F5 /* CharityEventsViewController.swift */; };
+		9C84CDAD2885E43300B643F5 /* JSONDecoderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C84CDAC2885E43300B643F5 /* JSONDecoderService.swift */; };
+		9C84CDB02885EA9D00B643F5 /* CharityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C84CDAF2885EA9D00B643F5 /* CharityCell.swift */; };
 		9CA69FDC287DDBC90073817D /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA69FDB287DDBC90073817D /* UIColor+.swift */; };
 		9CA69FE2287DEA050073817D /* UIFont+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA69FE1287DEA050073817D /* UIFont+.swift */; };
 		9CA69FE4287DEB5F0073817D /* HelpCategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA69FE3287DEB5F0073817D /* HelpCategoriesViewController.swift */; };
@@ -39,6 +44,11 @@
 		9C773A7D27CD4B7F00B6B589 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9C773A8027CD4B7F00B6B589 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9C773A8227CD4B7F00B6B589 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9C84CDA42885C4B000B643F5 /* ChildsEvents.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ChildsEvents.json; sourceTree = "<group>"; };
+		9C84CDA72885C8EA00B643F5 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		9C84CDA92885CB5300B643F5 /* CharityEventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharityEventsViewController.swift; sourceTree = "<group>"; };
+		9C84CDAC2885E43300B643F5 /* JSONDecoderService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONDecoderService.swift; sourceTree = "<group>"; };
+		9C84CDAF2885EA9D00B643F5 /* CharityCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharityCell.swift; sourceTree = "<group>"; };
 		9CA69FDB287DDBC90073817D /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		9CA69FE1287DEA050073817D /* UIFont+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+.swift"; sourceTree = "<group>"; };
 		9CA69FE3287DEB5F0073817D /* HelpCategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpCategoriesViewController.swift; sourceTree = "<group>"; };
@@ -110,9 +120,35 @@
 				9CA69FDA287DDBBD0073817D /* Extensions */,
 				9CA69FE0287DE0670073817D /* Storyboards */,
 				9CA69FDE287DDFF50073817D /* Helpers */,
+				9C84CDA32885C44200B643F5 /* Resourses */,
+				9C84CDAB2885E40C00B643F5 /* Service */,
 				9C773A8227CD4B7F00B6B589 /* Info.plist */,
 			);
 			path = SSoftProject;
+			sourceTree = "<group>";
+		};
+		9C84CDA32885C44200B643F5 /* Resourses */ = {
+			isa = PBXGroup;
+			children = (
+				9C84CDA62885C63700B643F5 /* Events */,
+			);
+			path = Resourses;
+			sourceTree = "<group>";
+		};
+		9C84CDA62885C63700B643F5 /* Events */ = {
+			isa = PBXGroup;
+			children = (
+				9C84CDA42885C4B000B643F5 /* ChildsEvents.json */,
+			);
+			path = Events;
+			sourceTree = "<group>";
+		};
+		9C84CDAB2885E40C00B643F5 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				9C84CDAC2885E43300B643F5 /* JSONDecoderService.swift */,
+			);
+			path = Service;
 			sourceTree = "<group>";
 		};
 		9CA69FDA287DDBBD0073817D /* Extensions */ = {
@@ -148,6 +184,7 @@
 				9CA69FF6287F12D90073817D /* MainTabBarController.swift */,
 				9C773A7827CD4B7C00B6B589 /* SplashScreenViewController.swift */,
 				9CA69FE3287DEB5F0073817D /* HelpCategoriesViewController.swift */,
+				9C84CDA92885CB5300B643F5 /* CharityEventsViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -164,6 +201,7 @@
 			isa = PBXGroup;
 			children = (
 				9CA69FEB287DF5010073817D /* HelpCategoriesViewControllerCell.swift */,
+				9C84CDAF2885EA9D00B643F5 /* CharityCell.swift */,
 				9CA69FED287DF6140073817D /* SectionHeader.swift */,
 				9CA69FF8287F13E20073817D /* CustomTabBar.swift */,
 			);
@@ -174,6 +212,7 @@
 			isa = PBXGroup;
 			children = (
 				9CA69FE7287DF2B00073817D /* Categories.swift */,
+				9C84CDA72885C8EA00B643F5 /* Event.swift */,
 				9CA69FE9287DF3750073817D /* Section.swift */,
 				9CA69FEF287DF90B0073817D /* SetupCategories.swift */,
 			);
@@ -249,6 +288,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9C84CDA52885C4B000B643F5 /* ChildsEvents.json in Resources */,
 				9C773A8127CD4B7F00B6B589 /* LaunchScreen.storyboard in Resources */,
 				9CA69FF3287E0A8D0073817D /* OfficinaSansExtraBoldSCC.otf in Resources */,
 				9C773A7E27CD4B7F00B6B589 /* Assets.xcassets in Resources */,
@@ -326,12 +366,16 @@
 				9C773A7927CD4B7C00B6B589 /* SplashScreenViewController.swift in Sources */,
 				9CA69FF7287F12D90073817D /* MainTabBarController.swift in Sources */,
 				9CA69FF9287F13E20073817D /* CustomTabBar.swift in Sources */,
+				9C84CDA82885C8EA00B643F5 /* Event.swift in Sources */,
 				9CA69FF0287DF90B0073817D /* SetupCategories.swift in Sources */,
+				9C84CDB02885EA9D00B643F5 /* CharityCell.swift in Sources */,
 				9CA69FEE287DF6140073817D /* SectionHeader.swift in Sources */,
 				9CA69FE8287DF2B00073817D /* Categories.swift in Sources */,
 				9CA69FDC287DDBC90073817D /* UIColor+.swift in Sources */,
 				9CA69FE2287DEA050073817D /* UIFont+.swift in Sources */,
+				9C84CDAA2885CB5300B643F5 /* CharityEventsViewController.swift in Sources */,
 				9CA69FE4287DEB5F0073817D /* HelpCategoriesViewController.swift in Sources */,
+				9C84CDAD2885E43300B643F5 /* JSONDecoderService.swift in Sources */,
 				9CA69FEA287DF3750073817D /* Section.swift in Sources */,
 				9C773A7527CD4B7C00B6B589 /* AppDelegate.swift in Sources */,
 				9C773A7727CD4B7C00B6B589 /* SceneDelegate.swift in Sources */,

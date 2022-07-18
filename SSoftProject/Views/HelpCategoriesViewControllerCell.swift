@@ -13,6 +13,8 @@ class HelpCategoriesCell: UICollectionViewCell {
     private var image = UIImageView()
     private var title = UILabel()
 
+    lazy var navBarTitle: String = title.text ?? "n/a"
+
     override func layoutSubviews() {
         super.layoutSubviews()
         self.layer.cornerRadius = self.frame.height / Constraints.cornerMultiply
