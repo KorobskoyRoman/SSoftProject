@@ -12,4 +12,9 @@ struct Event: Codable, Hashable {
     let details: String
     let date: String
     let isDone: Bool
+    let category: String
+    let address: String
+    let phone: String
+    let details2: String
+    let details3: String
 }
