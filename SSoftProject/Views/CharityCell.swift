@@ -22,9 +22,10 @@ class CharityCell: UICollectionViewCell {
 
     override func layoutSubviews() {
         super.layoutSubviews()
-        self.layer.cornerRadius = 10
+        self.layer.cornerRadius = Constraints.cornerRadius
         self.clipsToBounds = true
         self.image.clipsToBounds = true
+        self.image.layer.cornerRadius = Constraints.cornerRadius
     }
 
     override init(frame: CGRect) {
@@ -43,13 +44,6 @@ class CharityCell: UICollectionViewCell {
         details.textAlignment = .center
         details.numberOfLines = .zero
 
-//        var rect: CGRect = date.frame
-//        rect.size = date.text?.size(withAttributes: [NSAttributedString.Key.font:
-//                                                        UIFont(name: date.font.fontName,
-//                                                               size: date.font.pointSize)
-//                                                     ?? CGSize(width: 0, height: 0)])
-//                    ?? CGSize(width: 0, height: 0)
-//        date.widthAnchor.constraint(equalToConstant: rect.width).isActive = true
         date.textAlignment = .center
         date.textColor = .white
         date.font = .systemFont(ofSize: 11)
@@ -166,6 +160,8 @@ private enum Constraints {
     static let dateHeight: CGFloat = 13
 
     static let inset: CGFloat = 10
+
+    static let cornerRadius: CGFloat = 10
 
     static let cornerMultiply: CGFloat = 10
     static let shadowRadius: CGFloat = 3
