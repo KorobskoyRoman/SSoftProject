@@ -8,22 +8,6 @@
 import Foundation
 
 class JSONDecoderService: Bundle {
-//    func decode<T: Decodable>(_ type: T.Type, from file: String) -> T {
-//        guard let url = self.url(forResource: file, withExtension: nil) else {
-//            fatalError("File not exist \(file)")
-//        }
-//
-//        guard let data = try? Data(contentsOf: url) else {
-//            fatalError("failed load \(file)")
-//        }
-//
-//        let decoder = JSONDecoderService()
-//
-//        guard let loaded = try? decoder.decode(T.self, from: data) else {
-//            fatalError("fail to decode \(file)")
-//        }
-//        return loaded
-//    }
     func decode<T: Decodable>(_ type: T.Type,
                               from file: String,
                               dateDecodingStrategy: JSONDecoder.DateDecodingStrategy = .deferredToDate,
