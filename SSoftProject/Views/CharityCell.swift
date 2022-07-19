@@ -11,7 +11,7 @@ class CharityCell: UICollectionViewCell {
     static let reuseId = "CharityCell"
 
     private var image = UIImageView()
-    private var title = UILabel()
+    var title = UILabel()
     private var details = UILabel()
     private var date = UILabel()
     private var separateImage = UIImageView(image: UIImage(named: "separator"))

@@ -209,21 +209,9 @@ extension HelpCategoriesViewController: UICollectionViewDelegate {
             let cell = collectionView.cellForItem(at: indexPath) as? HelpCategoriesCell
             guard let cell = cell else { return }
             let charityVC = CharityEventsViewController()
+            let decodedArr = decodeService.decode([Event].self, from: JSONConstants.eventsJson)
             charityVC.title = cell.navBarTitle
-            switch indexPath.item {
-            case 0:
-                charityVC.events = decodeService.decode([Event].self, from: JSONConstants.childsJson)
-            case 1:
-                charityVC.events = decodeService.decode([Event].self, from: JSONConstants.adultsJson)
-            case 2:
-                charityVC.events = decodeService.decode([Event].self, from: JSONConstants.agedJson)
-            case 3:
-                charityVC.events = decodeService.decode([Event].self, from: JSONConstants.animalsJson)
-            case 4:
-                charityVC.events = decodeService.decode([Event].self, from: JSONConstants.eventsJson)
-            default:
-                charityVC.events = [Event]()
-            }
+            charityVC.events = decodedArr.filter({ $0.category == cell.navBarTitle })
             navigationController?.pushViewController(charityVC, animated: true)
         }
     }

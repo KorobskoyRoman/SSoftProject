@@ -32,7 +32,6 @@ class CharityEventsViewController: UIViewController {
     }()
 
     private let decodeService = JSONDecoderService()
-//    private lazy var events = decodeService.decode([Event].self, from: JSONConstants.childsJson)
     private var containerView = UIView()
     private var collView = UIView()
     private lazy var collectionView = UICollectionView(frame: collView.bounds,
@@ -41,7 +40,9 @@ class CharityEventsViewController: UIViewController {
     var events = [Event]()
 
     override func viewDidLoad() {
+        super.viewDidLoad()
         collectionView.backgroundColor = .mainBackground()
+        collectionView.delegate = self
         setupView()
         applySnapshot()
         print(events)
@@ -51,6 +52,7 @@ class CharityEventsViewController: UIViewController {
         containerView.backgroundColor = .white
         collView.backgroundColor = .mainBackground()
         view.backgroundColor = .mainBackground()
+
         setConstraints()
         setupCollectionView()
     }
@@ -171,6 +173,21 @@ extension CharityEventsViewController {
         snapshot.appendSections([.mainSection])
         snapshot.appendItems(events, toSection: .mainSection)
         dataSource.apply(snapshot, animatingDifferences: animatingDifferences)
+    }
+}
+
+extension CharityEventsViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let section = Section(rawValue: indexPath.section) else { fatalError("No section") }
+        switch section {
+        case .mainSection:
+            let cell = collectionView.cellForItem(at: indexPath) as? CharityCell
+            guard let cell = cell else { return }
+            let detailsVC = DetailEventViewController()
+            detailsVC.title = cell.title.text
+            detailsVC.eventInfo = events.filter { $0.id == indexPath.item }
+            navigationController?.pushViewController(detailsVC, animated: true)
+        }
     }
 }
 
