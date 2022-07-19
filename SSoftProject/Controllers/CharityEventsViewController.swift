@@ -32,12 +32,13 @@ class CharityEventsViewController: UIViewController {
     }()
 
     private let decodeService = JSONDecoderService()
-    private lazy var events = decodeService.decode([Event].self, from: "ChildsEvents.json")
+//    private lazy var events = decodeService.decode([Event].self, from: JSONConstants.childsJson)
     private var containerView = UIView()
     private var collView = UIView()
     private lazy var collectionView = UICollectionView(frame: collView.bounds,
                                                        collectionViewLayout: createCompositialLayout())
     private lazy var dataSource = createDiffableDataSource()
+    var events = [Event]()
 
     override func viewDidLoad() {
         collectionView.backgroundColor = .mainBackground()

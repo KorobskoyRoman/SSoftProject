@@ -11,4 +11,5 @@ struct Event: Codable, Hashable {
     let title: String
     let details: String
     let date: String
+    let isDone: Bool
 }

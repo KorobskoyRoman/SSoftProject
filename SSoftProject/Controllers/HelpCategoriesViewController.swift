@@ -15,8 +15,8 @@ class HelpCategoriesViewController: UIViewController {
     private lazy var collectionView = UICollectionView(frame: view.bounds,
                                                        collectionViewLayout: createCompositialLayout())
     private lazy var dataSource = createDiffableDataSource()
-    private var categories = [Categories]()
-    private let setupCategories = SetupCategories()
+    private let decodeService = JSONDecoderService()
+    private lazy var categories = decodeService.decode([Categories].self, from: JSONConstants.categoriesJson)
 
     private lazy var backButton: UIBarButtonItem = {
         return UIBarButtonItem(image: HelpConstants.backImage,
@@ -60,7 +60,6 @@ class HelpCategoriesViewController: UIViewController {
         view.backgroundColor = .mainBackground()
         collectionView.delegate = self
         setupNavBar()
-        categories = setupCategories.createItems()
         setupCollectionView()
         applySnapshot()
     }
@@ -211,6 +210,20 @@ extension HelpCategoriesViewController: UICollectionViewDelegate {
             guard let cell = cell else { return }
             let charityVC = CharityEventsViewController()
             charityVC.title = cell.navBarTitle
+            switch indexPath.item {
+            case 0:
+                charityVC.events = decodeService.decode([Event].self, from: JSONConstants.childsJson)
+            case 1:
+                charityVC.events = decodeService.decode([Event].self, from: JSONConstants.adultsJson)
+            case 2:
+                charityVC.events = decodeService.decode([Event].self, from: JSONConstants.agedJson)
+            case 3:
+                charityVC.events = decodeService.decode([Event].self, from: JSONConstants.animalsJson)
+            case 4:
+                charityVC.events = decodeService.decode([Event].self, from: JSONConstants.eventsJson)
+            default:
+                charityVC.events = [Event]()
+            }
             navigationController?.pushViewController(charityVC, animated: true)
         }
     }
