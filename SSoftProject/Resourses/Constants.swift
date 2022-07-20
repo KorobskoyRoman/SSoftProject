@@ -23,4 +23,11 @@ enum ConstraintsConst {
     static let inset33: CGFloat = 33
     static let inset17: CGFloat = 17
     static let inset32: CGFloat = 32
+    static let inset36: CGFloat = 36
+    static let inset5: CGFloat = 5
+    static let inset9: CGFloat = 9
+    static let inset7: CGFloat = 7
+    static let inset4: CGFloat = 4
+    static let inset13and5: CGFloat = 13.5
+    static let inset70: CGFloat = 70
 }
