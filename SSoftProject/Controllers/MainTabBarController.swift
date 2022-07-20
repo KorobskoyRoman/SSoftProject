@@ -173,7 +173,3 @@ private enum TabBarConstants {
         static let middleButtonTopAnchor: CGFloat = -10
     }
 }
-
-private enum HelpConstants {
-    static let backImage = UIImage(named: "backButton")
-}

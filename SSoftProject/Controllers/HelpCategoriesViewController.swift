@@ -19,7 +19,7 @@ class HelpCategoriesViewController: UIViewController {
     private lazy var categories = decodeService.decode([Categories].self, from: JSONConstants.categoriesJson)
 
     private lazy var backButton: UIBarButtonItem = {
-        return UIBarButtonItem(image: HelpConstants.backImage,
+        return UIBarButtonItem(image: ImageConstants.backImage,
                                style: .plain,
                                target: self,
                                action: #selector(backButtonTapped))
@@ -219,7 +219,6 @@ extension HelpCategoriesViewController: UICollectionViewDelegate {
 
 private enum HelpConstants {
     static let title = "Помочь"
-    static let backImage = UIImage(named: "backButton")
 
     enum Constraints {
         static let cellWidth: CGFloat = 174

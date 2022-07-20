@@ -202,6 +202,16 @@ class DetailEventCell: UITableViewCell {
         contentView.addSubview(organizationButton)
     }
 
+    @objc private func mailButtonTapped() {
+        print("mailButtonTapped")
+    }
+
+    @objc private func organizationButtonTapped() {
+        print("organizationButtonTapped")
+    }
+}
+
+extension DetailEventCell {
     private func setConstraints() {
         setupSubviews()
         miniPhotosStackView.widthAnchor.constraint(equalToConstant: Constants.miniPhotosStackViewWidth)
@@ -250,14 +260,6 @@ class DetailEventCell: UITableViewCell {
             organizationButton.leadingAnchor.constraint(equalTo: self.leadingAnchor,
                                                         constant: ConstraintsConst.inset20)
         ])
-    }
-
-    @objc private func mailButtonTapped() {
-        print("mailButtonTapped")
-    }
-
-    @objc private func organizationButtonTapped() {
-        print("organizationButtonTapped")
     }
 }
 

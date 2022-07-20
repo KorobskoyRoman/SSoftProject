@@ -16,6 +16,16 @@ class DetailEventViewController: UIViewController {
     private lazy var footerView = TableFooterView(images: images)
     private lazy var helpVariants = HelpVariantsView()
 
+    private lazy var shareButton: UIBarButtonItem = {
+        return UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareButtonTapped))
+    }()
+    private lazy var backButton: UIBarButtonItem = {
+        return UIBarButtonItem(image: ImageConstants.backImage,
+                               style: .plain,
+                               target: self,
+                               action: #selector(backButtonPresed))
+    }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
@@ -34,6 +44,7 @@ class DetailEventViewController: UIViewController {
 
     private func setupView() {
         view.backgroundColor = .white
+        navigationItem.leftBarButtonItem = backButton
         helpVariants.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(helpVariants)
         helpVariants.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
@@ -41,6 +52,7 @@ class DetailEventViewController: UIViewController {
         helpVariants.bottomAnchor.constraint(equalTo: view.bottomAnchor,
                                              constant: -ConstraintsConst.inset20).isActive = true
         helpVariants.heightAnchor.constraint(equalToConstant: ConstraintsConst.inset70).isActive = true
+        navigationItem.rightBarButtonItem = shareButton
     }
 
     private func setupTableView() {
@@ -56,6 +68,14 @@ class DetailEventViewController: UIViewController {
         tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         tableView.bottomAnchor.constraint(equalTo: helpVariants.topAnchor).isActive = true
         tableView.register(DetailEventCell.self, forCellReuseIdentifier: DetailEventCell.reuseId)
+    }
+
+    @objc private func shareButtonTapped() {
+        print("shareButtonTapped")
+    }
+
+    @objc private func backButtonPresed() {
+        navigationController?.popViewController(animated: true)
     }
 }
 

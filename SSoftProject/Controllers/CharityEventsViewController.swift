@@ -31,6 +31,13 @@ class CharityEventsViewController: UIViewController {
         return segmentedControl
     }()
 
+    private lazy var backButton: UIBarButtonItem = {
+        return UIBarButtonItem(image: ImageConstants.backImage,
+                               style: .plain,
+                               target: self,
+                               action: #selector(backButtonPresed))
+    }()
+
     private let decodeService = JSONDecoderService()
     private var containerView = UIView()
     private var collView = UIView()
@@ -65,7 +72,7 @@ class CharityEventsViewController: UIViewController {
         containerView.backgroundColor = .white
         collView.backgroundColor = .mainBackground()
         view.backgroundColor = .mainBackground()
-
+        navigationItem.leftBarButtonItem = backButton
         setConstraints()
         setupCollectionView()
     }
@@ -110,6 +117,10 @@ class CharityEventsViewController: UIViewController {
             collView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             collView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
+    }
+
+    @objc private func backButtonPresed() {
+        navigationController?.popViewController(animated: true)
     }
 }
 
@@ -206,7 +217,6 @@ extension CharityEventsViewController: UICollectionViewDelegate {
 
 private enum HelpConstants {
     static let title = "Помочь"
-    static let backImage = UIImage(named: "backButton")
 
     enum Constraints {
         static let cellWidth: CGFloat = 359
