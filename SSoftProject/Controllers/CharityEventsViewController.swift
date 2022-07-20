@@ -48,6 +48,19 @@ class CharityEventsViewController: UIViewController {
         print(events)
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        guard let alpha = tabBarController?.tabBar.alpha else { return }
+        if alpha == 0 {
+            UIView.animate(withDuration: 0.3,
+                           delay: 0,
+                           options: .curveEaseIn,
+                           animations: {
+                self.tabBarController?.tabBar.alpha = 1
+            },
+                           completion: nil)
+        }
+    }
+
     private func setupView() {
         containerView.backgroundColor = .white
         collView.backgroundColor = .mainBackground()
