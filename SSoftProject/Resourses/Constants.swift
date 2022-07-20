@@ -31,3 +31,7 @@ enum ConstraintsConst {
     static let inset13and5: CGFloat = 13.5
     static let inset70: CGFloat = 70
 }
+
+enum ImageConstants {
+    static let backImage = UIImage(named: "backButton")
+}
