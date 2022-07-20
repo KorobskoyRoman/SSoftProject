@@ -14,7 +14,7 @@ class CharityCell: UICollectionViewCell {
     var title = UILabel()
     private var details = UILabel()
     private var date = UILabel()
-    private var separateImage = UIImageView(image: UIImage(named: "separator"))
+    private var separateImage = UIImageView(image: UIImage(named: "separator")) // почему-то когда засовываю картинки в константу внизу - они все исчезают
     private let bottomView = UIView()
     private var bottomImage = UIImageView(image: UIImage(named: "calendar"))
     private var blurImage = UIImageView(image: UIImage(named: "blur"))
@@ -167,4 +167,10 @@ private enum Constraints {
     static let shadowRadius: CGFloat = 3
     static let shadowOpacity: Float = 0.5
     static let shadowOffsetHeight = 4
+}
+
+private enum ImagesCharityCell {
+    static let separateImage = UIImageView(image: UIImage(named: "separator"))
+    static let bottomImage = UIImageView(image: UIImage(named: "calendar"))
+    static let blurImage = UIImageView(image: UIImage(named: "blur"))
 }

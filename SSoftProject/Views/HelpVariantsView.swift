@@ -19,7 +19,7 @@ class HelpVariantsView: UIView {
         button.setTitleColor(.warmGrey, for: .normal)
         button.titleLabel?.font = .textStyle16
         button.titleLabel?.textAlignment = .center
-        button.titleLabel?.numberOfLines = 2
+        button.titleLabel?.numberOfLines = UIKitConstants.numberOfLines2
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -28,7 +28,7 @@ class HelpVariantsView: UIView {
         button.setTitleColor(.warmGrey, for: .normal)
         button.titleLabel?.font = .textStyle16
         button.titleLabel?.textAlignment = .center
-        button.titleLabel?.numberOfLines = 2
+        button.titleLabel?.numberOfLines = UIKitConstants.numberOfLines2
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -37,7 +37,7 @@ class HelpVariantsView: UIView {
         button.setTitleColor(.warmGrey, for: .normal)
         button.titleLabel?.font = .textStyle16
         button.titleLabel?.textAlignment = .center
-        button.titleLabel?.numberOfLines = 2
+        button.titleLabel?.numberOfLines = UIKitConstants.numberOfLines2
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -46,14 +46,14 @@ class HelpVariantsView: UIView {
         button.setTitleColor(.warmGrey, for: .normal)
         button.titleLabel?.font = .textStyle16
         button.titleLabel?.textAlignment = .center
-        button.titleLabel?.numberOfLines = 2
+        button.titleLabel?.numberOfLines = UIKitConstants.numberOfLines2
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
 
-    private lazy var separator1 = UIImageView(image: UIImage(named: "separator1"))
-    private lazy var separator2 = UIImageView(image: UIImage(named: "separator1"))
-    private lazy var separator3 = UIImageView(image: UIImage(named: "separator1"))
+    private lazy var separator1 = Separator.separator1
+    private lazy var separator2 = Separator.separator1
+    private lazy var separator3 = Separator.separator1
 
     private lazy var shirtStackView = UIStackView(arrangedSubviews: [shirtBtn],
                                                   axis: .vertical,
@@ -142,11 +142,6 @@ class HelpVariantsView: UIView {
             stackView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             stackView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             stackView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
-//
-//            shirtStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor,
-//                                                    constant: ConstraintsConst.inset13and5),
-//            coinsStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor,
-//                                                     constant: -ConstraintsConst.inset13and5)
         ])
     }
 }
@@ -172,4 +167,8 @@ private enum Titles: String {
 private struct Category {
     let title: Titles
     let image: Images
+}
+
+private enum Separator {
+    static let separator1 = UIImageView(image: UIImage(named: "separator1"))
 }

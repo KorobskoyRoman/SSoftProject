@@ -81,7 +81,7 @@ class DetailEventViewController: UIViewController {
 
 extension DetailEventViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return SizesDetailsEvent.numberOfRowsInSection
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -97,12 +97,18 @@ extension DetailEventViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 68
+        return SizesDetailsEvent.heightForFooterInSection
     }
 }
 
 extension DetailEventViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 685
+        return SizesDetailsEvent.heightForRowAt
     }
+}
+
+private enum SizesDetailsEvent {
+    static let numberOfRowsInSection = 1
+    static let heightForFooterInSection: CGFloat = 68
+    static let heightForRowAt: CGFloat = 685
 }

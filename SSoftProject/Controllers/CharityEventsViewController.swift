@@ -90,7 +90,7 @@ class CharityEventsViewController: UIViewController {
     private func setConstraints() {
         var topbarHeight: CGFloat {
             return (view.window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0.0) +
-            (self.navigationController?.navigationBar.frame.height ?? 0.0)
+            (self.navigationController?.navigationBar.frame.height ?? 0.0) + 5
         }
         containerView.translatesAutoresizingMaskIntoConstraints = false
         collView.translatesAutoresizingMaskIntoConstraints = false
@@ -102,15 +102,17 @@ class CharityEventsViewController: UIViewController {
         collView.addSubview(collectionView)
 
         NSLayoutConstraint.activate([
-            containerView.topAnchor.constraint(equalTo: view.topAnchor, constant: topbarHeight*2 + 5),
+            containerView.topAnchor.constraint(equalTo: view.topAnchor, constant: topbarHeight*2),
             containerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             containerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            containerView.heightAnchor.constraint(equalToConstant: 43),
+            containerView.heightAnchor.constraint(equalToConstant: ConstraintsConst.inset43),
 
-            segmentedControl.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 10),
-            segmentedControl.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 16),
-            segmentedControl.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -16),
-            segmentedControl.heightAnchor.constraint(equalToConstant: 23.5),
+            segmentedControl.topAnchor.constraint(equalTo: containerView.topAnchor, constant: ConstraintsConst.inset10),
+            segmentedControl.leadingAnchor.constraint(equalTo: containerView.leadingAnchor,
+                                                      constant: ConstraintsConst.inset16),
+            segmentedControl.trailingAnchor.constraint(equalTo: containerView.trailingAnchor,
+                                                       constant: -ConstraintsConst.inset16),
+            segmentedControl.heightAnchor.constraint(equalToConstant: ConstraintsConst.inset23and5),
 
             collView.topAnchor.constraint(equalTo: containerView.bottomAnchor),
             collView.leadingAnchor.constraint(equalTo: view.leadingAnchor),

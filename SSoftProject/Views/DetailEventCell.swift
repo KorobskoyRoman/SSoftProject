@@ -19,7 +19,7 @@ class DetailEventCell: UITableViewCell {
         return label
     }()
 
-    private var calendarImg = UIImageView(image: UIImage(named: "iconCal"))
+    private var calendarImg = ImagesDetailEventCell.calendarImg
     private var dateLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 11)
@@ -32,7 +32,7 @@ class DetailEventCell: UITableViewCell {
                                                  axis: .horizontal,
                                                  spacing: ConstraintsConst.inset10)
 
-    private var navIcon = UIImageView(image: UIImage(named: "iconNav"))
+    private var navIcon = ImagesDetailEventCell.calendarImg
     private var address: UILabel = {
         let label = UILabel()
         label.font = .textStyle4
@@ -46,7 +46,7 @@ class DetailEventCell: UITableViewCell {
                                                     axis: .horizontal,
                                                     spacing: ConstraintsConst.inset10)
 
-    private var iconPhone = UIImageView(image: UIImage(named: "iconPhone"))
+    private var iconPhone = ImagesDetailEventCell.iconPhone
     private var phoneLabel: UILabel = {
         let label = UILabel()
         label.font = .textStyle4
@@ -64,7 +64,7 @@ class DetailEventCell: UITableViewCell {
                                                          axis: .vertical,
                                                          spacing: ConstraintsConst.inset16)
 
-    private var iconMail = UIImageView(image: UIImage(named: "mail"))
+    private var iconMail = ImagesDetailEventCell.iconMail
     private var mailLabel: UILabel = {
         let label = UILabel()
         label.text = Constants.mailLabelTitle
@@ -271,4 +271,11 @@ private enum Constants {
     static let miniPhotosStackViewWidth: CGFloat = 103
     static let titleWidth: CGFloat = 267
     static let photosStackViewHeight: CGFloat = 168
+}
+
+private enum ImagesDetailEventCell {
+    static let calendarImg = UIImageView(image: UIImage(named: "iconCal"))
+    static let navIcon = UIImageView(image: UIImage(named: "iconNav"))
+    static let iconPhone = UIImageView(image: UIImage(named: "iconPhone"))
+    static let iconMail = UIImageView(image: UIImage(named: "mail"))
 }
