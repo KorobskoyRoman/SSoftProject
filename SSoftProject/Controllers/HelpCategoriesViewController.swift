@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HelpCategoriesViewController: UIViewController {
+final class HelpCategoriesViewController: UIViewController {
 
     typealias DataSource = UICollectionViewDiffableDataSource<Section, Categories>
     typealias Snapshot = NSDiffableDataSourceSnapshot<Section, Categories>
@@ -168,10 +168,9 @@ extension HelpCategoriesViewController {
             }
             switch section {
             case .mainSection:
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HelpCategoriesCell.reuseId,
+                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HelpCategoriesCell.reuseId,
                                                               for: indexPath) as? HelpCategoriesCell
-                // configure
-                guard let cell = cell else { return nil }
+                else { return nil }
                 cell.configure(with: image)
                 return cell
             }
@@ -206,8 +205,8 @@ extension HelpCategoriesViewController: UICollectionViewDelegate {
         guard let section = Section(rawValue: indexPath.section) else { fatalError("No section") }
         switch section {
         case .mainSection:
-            let cell = collectionView.cellForItem(at: indexPath) as? HelpCategoriesCell
-            guard let cell = cell else { return }
+            guard let cell = collectionView.cellForItem(at: indexPath) as? HelpCategoriesCell
+            else { return }
             let charityVC = CharityEventsViewController()
             let decodedArr = decodeService.decode([Event].self, from: JSONConstants.eventsJson)
             charityVC.title = cell.navBarTitle

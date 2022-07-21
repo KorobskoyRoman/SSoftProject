@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class HelpVariantsView: UIView {
+final class HelpVariantsView: UIView {
     private var shirtImage = UIImageView()
     private var handsImage = UIImageView()
     private var toolsImage = UIImageView()

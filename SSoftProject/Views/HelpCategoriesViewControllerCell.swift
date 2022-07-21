@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HelpCategoriesCell: UICollectionViewCell {
+final class HelpCategoriesCell: UICollectionViewCell {
     static let reuseId = "HelpCategoriesCell"
 
     private var image = UIImageView()

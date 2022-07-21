@@ -30,19 +30,6 @@ final class MainTabBarController: UITabBarController {
         return heartImageView
     }()
 
-    private lazy var titleLabel: UILabel = { // для фикса высоты тайтла
-        let label = UILabel()
-        label.textAlignment = .center
-        label.tintColor = .white
-        label.font = .textStyle3
-        label.textColor = .white
-        label.heightAnchor
-            .constraint(equalToConstant: self.navigationController?.navigationBar.frame.height
-                        ?? 0)
-            .isActive = true
-        return label
-    }()
-
     override func viewDidLoad() {
         super.viewDidLoad()
         setValue(CustomTabBar(frame: tabBar.frame), forKey: "tabBar")
