@@ -8,11 +8,12 @@
 import Foundation
 import UIKit
 
-class CharityEventsViewController: UIViewController {
+final class CharityEventsViewController: UIViewController {
 
     typealias DataSource = UICollectionViewDiffableDataSource<Section, Event>
     typealias Snapshot = NSDiffableDataSourceSnapshot<Section, Event>
 
+    var events = [Event]()
     private lazy var segmentedControl: UISegmentedControl = {
         let segmentedControl = UISegmentedControl()
         segmentedControl.selectedSegmentTintColor = .leaf
@@ -24,8 +25,10 @@ class CharityEventsViewController: UIViewController {
                           NSAttributedString.Key.font: UIFont.textStyle9]
         segmentedControl.setTitleTextAttributes(titleGreen, for: .normal)
         segmentedControl.setTitleTextAttributes(titleWhite, for: .selected)
-        segmentedControl.insertSegment(withTitle: "Текущие", at: 0, animated: true)
-        segmentedControl.insertSegment(withTitle: "Завершенные", at: 1, animated: true)
+        segmentedControl.insertSegment(withTitle: HelpConstants.segmentCurrentTitle,
+                                       at: 0, animated: true)
+        segmentedControl.insertSegment(withTitle: HelpConstants.segmentEndedTitle,
+                                       at: 1, animated: true)
         segmentedControl.selectedSegmentIndex = 0
         segmentedControl.translatesAutoresizingMaskIntoConstraints = false
         return segmentedControl
@@ -44,7 +47,6 @@ class CharityEventsViewController: UIViewController {
     private lazy var collectionView = UICollectionView(frame: collView.bounds,
                                                        collectionViewLayout: createCompositialLayout())
     private lazy var dataSource = createDiffableDataSource()
-    var events = [Event]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -92,6 +94,10 @@ class CharityEventsViewController: UIViewController {
             return (view.window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0.0) +
             (self.navigationController?.navigationBar.frame.height ?? 0.0) + 5
         }
+        var tabBarHeight: CGFloat {
+            return (view.window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0.0) +
+            (self.tabBarController?.tabBar.frame.height ?? 0.0)
+        }
         containerView.translatesAutoresizingMaskIntoConstraints = false
         collView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.translatesAutoresizingMaskIntoConstraints = false
@@ -117,7 +123,7 @@ class CharityEventsViewController: UIViewController {
             collView.topAnchor.constraint(equalTo: containerView.bottomAnchor),
             collView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             collView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            collView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            collView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -tabBarHeight)
         ])
     }
 
@@ -155,7 +161,7 @@ extension CharityEventsViewController {
             trailing: HelpConstants.Constraints.itemInset)
 
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
-                                               heightDimension: .fractionalWidth(1.0))
+                                               heightDimension: .absolute(HelpConstants.Constraints.cellHeight))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
                                                        subitem: item,
                                                        count: HelpConstants.Constraints.groupSize)
@@ -181,10 +187,10 @@ extension CharityEventsViewController {
             }
             switch section {
             case .mainSection:
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CharityCell.reuseId,
+                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CharityCell.reuseId,
                                                               for: indexPath) as? CharityCell
+                else { return nil }
                 // configure
-                guard let cell = cell else { return nil }
                 cell.configure(with: model)
                 return cell
             }
@@ -207,10 +213,7 @@ extension CharityEventsViewController: UICollectionViewDelegate {
         guard let section = Section(rawValue: indexPath.section) else { fatalError("No section") }
         switch section {
         case .mainSection:
-            let cell = collectionView.cellForItem(at: indexPath) as? CharityCell
-            guard let cell = cell else { return }
             let detailsVC = DetailEventViewController()
-            detailsVC.title = cell.title.text
             detailsVC.eventInfo = events.filter { $0.id == indexPath.item }
             navigationController?.pushViewController(detailsVC, animated: true)
         }
@@ -219,13 +222,15 @@ extension CharityEventsViewController: UICollectionViewDelegate {
 
 private enum HelpConstants {
     static let title = "Помочь"
+    static let segmentCurrentTitle = "Текущие"
+    static let segmentEndedTitle = "Завершенные"
 
     enum Constraints {
         static let cellWidth: CGFloat = 359
         static let cellHeight: CGFloat = 413
 
         static let itemInset: CGFloat = 9
-        static let topItemInset: CGFloat = 10
+        static let topItemInset: CGFloat = UIDevice.current.name.contains("Max") ? 0 : 10
         static let groupSize = 1
         static let interGroupSpacing: CGFloat = 5
         static let interSectionSpacing: CGFloat = 20
