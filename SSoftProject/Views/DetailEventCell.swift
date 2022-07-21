@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DetailEventCell: UITableViewCell {
+final class DetailEventCell: UITableViewCell {
     static let reuseId = "DetailEventCell"
 
     private var title: UILabel = {
@@ -15,6 +15,7 @@ class DetailEventCell: UITableViewCell {
         label.font = .textStyle8
         label.textColor = .blueGrey
         label.numberOfLines = 2
+        label.textAlignment = .left
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -32,7 +33,12 @@ class DetailEventCell: UITableViewCell {
                                                  axis: .horizontal,
                                                  spacing: ConstraintsConst.inset10)
 
-    private var navIcon = ImagesDetailEventCell.calendarImg
+    private var navIcon: UIImageView = {
+        let navIcon = UIImageView()
+        navIcon.contentMode = .scaleAspectFit
+        navIcon.image = ImagesDetailEventCell.navIcon
+        return navIcon
+    }()
     private var address: UILabel = {
         let label = UILabel()
         label.font = .textStyle4
@@ -44,9 +50,15 @@ class DetailEventCell: UITableViewCell {
     }()
     private lazy var addressStackView = UIStackView(arrangedSubviews: [navIcon, address],
                                                     axis: .horizontal,
-                                                    spacing: ConstraintsConst.inset10)
+                                                    spacing: ConstraintsConst.inset10,
+                                                    distribution: .fillProportionally)
 
-    private var iconPhone = ImagesDetailEventCell.iconPhone
+    private var iconPhone: UIImageView = {
+        let iconPhone = UIImageView()
+        iconPhone.contentMode = .scaleAspectFit
+        iconPhone.image = ImagesDetailEventCell.iconPhone
+        return iconPhone
+    }()
     private var phoneLabel: UILabel = {
         let label = UILabel()
         label.font = .textStyle4
@@ -58,13 +70,19 @@ class DetailEventCell: UITableViewCell {
     }()
     private lazy var phoneStackView = UIStackView(arrangedSubviews: [iconPhone, phoneLabel],
                                                     axis: .horizontal,
-                                                    spacing: ConstraintsConst.inset8)
+                                                    spacing: ConstraintsConst.inset8,
+                                                  distribution: .fillProportionally)
 
     private lazy var phoneAddressStackView = UIStackView(arrangedSubviews: [addressStackView, phoneStackView],
                                                          axis: .vertical,
                                                          spacing: ConstraintsConst.inset16)
 
-    private var iconMail = ImagesDetailEventCell.iconMail
+    private var iconMail: UIImageView = {
+        let iconMail = UIImageView()
+        iconMail.contentMode = .scaleAspectFit
+        iconMail.image = ImagesDetailEventCell.iconMail
+        return iconMail
+    }()
     private var mailLabel: UILabel = {
         let label = UILabel()
         label.text = Constants.mailLabelTitle
@@ -118,9 +136,21 @@ class DetailEventCell: UITableViewCell {
                                                     axis: .vertical,
                                                     spacing: ConstraintsConst.inset10)
 
-    private var bigImage = UIImageView()
-    private var topMiniImage = UIImageView()
-    private var botMiniImage = UIImageView()
+    private var bigImage: UIImageView = {
+        let bigImage = UIImageView()
+        bigImage.contentMode = .scaleAspectFit
+        return bigImage
+    }()
+    private var topMiniImage: UIImageView = {
+        let topMiniImage = UIImageView()
+        topMiniImage.contentMode = .scaleAspectFill
+        return topMiniImage
+    }()
+    private var botMiniImage: UIImageView = {
+        let botMiniImage = UIImageView()
+        botMiniImage.contentMode = .scaleAspectFill
+        return botMiniImage
+    }()
     private lazy var miniPhotosStackView = UIStackView(arrangedSubviews: [topMiniImage, botMiniImage],
                                                        axis: .vertical,
                                                        spacing: ConstraintsConst.inset10,
@@ -193,12 +223,12 @@ class DetailEventCell: UITableViewCell {
     }
 
     private func setupSubviews() {
-        addSubview(title)
-        addSubview(dateStackView)
-        addSubview(phoneAddressStackView)
+        contentView.addSubview(title)
+        contentView.addSubview(dateStackView)
+        contentView.addSubview(phoneAddressStackView)
         contentView.addSubview(mailStackView)
-        addSubview(photosStackView)
-        addSubview(detailsStackView)
+        contentView.addSubview(photosStackView)
+        contentView.addSubview(detailsStackView)
         contentView.addSubview(organizationButton)
     }
 
@@ -275,7 +305,7 @@ private enum Constants {
 
 private enum ImagesDetailEventCell {
     static let calendarImg = UIImageView(image: UIImage(named: "iconCal"))
-    static let navIcon = UIImageView(image: UIImage(named: "iconNav"))
-    static let iconPhone = UIImageView(image: UIImage(named: "iconPhone"))
-    static let iconMail = UIImageView(image: UIImage(named: "mail"))
+    static let navIcon = UIImage(named: "iconNav")
+    static let iconPhone = UIImage(named: "iconPhone")
+    static let iconMail = UIImage(named: "mail")
 }
