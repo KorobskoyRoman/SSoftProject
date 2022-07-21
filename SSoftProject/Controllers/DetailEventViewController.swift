@@ -8,13 +8,17 @@
 import Foundation
 import UIKit
 
-class DetailEventViewController: UIViewController {
+final class DetailEventViewController: UIViewController {
 
-    private lazy var tableView = UITableView(frame: view.bounds, style: .plain)
     var eventInfo = [Event]()
-    private var images = Array(repeating: UIImage(named: "childs1") ?? UIImage(), count: 10)
+    private lazy var tableView = UITableView(frame: view.bounds, style: .plain)
+    private var images = [UIImageView(image: UIImage(named: "childs1")), UIImageView(image: UIImage(named: "childs2")),
+                          UIImageView(image: UIImage(named: "adults1")), UIImageView(image: UIImage(named: "aged1")),
+//                          ] // можно проверить на количество картинок расскоментив эту строку и комментнуть нижнюю
+                          UIImageView(image: UIImage(named: "events1")), UIImageView(image: UIImage(named: "events2"))]
+
     private lazy var footerView = TableFooterView(images: images)
-    private lazy var helpVariants = HelpVariantsView()
+    private let helpVariants = HelpVariantsView()
 
     private lazy var shareButton: UIBarButtonItem = {
         return UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareButtonTapped))
@@ -43,6 +47,7 @@ class DetailEventViewController: UIViewController {
     }
 
     private func setupView() {
+        title = eventInfo[0].title
         view.backgroundColor = .white
         navigationItem.leftBarButtonItem = backButton
         helpVariants.translatesAutoresizingMaskIntoConstraints = false
@@ -85,9 +90,9 @@ extension DetailEventViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: DetailEventCell.reuseId,
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: DetailEventCell.reuseId,
                                                  for: indexPath) as? DetailEventCell
-        guard let cell = cell else { return UITableViewCell() }
+        else { return UITableViewCell() }
         cell.configure(from: eventInfo[indexPath.row])
         return cell
     }

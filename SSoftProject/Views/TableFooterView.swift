@@ -7,14 +7,14 @@
 
 import UIKit
 
-class TableFooterView: UIView {
-    private var images: [UIImage]
+final class TableFooterView: UIView {
+    private var images: [UIImageView]
+    private var image1 = UIImageView()
+    private var image2 = UIImageView()
+    private var image3 = UIImageView()
+    private var image4 = UIImageView()
+    private var image5 = UIImageView()
 
-    private lazy var image1 = createImageView()
-    private lazy var image2 = createImageView()
-    private lazy var image3 = createImageView()
-    private lazy var image4 = createImageView()
-    private lazy var image5 = createImageView()
     private var countLabel: UILabel = {
         let label = UILabel()
         label.textColor = .grey
@@ -23,21 +23,16 @@ class TableFooterView: UIView {
         return label
     }()
 
-//    private lazy var imageStackView = UIStackView(arrangedSubviews: [
-//        image1,
-//        image2,
-//        image3,
-//        image4,
-//        image5
-//    ],
-//                                                  axis: .horizontal,
-//                                                  spacing: -1,
-//                                                  distribution: .fillEqually)
+    private lazy var imageStackView = UIStackView(arrangedSubviews: [],
+                                                  axis: .horizontal,
+                                                  spacing: -ConstraintsConst.inset10,
+                                                  distribution: .equalCentering)
     private var imagesArr = [UIImageView]()
 
-    init(images: [UIImage]) {
+    init(images: [UIImageView]) {
         self.images = images
         super.init(frame: .zero)
+        self.layoutIfNeeded()
         backgroundColor = .lightGrey
         imagesArr = [image1, image2, image3, image4, image5]
         self.prepareView()
@@ -49,20 +44,26 @@ class TableFooterView: UIView {
     }
 
     override func layoutSubviews() {
-        super.layoutSubviews()
-
+        super.layoutIfNeeded()
         imagesArr.forEach {
             $0.layer.cornerRadius = $0.frame.height / 2
         }
+        super.layoutSubviews()
     }
 
     private func prepareView() {
-        countLabel.text = "+ \(images.count - imagesArr.count)"
-        imagesArr.forEach { $0.image = images[0] }
+        countLabel.text = images.count > imagesArr.count ? "+\(images.count - imagesArr.count)" : ""
+        imagesArr.forEach {
+            let view = createImageView(from: $0)
+            let currentIndex = imagesArr.firstIndex(of: $0) ?? 0
+            guard currentIndex <= images.count-1 else { return }
+            view.image = images[currentIndex].image
+            view.layer.cornerRadius = view.frame.height / 2
+            imageStackView.addArrangedSubview(view)
+        }
     }
 
-    private func createImageView() -> UIImageView {
-        let imageView = UIImageView()
+    private func createImageView(from imageView: UIImageView) -> UIImageView {
         imageView.layer.borderColor = UIColor.lightGrey.cgColor
         imageView.layer.borderWidth = 3.0
         imageView.layer.masksToBounds = false
@@ -76,33 +77,15 @@ class TableFooterView: UIView {
     }
 
     private func setConstraints() {
-//        addSubview(imageStackView) // через стэк не округлялись, пришлось сделать отдельно, если ок - удалю комменты
+        addSubview(imageStackView)
         addSubview(countLabel)
-        addSubview(image1)
-        insertSubview(image2, belowSubview: image1)
-        insertSubview(image3, belowSubview: image2)
-        insertSubview(image4, belowSubview: image3)
-        insertSubview(image5, belowSubview: image4)
 
         NSLayoutConstraint.activate([
-            image1.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            image1.leadingAnchor.constraint(equalTo: self.leadingAnchor,
-                                            constant: ConstraintsConst.inset20),
-            image2.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            image2.leadingAnchor.constraint(equalTo: image1.trailingAnchor,
-                                            constant: -ConstraintsConst.inset5),
-            image3.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            image3.leadingAnchor.constraint(equalTo: image2.trailingAnchor,
-                                            constant: -ConstraintsConst.inset5),
-            image4.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            image4.leadingAnchor.constraint(equalTo: image3.trailingAnchor,
-                                            constant: -ConstraintsConst.inset5),
-            image5.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            image5.leadingAnchor.constraint(equalTo: image4.trailingAnchor,
-                                            constant: -ConstraintsConst.inset5),
-
+            imageStackView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+            imageStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor,
+                                                    constant: ConstraintsConst.inset20),
             countLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            countLabel.leadingAnchor.constraint(equalTo: image5.trailingAnchor,
+            countLabel.leadingAnchor.constraint(equalTo: imageStackView.trailingAnchor,
                                                 constant: ConstraintsConst.inset10)
         ])
     }
