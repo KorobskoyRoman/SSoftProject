@@ -95,6 +95,13 @@ class HelpVariantsView: UIView {
         Category(title: .coins, image: .coins)
     ]
 
+    private lazy var separatorView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .lightGrey
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+
     init() {
         super.init(frame: .zero)
         prepareView()
@@ -136,11 +143,17 @@ class HelpVariantsView: UIView {
 
     private func setConstraints() {
         addSubview(stackView)
+        addSubview(separatorView)
         NSLayoutConstraint.activate([
             stackView.topAnchor.constraint(equalTo: self.topAnchor),
             stackView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             stackView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            stackView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
+            stackView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+
+            separatorView.topAnchor.constraint(equalTo: self.topAnchor),
+            separatorView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            separatorView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            separatorView.heightAnchor.constraint(equalToConstant: 1)
         ])
     }
 }
