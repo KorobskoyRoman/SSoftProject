@@ -51,10 +51,6 @@ class HelpVariantsView: UIView {
         return button
     }()
 
-    private lazy var separator1 = Separator.separator1
-    private lazy var separator2 = Separator.separator1
-    private lazy var separator3 = Separator.separator1
-
     private lazy var shirtStackView = UIStackView(arrangedSubviews: [shirtBtn],
                                                   axis: .vertical,
                                                   spacing: ConstraintsConst.inset9,
@@ -78,11 +74,14 @@ class HelpVariantsView: UIView {
                                                   spacing: ConstraintsConst.inset4,
                                                   distribution: .equalCentering)
     private lazy var stackView = UIStackView(arrangedSubviews: [shirtStackView,
-                                                                separator1,
+                                                                UIImageView(image:
+                                                                                UIImage(named: Separator.separator1)),
                                                                 handsStackView,
-                                                                separator2,
+                                                                UIImageView(image:
+                                                                                UIImage(named: Separator.separator1)),
                                                                 toolsStackView,
-                                                                separator3,
+                                                                UIImageView(image:
+                                                                                UIImage(named: Separator.separator1)),
                                                                 coinsStackView],
                                              axis: .horizontal,
                                              spacing: ConstraintsConst.inset13and5,
@@ -170,5 +169,5 @@ private struct Category {
 }
 
 private enum Separator {
-    static let separator1 = UIImageView(image: UIImage(named: "separator1"))
+    static let separator1 = "separator1"
 }
