@@ -7,18 +7,48 @@
 
 import UIKit
 
-class CharityCell: UICollectionViewCell {
+final class CharityCell: UICollectionViewCell {
     static let reuseId = "CharityCell"
 
-    private var image = UIImageView()
-    var title = UILabel()
-    private var details = UILabel()
-    private var date = UILabel()
-    private var separateImage = UIImageView(image: UIImage(named: "separator")) // почему-то когда засовываю картинки в константу внизу - они все исчезают
-    private let bottomView = UIView()
+    private lazy var image: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFill
+        return imageView
+    }()
+    private lazy var title: UILabel = {
+        let title = UILabel()
+        title.textColor = .blueGrey
+        title.font = .textStyle
+        title.textAlignment = .center
+        title.numberOfLines = .zero
+        return title
+    }()
+    private var details: UILabel = {
+        let details = UILabel()
+        details.textColor = .darkSlateBlue
+        details.font = .textStyle7
+        details.textAlignment = .center
+        details.numberOfLines = .zero
+        return details
+    }()
+    private var date: UILabel = {
+        let date = UILabel()
+        date.textAlignment = .center
+        date.textColor = .white
+        date.font = .systemFont(ofSize: 11)
+        return date
+    }()
+    private var separateImage = UIImageView(image: UIImage(named: "separator"))
+    private lazy var bottomView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .leaf
+        return view
+    }()
     private var bottomImage = UIImageView(image: UIImage(named: "calendar"))
     private var blurImage = UIImageView(image: UIImage(named: "blur"))
-    private lazy var botStackView = UIStackView(arrangedSubviews: [bottomImage, date])
+    private lazy var botStackView = UIStackView(arrangedSubviews: [bottomImage, date],
+                                                axis: .horizontal,
+                                                spacing: Constraints.inset)
 
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -30,30 +60,7 @@ class CharityCell: UICollectionViewCell {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-
-        image.contentMode = .scaleAspectFill
-
         backgroundColor = .white
-        title.textColor = .blueGrey
-        title.font = .textStyle
-        title.textAlignment = .center
-        title.numberOfLines = .zero
-
-        details.textColor = .darkSlateBlue
-        details.font = .textStyle7
-        details.textAlignment = .center
-        details.numberOfLines = .zero
-
-        date.textAlignment = .center
-        date.textColor = .white
-        date.font = .systemFont(ofSize: 11)
-
-        bottomView.backgroundColor = .leaf
-
-        botStackView.axis = .horizontal
-        botStackView.contentMode = .scaleAspectFill
-        botStackView.spacing = Constraints.inset
-
         setConstraints()
     }
 
