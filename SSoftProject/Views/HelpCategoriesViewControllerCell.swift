@@ -7,11 +7,13 @@
 
 import UIKit
 
-class HelpCategoriesCell: UICollectionViewCell {
+final class HelpCategoriesCell: UICollectionViewCell {
     static let reuseId = "HelpCategoriesCell"
 
     private var image = UIImageView()
     private var title = UILabel()
+
+    lazy var navBarTitle: String = title.text ?? "n/a"
 
     override func layoutSubviews() {
         super.layoutSubviews()

@@ -58,6 +58,9 @@ final class MainTabBarController: UITabBarController {
 
         let helpVC = HelpCategoriesViewController() // heart button
         let helpVCNav = UINavigationController(rootViewController: helpVC)
+        helpVCNav.navigationBar.standardAppearance = configureNavBarAppearence()
+        helpVCNav.navigationBar.compactAppearance = configureNavBarAppearence()
+        helpVCNav.navigationBar.scrollEdgeAppearance = configureNavBarAppearence()
         helpVCNav.tabBarItem.title = TabBarConstants.helpVCTitle
 
         let historyVC = UIViewController()
@@ -77,6 +80,10 @@ final class MainTabBarController: UITabBarController {
         selectedViewController = viewControllers?[TabBarConstants.currentIndexOfMiddleButton]
         selectedIndex = TabBarConstants.currentIndexOfMiddleButton
 
+        setConstraints()
+    }
+
+    private func setConstraints() {
         NSLayoutConstraint.activate([
             middleButton.heightAnchor.constraint(equalToConstant: middleButtonDiameter),
             middleButton.widthAnchor.constraint(equalToConstant: middleButtonDiameter),
@@ -107,6 +114,27 @@ extension MainTabBarController: UITabBarControllerDelegate {
     }
 }
 
+extension MainTabBarController {
+    private func configureNavBarAppearence() -> UINavigationBarAppearance {
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = .leaf
+        appearance.titleTextAttributes = [.foregroundColor: UIColor.white, .font: UIFont.textStyle3]
+
+        let backButtonAppearance = UIBarButtonItemAppearance(style: .plain)
+        backButtonAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.clear]
+
+        appearance.backButtonAppearance = backButtonAppearance
+        UINavigationBar.appearance().tintColor = .white
+
+        UINavigationBar.appearance().scrollEdgeAppearance = appearance
+        UINavigationBar.appearance().standardAppearance = appearance
+        UINavigationBar.appearance().compactAppearance = appearance
+
+        return appearance
+    }
+}
+
 private enum TabBarConstants {
     /// Индекс центральной кнопки
     static let currentIndexOfMiddleButton = 2
@@ -131,8 +159,4 @@ private enum TabBarConstants {
         static let heartImageViewWidthAnchor: CGFloat = 18
         static let middleButtonTopAnchor: CGFloat = -10
     }
-}
-
-private enum HelpConstants {
-    static let backImage = UIImage(named: "backButton")
 }

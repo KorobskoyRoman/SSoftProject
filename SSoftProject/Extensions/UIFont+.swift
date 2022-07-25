@@ -15,15 +15,15 @@ extension UIFont {
   }
 
   class var textStyle8: UIFont {
-    return UIFont(name: "OfficinaSansExtraBoldSCC", size: 21.0)!
+    return UIFont(name: "OfficinaSansExtraBoldC", size: 21.0)!
   }
 
   class var textStyle3: UIFont {
-    return UIFont(name: "OfficinaSansExtraBoldSCC", size: 21.0)!
+    return UIFont(name: "OfficinaSansExtraBoldC", size: 21.0)!
   }
 
   class var textStyle: UIFont {
-    return UIFont(name: "OfficinaSansExtraBoldSCC", size: 21.0)!
+    return UIFont(name: "OfficinaSansExtraBoldC", size: 21.0)!
   }
 
   class var textStyle2: UIFont {
@@ -31,7 +31,7 @@ extension UIFont {
   }
 
   class var textStyle13: UIFont {
-    return UIFont(name: "OfficinaSansExtraBoldSCC", size: 15.0)!
+    return UIFont(name: "OfficinaSansExtraBoldC", size: 15.0)!
   }
 
   class var textStyle7: UIFont {

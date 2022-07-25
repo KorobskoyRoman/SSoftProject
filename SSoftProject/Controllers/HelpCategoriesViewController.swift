@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HelpCategoriesViewController: UIViewController {
+final class HelpCategoriesViewController: UIViewController {
 
     typealias DataSource = UICollectionViewDiffableDataSource<Section, Categories>
     typealias Snapshot = NSDiffableDataSourceSnapshot<Section, Categories>
@@ -15,11 +15,11 @@ class HelpCategoriesViewController: UIViewController {
     private lazy var collectionView = UICollectionView(frame: view.bounds,
                                                        collectionViewLayout: createCompositialLayout())
     private lazy var dataSource = createDiffableDataSource()
-    private var categories = [Categories]()
-    private let setupCategories = SetupCategories()
+    private let decodeService = JSONDecoderService()
+    private lazy var categories = decodeService.decode([Categories].self, from: JSONConstants.categoriesJson)
 
     private lazy var backButton: UIBarButtonItem = {
-        return UIBarButtonItem(image: HelpConstants.backImage,
+        return UIBarButtonItem(image: ImageConstants.backImage,
                                style: .plain,
                                target: self,
                                action: #selector(backButtonTapped))
@@ -58,8 +58,8 @@ class HelpCategoriesViewController: UIViewController {
         navigationController?.navigationBar.isHidden = false
         navigationItem.hidesBackButton = true
         view.backgroundColor = .mainBackground()
+        collectionView.delegate = self
         setupNavBar()
-        categories = setupCategories.createItems()
         setupCollectionView()
         applySnapshot()
     }
@@ -168,10 +168,9 @@ extension HelpCategoriesViewController {
             }
             switch section {
             case .mainSection:
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HelpCategoriesCell.reuseId,
+                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HelpCategoriesCell.reuseId,
                                                               for: indexPath) as? HelpCategoriesCell
-                // configure
-                guard let cell = cell else { return nil }
+                else { return nil }
                 cell.configure(with: image)
                 return cell
             }
@@ -201,9 +200,24 @@ extension HelpCategoriesViewController {
     }
 }
 
+extension HelpCategoriesViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let section = Section(rawValue: indexPath.section) else { fatalError("No section") }
+        switch section {
+        case .mainSection:
+            guard let cell = collectionView.cellForItem(at: indexPath) as? HelpCategoriesCell
+            else { return }
+            let charityVC = CharityEventsViewController()
+            let decodedArr = decodeService.decode([Event].self, from: JSONConstants.eventsJson)
+            charityVC.title = cell.navBarTitle
+            charityVC.events = decodedArr.filter({ $0.category == cell.navBarTitle })
+            navigationController?.pushViewController(charityVC, animated: true)
+        }
+    }
+}
+
 private enum HelpConstants {
     static let title = "Помочь"
-    static let backImage = UIImage(named: "backButton")
 
     enum Constraints {
         static let cellWidth: CGFloat = 174
