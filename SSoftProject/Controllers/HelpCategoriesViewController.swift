@@ -16,7 +16,8 @@ final class HelpCategoriesViewController: UIViewController {
                                                        collectionViewLayout: createCompositialLayout())
     private lazy var dataSource = createDiffableDataSource()
     private let decodeService = JSONDecoderService()
-    private lazy var categories = decodeService.decode([Categories].self, from: JSONConstants.categoriesJson)
+//    private lazy var categories = decodeService.decode([Categories].self, from: JSONConstants.categoriesJson)
+    private lazy var categories = [Categories]()
 
     private lazy var backButton: UIBarButtonItem = {
         return UIBarButtonItem(image: ImageConstants.backImage,
@@ -61,7 +62,22 @@ final class HelpCategoriesViewController: UIViewController {
         collectionView.delegate = self
         setupNavBar()
         setupCollectionView()
-        applySnapshot()
+        DispatchQueue.global(qos: .background).async { [weak self] in // может запихнуть в отдельную функцию?
+            guard let self = self else { return }
+
+            DispatchQueue.main.async {
+                self.view.showLoading(style: .medium, color: .grey)
+            }
+            sleep(2) // "грузим"
+            self.categories = self.decodeService.decode([Categories].self, from: JSONConstants.categoriesJson)
+
+            DispatchQueue.main.async {
+                UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseIn, animations: {
+                    self.applySnapshot()
+                }, completion: nil)
+                self.view.stopLoading()
+            }
+        }
     }
 
     private func setupNavBar() {
