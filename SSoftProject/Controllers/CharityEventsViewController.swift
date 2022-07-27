@@ -13,7 +13,8 @@ final class CharityEventsViewController: UIViewController {
     typealias DataSource = UICollectionViewDiffableDataSource<Section, Event>
     typealias Snapshot = NSDiffableDataSourceSnapshot<Section, Event>
 
-    var events = [Event]()
+    private lazy var events = [Event]()
+    private lazy var filteredEvents = [Event]()
     private lazy var segmentedControl: UISegmentedControl = {
         let segmentedControl = UISegmentedControl()
         segmentedControl.selectedSegmentTintColor = .leaf
@@ -31,6 +32,7 @@ final class CharityEventsViewController: UIViewController {
                                        at: 1, animated: true)
         segmentedControl.selectedSegmentIndex = 0
         segmentedControl.translatesAutoresizingMaskIntoConstraints = false
+        segmentedControl.addTarget(self, action: #selector(segmentedControlChangeState(_:)), for: .valueChanged)
         return segmentedControl
     }()
 
@@ -47,14 +49,15 @@ final class CharityEventsViewController: UIViewController {
     private lazy var collectionView = UICollectionView(frame: collView.bounds,
                                                        collectionViewLayout: createCompositialLayout())
     private lazy var dataSource = createDiffableDataSource()
+    private let backgroundQueue = DispatchQueue.global(qos: .background)
 
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.backgroundColor = .mainBackground()
         collectionView.delegate = self
+        getData()
         setupView()
         applySnapshot()
-        print(events)
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -65,8 +68,7 @@ final class CharityEventsViewController: UIViewController {
                            options: .curveEaseIn,
                            animations: {
                 self.tabBarController?.tabBar.alpha = 1
-            },
-                           completion: nil)
+            }, completion: nil)
         }
     }
 
@@ -87,6 +89,30 @@ final class CharityEventsViewController: UIViewController {
         collectionView.register(SectionHeader.self,
                                 forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
                                 withReuseIdentifier: SectionHeader.reuseId)
+    }
+
+    private func getData() {
+        let catName = self.navigationItem.title
+        backgroundQueue.async { [weak self] in
+            guard let self = self else { return }
+
+            DispatchQueue.main.async {
+                self.view.showLoading(style: .medium, color: .grey)
+            }
+            sleep(2) // "грузим"
+            self.events = self.decodeService.decode([Event].self, from: JSONConstants.eventsJson)
+            self.events = self.events
+                            .filter { $0.category == catName }
+            self.filteredEvents = self.events
+                .filter { !$0.isDone }
+
+            DispatchQueue.main.async {
+                UIView.animate(withDuration: 0.3, delay: 0, options: .transitionCrossDissolve, animations: {
+                    self.applySnapshot()
+                }, completion: nil)
+                self.view.stopLoading()
+            }
+        }
     }
 
     private func setConstraints() {
@@ -129,6 +155,25 @@ final class CharityEventsViewController: UIViewController {
 
     @objc private func backButtonPresed() {
         navigationController?.popViewController(animated: true)
+    }
+
+    private func getSegmentData(_ index: Int) {
+        backgroundQueue.sync {
+            // как я понял тут возникает Race condition, если .async
+            switch index {
+            case 0:
+                self.filteredEvents = self.events.filter { !$0.isDone }
+            case 1:
+                self.filteredEvents = self.events.filter { $0.isDone }
+            default:
+                self.filteredEvents = self.events.filter { !$0.isDone }
+            }
+        }
+    }
+
+    @objc private func segmentedControlChangeState(_ sender: UISegmentedControl) {
+        getSegmentData(sender.selectedSegmentIndex)
+        self.applySnapshot()
     }
 }
 
@@ -203,7 +248,7 @@ extension CharityEventsViewController {
         var snapshot = Snapshot()
 
         snapshot.appendSections([.mainSection])
-        snapshot.appendItems(events, toSection: .mainSection)
+        snapshot.appendItems(filteredEvents, toSection: .mainSection)
         dataSource.apply(snapshot, animatingDifferences: animatingDifferences)
     }
 }
@@ -214,7 +259,7 @@ extension CharityEventsViewController: UICollectionViewDelegate {
         switch section {
         case .mainSection:
             let detailsVC = DetailEventViewController()
-            detailsVC.eventInfo = events.filter { $0.id == indexPath.item }
+            detailsVC.eventInfo = filteredEvents.filter { $0.id == indexPath.item }
             navigationController?.pushViewController(detailsVC, animated: true)
         }
     }
@@ -230,7 +275,7 @@ private enum HelpConstants {
         static let cellHeight: CGFloat = 413
 
         static let itemInset: CGFloat = 9
-        static let topItemInset: CGFloat = UIDevice.current.name.contains("Max") ? 0 : 10
+        static let topItemInset: CGFloat = 10
         static let groupSize = 1
         static let interGroupSpacing: CGFloat = 5
         static let interSectionSpacing: CGFloat = 20

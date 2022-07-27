@@ -38,6 +38,7 @@
 		9CA69FEE287DF6140073817D /* SectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA69FED287DF6140073817D /* SectionHeader.swift */; };
 		9CA69FF7287F12D90073817D /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA69FF6287F12D90073817D /* MainTabBarController.swift */; };
 		9CA69FF9287F13E20073817D /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA69FF8287F13E20073817D /* CustomTabBar.swift */; };
+		9CB541FC288EF03C000C868E /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB541FB288EF03C000C868E /* UIView+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -76,6 +77,7 @@
 		9CA69FED287DF6140073817D /* SectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeader.swift; sourceTree = "<group>"; };
 		9CA69FF6287F12D90073817D /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		9CA69FF8287F13E20073817D /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
+		9CB541FB288EF03C000C868E /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,6 +170,7 @@
 				9CA69FE1287DEA050073817D /* UIFont+.swift */,
 				9C84CDD4288735D000B643F5 /* UIStackView+.swift */,
 				9C4849882888764C00B95FA0 /* UIButton+.swift */,
+				9CB541FB288EF03C000C868E /* UIView+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -392,6 +395,7 @@
 				9CA69FE2287DEA050073817D /* UIFont+.swift in Sources */,
 				9C84CDAA2885CB5300B643F5 /* CharityEventsViewController.swift in Sources */,
 				9CA69FE4287DEB5F0073817D /* HelpCategoriesViewController.swift in Sources */,
+				9CB541FC288EF03C000C868E /* UIView+.swift in Sources */,
 				9C84CDC9288723D800B643F5 /* DetailEventCell.swift in Sources */,
 				9C84CDC728871C5C00B643F5 /* DetailEventViewController.swift in Sources */,
 				9C84CDAD2885E43300B643F5 /* JSONDecoderService.swift in Sources */,
