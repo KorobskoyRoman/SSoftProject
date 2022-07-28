@@ -8,4 +8,5 @@ target 'SSoftProject' do
   # Pods for SSoftProject
 pod 'Alamofire'
 pod 'SwiftLint'
+pod 'RealmSwift', '~>10'
 end
