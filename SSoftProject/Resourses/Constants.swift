@@ -41,3 +41,7 @@ enum ImageConstants {
 enum UIKitConstants {
     static let numberOfLines2 = 2
 }
+
+enum DataBase {
+    static let isCoreData: Bool = false
+}
