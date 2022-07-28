@@ -39,6 +39,9 @@
 		9CA69FF7287F12D90073817D /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA69FF6287F12D90073817D /* MainTabBarController.swift */; };
 		9CA69FF9287F13E20073817D /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA69FF8287F13E20073817D /* CustomTabBar.swift */; };
 		9CB541FC288EF03C000C868E /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB541FB288EF03C000C868E /* UIView+.swift */; };
+		9CFB0BB02891A5840094CFFD /* RealmEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFB0BAF2891A5840094CFFD /* RealmEvent.swift */; };
+		9CFB0BB22891A5900094CFFD /* RealmCategories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFB0BB12891A5900094CFFD /* RealmCategories.swift */; };
+		9CFB0BB52891A7610094CFFD /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFB0BB42891A7610094CFFD /* RealmService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -78,6 +81,9 @@
 		9CA69FF6287F12D90073817D /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		9CA69FF8287F13E20073817D /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
 		9CB541FB288EF03C000C868E /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
+		9CFB0BAF2891A5840094CFFD /* RealmEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmEvent.swift; sourceTree = "<group>"; };
+		9CFB0BB12891A5900094CFFD /* RealmCategories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmCategories.swift; sourceTree = "<group>"; };
+		9CFB0BB42891A7610094CFFD /* RealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,8 +155,8 @@
 			isa = PBXGroup;
 			children = (
 				9C84CDB52887052800B643F5 /* Constants.swift */,
-				9C84CDC42887150B00B643F5 /* Events.json */,
 				9C84CDB32887046200B643F5 /* Categories.json */,
+				9C84CDC42887150B00B643F5 /* Events.json */,
 			);
 			path = Resourses;
 			sourceTree = "<group>";
@@ -159,6 +165,7 @@
 			isa = PBXGroup;
 			children = (
 				9C84CDAC2885E43300B643F5 /* JSONDecoderService.swift */,
+				9CFB0BB42891A7610094CFFD /* RealmService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -232,6 +239,7 @@
 			children = (
 				9CA69FE7287DF2B00073817D /* Categories.swift */,
 				9C84CDA72885C8EA00B643F5 /* Event.swift */,
+				9CFB0BB32891A59C0094CFFD /* Realm */,
 				9CA69FE9287DF3750073817D /* Section.swift */,
 			);
 			path = Models;
@@ -244,6 +252,15 @@
 				9C84CDD828875D0700B643F5 /* Ubuntu-Regular.ttf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		9CFB0BB32891A59C0094CFFD /* Realm */ = {
+			isa = PBXGroup;
+			children = (
+				9CFB0BB12891A5900094CFFD /* RealmCategories.swift */,
+				9CFB0BAF2891A5840094CFFD /* RealmEvent.swift */,
+			);
+			path = Realm;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -396,6 +413,7 @@
 				9C84CDAA2885CB5300B643F5 /* CharityEventsViewController.swift in Sources */,
 				9CA69FE4287DEB5F0073817D /* HelpCategoriesViewController.swift in Sources */,
 				9CB541FC288EF03C000C868E /* UIView+.swift in Sources */,
+				9CFB0BB52891A7610094CFFD /* RealmService.swift in Sources */,
 				9C84CDC9288723D800B643F5 /* DetailEventCell.swift in Sources */,
 				9C84CDC728871C5C00B643F5 /* DetailEventViewController.swift in Sources */,
 				9C84CDAD2885E43300B643F5 /* JSONDecoderService.swift in Sources */,
@@ -405,8 +423,10 @@
 				9C84CDD5288735D100B643F5 /* UIStackView+.swift in Sources */,
 				9CA69FEA287DF3750073817D /* Section.swift in Sources */,
 				9C773A7527CD4B7C00B6B589 /* AppDelegate.swift in Sources */,
+				9CFB0BB02891A5840094CFFD /* RealmEvent.swift in Sources */,
 				9C773A7727CD4B7C00B6B589 /* SceneDelegate.swift in Sources */,
 				9C84CDB62887052800B643F5 /* Constants.swift in Sources */,
+				9CFB0BB22891A5900094CFFD /* RealmCategories.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
