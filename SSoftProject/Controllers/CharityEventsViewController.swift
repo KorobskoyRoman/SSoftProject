@@ -5,16 +5,18 @@
 //  Created by Roman Korobskoy on 18.07.2022.
 //
 
-import Foundation
 import UIKit
+import RealmSwift
 
 final class CharityEventsViewController: UIViewController {
 
-    typealias DataSource = UICollectionViewDiffableDataSource<Section, Event>
-    typealias Snapshot = NSDiffableDataSourceSnapshot<Section, Event>
+    typealias DataSource = UICollectionViewDiffableDataSource<Section, RealmEvent>
+    typealias Snapshot = NSDiffableDataSourceSnapshot<Section, RealmEvent>
 
-    private lazy var events = [Event]()
-    private lazy var filteredEvents = [Event]()
+    private var events: Results<RealmEvent>?
+    private var filteredEvents: Results<RealmEvent>?
+    private lazy var catName = self.navigationItem.title
+
     private lazy var segmentedControl: UISegmentedControl = {
         let segmentedControl = UISegmentedControl()
         segmentedControl.selectedSegmentTintColor = .leaf
@@ -50,6 +52,7 @@ final class CharityEventsViewController: UIViewController {
                                                        collectionViewLayout: createCompositialLayout())
     private lazy var dataSource = createDiffableDataSource()
     private let backgroundQueue = DispatchQueue.global(qos: .background)
+    let realm = try? Realm()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -92,19 +95,18 @@ final class CharityEventsViewController: UIViewController {
     }
 
     private func getData() {
-        let catName = self.navigationItem.title
+
         backgroundQueue.async { [weak self] in
             guard let self = self else { return }
 
             DispatchQueue.main.async {
                 self.view.showLoading(style: .medium, color: .grey)
+                self.events = self.realm?.objects(RealmEvent.self)
+                    .where { $0.isDone == false }
+                self.filteredEvents = self.events?
+                    .where { $0.category == self.catName ?? "" }
             }
-            sleep(2) // "грузим"
-            self.events = self.decodeService.decode([Event].self, from: JSONConstants.eventsJson)
-            self.events = self.events
-                            .filter { $0.category == catName }
-            self.filteredEvents = self.events
-                .filter { !$0.isDone }
+            sleep(2)
 
             DispatchQueue.main.async {
                 UIView.animate(withDuration: 0.3, delay: 0, options: .transitionCrossDissolve, animations: {
@@ -162,11 +164,17 @@ final class CharityEventsViewController: UIViewController {
             // как я понял тут возникает Race condition, если .async
             switch index {
             case 0:
-                self.filteredEvents = self.events.filter { !$0.isDone }
+                self.filteredEvents = self.realm?.objects(RealmEvent.self)
+                    .where { $0.isDone == false }
+                    .where { $0.category == self.catName ?? "" }
             case 1:
-                self.filteredEvents = self.events.filter { $0.isDone }
+                self.filteredEvents = self.realm?.objects(RealmEvent.self)
+                    .where { $0.isDone == true }
+                    .where { $0.category == self.catName ?? "" }
             default:
-                self.filteredEvents = self.events.filter { !$0.isDone }
+                self.filteredEvents = self.realm?.objects(RealmEvent.self)
+                    .where { $0.isDone == false }
+                    .where { $0.category == self.catName ?? "" }
             }
         }
     }
@@ -248,7 +256,7 @@ extension CharityEventsViewController {
         var snapshot = Snapshot()
 
         snapshot.appendSections([.mainSection])
-        snapshot.appendItems(filteredEvents, toSection: .mainSection)
+        snapshot.appendItems(filteredEvents?.toArray() ?? [], toSection: .mainSection)
         dataSource.apply(snapshot, animatingDifferences: animatingDifferences)
     }
 }
@@ -259,7 +267,8 @@ extension CharityEventsViewController: UICollectionViewDelegate {
         switch section {
         case .mainSection:
             let detailsVC = DetailEventViewController()
-            detailsVC.eventInfo = filteredEvents.filter { $0.id == indexPath.item }
+//            detailsVC.eventInfo = filteredEvents.filter { $0.id == indexPath.item }
+            detailsVC.eventInfo = filteredEvents?.where {$0.id == indexPath.item }
             navigationController?.pushViewController(detailsVC, animated: true)
         }
     }

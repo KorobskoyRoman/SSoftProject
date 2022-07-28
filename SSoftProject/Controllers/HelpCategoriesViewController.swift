@@ -6,17 +6,18 @@
 //
 
 import UIKit
+import RealmSwift
 
 final class HelpCategoriesViewController: UIViewController {
 
-    typealias DataSource = UICollectionViewDiffableDataSource<Section, Categories>
-    typealias Snapshot = NSDiffableDataSourceSnapshot<Section, Categories>
+    typealias DataSource = UICollectionViewDiffableDataSource<Section, RealmCategories>
+    typealias Snapshot = NSDiffableDataSourceSnapshot<Section, RealmCategories>
 
     private lazy var collectionView = UICollectionView(frame: view.bounds,
                                                        collectionViewLayout: createCompositialLayout())
     private lazy var dataSource = createDiffableDataSource()
     private let decodeService = JSONDecoderService()
-    private lazy var categories = [Categories]()
+    private var categories: Results<RealmCategories>?
 
     private lazy var backButton: UIBarButtonItem = {
         return UIBarButtonItem(image: ImageConstants.backImage,
@@ -38,6 +39,7 @@ final class HelpCategoriesViewController: UIViewController {
             .isActive = true
         return label
     }()
+    let realm = try? Realm()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -94,15 +96,14 @@ final class HelpCategoriesViewController: UIViewController {
 
     private func getData() {
         let queue = DispatchQueue.global(qos: .background)
-
         queue.async { [weak self] in
             guard let self = self else { return }
 
             DispatchQueue.main.async {
                 self.view.showLoading(style: .medium, color: .grey)
+                self.categories = self.realm?.objects(RealmCategories.self)
             }
-            sleep(2) // "грузим"
-            self.categories = self.decodeService.decode([Categories].self, from: JSONConstants.categoriesJson)
+            sleep(2)
 
             DispatchQueue.main.async {
                 UIView.animate(withDuration: 0.3, delay: 0, options: .transitionCrossDissolve, animations: {
@@ -216,7 +217,7 @@ extension HelpCategoriesViewController {
         var snapshot = Snapshot()
 
         snapshot.appendSections([.mainSection])
-        snapshot.appendItems(categories, toSection: .mainSection)
+        snapshot.appendItems(categories?.toArray() ?? [], toSection: .mainSection)
         dataSource.apply(snapshot, animatingDifferences: animatingDifferences)
     }
 }
