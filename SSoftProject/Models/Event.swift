@@ -5,7 +5,7 @@
 //  Created by Roman Korobskoy on 18.07.2022.
 //
 
-struct Event: Codable, Hashable {
+struct Event: Codable, Hashable, DataBaseModelProtocol {
     let id: Int
     let image: String
     let title: String

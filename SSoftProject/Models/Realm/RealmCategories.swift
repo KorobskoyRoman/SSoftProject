@@ -7,7 +7,7 @@
 
 import RealmSwift
 
-class RealmCategories: Object, Decodable {
+class RealmCategories: Object, Decodable, DataBaseModelProtocol {
     @Persisted var id: Int = 0
     @Persisted var image: String = ""
     @Persisted var title: String = ""
