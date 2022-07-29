@@ -7,12 +7,14 @@
 
 import Foundation
 import RealmSwift
+import CoreData
 
 class JSONDecoderService: Bundle {
 
     private var decodedCategories = [RealmCategories]()
     private var decodedEvents = [RealmEvent]()
     private let localRealm = try? Realm()
+    private var categories = [Categories]()
 
     func decode<T: Decodable>(_ type: T.Type,
                               from file: String,
@@ -49,6 +51,8 @@ class JSONDecoderService: Bundle {
         }
     }
 
+    // MARK: - ПЕРЕТАЩИТЬ ВСЮ ЛОГИКУ ПО КЛАССАМ РЕАЛМ - К РЕАЛМУ, КОР ДАТУ - К КОР ДАТЕ
+    // MARK: - Realm
     private func decodeToRealm<T: Object>(from file: String) -> [T] where T: Decodable {
         let array = self.decode([T].self, from: file)
         RealmService.shared.saveToRealm(array)
@@ -66,13 +70,83 @@ class JSONDecoderService: Bundle {
             decodedEvents = decodeToRealm(from: JSONConstants.eventsJson)
         }
     }
+    // MARK: - Core Data
+    private func getCategoriesCDinDataBase() {
+        self.categories = self.decode([Categories].self, from: JSONConstants.categoriesJson)
+        self.categories.forEach {element in
+            print("----------------save object \(element)----------------")
+            let context = AppDelegate().managedObjectContext
+            let entity = NSEntityDescription.entity(forEntityName: "CategoriesCD", in: context)
+            let managedObject = NSManagedObject(entity: entity!, insertInto: context)
+            managedObject.setValue(element.id, forKey: "id")
+            managedObject.setValue(element.image, forKey: "image")
+            managedObject.setValue(element.title, forKey: "title")
+            //                    try context.save()
+            AppDelegate().saveContext() // УДАЛИТЬ АПП ДЕЛЕГАТ И СДЕЛАТЬ НОМАЛЬНОЕ ОБРАЩЕНИЕ
+            print("----------------\(element) saved to core data----------------")
+        }
+    }
 
+    // MARK: - Общий для получения данных в сплэше
     func decodeToDataBase() {
-        if !DataBase.isCoreData {
+        if !DataBase.isCoreData { // СДЕЛАТЬ ЧЕРЕЗ КЛАССЫ aka CoreDataService.shared.getCategoriesCD()
             getCategories()
             getEvents()
         } else {
-            print("Core Data is active")
+            getCategoriesCDinDataBase()
         }
     }
 }
+
+//@objc(Entity)
+//public class CategoriesCD: NSManagedObject, Decodable {
+//    enum CodingKeys: CodingKey {
+//        case results
+//    }
+//    enum ResultsCodingKeys: CodingKey {
+//        case id, image, title
+//    }
+//
+//    enum DecoderConfigurationError: Error {
+//      case missingManagedObjectContext
+//    }
+//
+//    public required convenience init(from decoder: Decoder) throws {
+//        guard let context = decoder.userInfo[CodingUserInfoKey.managedObjectContext] as? NSManagedObjectContext else {
+//            throw DecoderConfigurationError.missingManagedObjectContext
+//        }
+//
+//        let entity = NSEntityDescription.entity(forEntityName: "CategoriesCD", in: context) ?? NSEntityDescription()
+//        self.init(entity: entity, insertInto: context)
+//        let container = try decoder.container(keyedBy: CodingKeys.self)
+//        let values = try container.nestedContainer(keyedBy: ResultsCodingKeys.self, forKey: .results)
+//        _ = try values.decode(Int64.self, forKey: .id)
+//        _ = try values.decode(String.self, forKey: .image)
+//        _ = try values.decode(String.self, forKey: .title)
+//    }
+//}
+
+//public class EventsCD: NSManagedObject {
+//
+//}
+
+//extension CodingUserInfoKey {
+//    static let managedObjectContext = CodingUserInfoKey(rawValue: "managedObjectContext")!
+//}
+
+//extension JSONDecoder {
+//    convenience init(context: NSManagedObjectContext) {
+//        self.init()
+//        self.userInfo[.managedObjectContext] = context
+//    }
+//}
+
+//extension JSONDecoderService {
+//    private func getContext() -> NSManagedObjectContext {
+//
+//        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate
+//        else { return NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType) }
+//        let context = appDelegate.persistentContainer.viewContext
+//        return context
+//    }
+//}
