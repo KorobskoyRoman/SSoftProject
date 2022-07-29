@@ -101,10 +101,14 @@ final class CharityEventsViewController: UIViewController {
 
             DispatchQueue.main.async {
                 self.view.showLoading(style: .medium, color: .grey)
-                self.events = self.realm?.objects(RealmEvent.self)
-                    .where { $0.isDone == false }
-                self.filteredEvents = self.events?
-                    .where { $0.category == self.catName ?? "" }
+                if !DataBase.isCoreData {
+                    self.events = self.realm?.objects(RealmEvent.self)
+                        .where { $0.isDone == false }
+                    self.filteredEvents = self.events?
+                        .where { $0.category == self.catName ?? "" }
+                } else {
+                    print("core data is active")
+                }
             }
             sleep(2)
 

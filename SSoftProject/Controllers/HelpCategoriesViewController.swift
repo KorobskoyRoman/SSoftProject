@@ -101,7 +101,12 @@ final class HelpCategoriesViewController: UIViewController {
 
             DispatchQueue.main.async {
                 self.view.showLoading(style: .medium, color: .grey)
-                self.categories = self.realm?.objects(RealmCategories.self)
+                // все равно грузит из БД, чет я не понял как абстрагироваться от конкретной модели
+                if !DataBase.isCoreData {
+                    self.categories = self.realm?.objects(RealmCategories.self)
+                } else {
+//                    print("core data is active")
+                }
             }
             sleep(2)
 
