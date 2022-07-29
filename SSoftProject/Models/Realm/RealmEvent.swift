@@ -7,7 +7,7 @@
 
 import RealmSwift
 
-class RealmEvent: Object, Decodable, DataBaseModelProtocol {
+class RealmEvent: Object, Decodable {
     @Persisted var id: Int
     @Persisted var image: String
     @Persisted var title: String
