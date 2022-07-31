@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		589E63461E80358E1F54C402 /* Pods_SSoftProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 134D26F55E15E05254E11928 /* Pods_SSoftProject.framework */; };
 		9C1A41F228942E1A002B7C80 /* CategoriesCoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9C1A41F028942E1A002B7C80 /* CategoriesCoreDataModel.xcdatamodeld */; };
+		9C1A42002896D12A002B7C80 /* CoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C1A41FF2896D12A002B7C80 /* CoreDataService.swift */; };
 		9C48498728885BA900B95FA0 /* HelpVariantsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C48498628885BA900B95FA0 /* HelpVariantsView.swift */; };
 		9C4849892888764C00B95FA0 /* UIButton+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4849882888764C00B95FA0 /* UIButton+.swift */; };
 		9C773A7527CD4B7C00B6B589 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C773A7427CD4B7C00B6B589 /* AppDelegate.swift */; };
@@ -50,6 +51,7 @@
 		134D26F55E15E05254E11928 /* Pods_SSoftProject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SSoftProject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		91C79F6CA6A07609843A1CFF /* Pods-SSoftProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SSoftProject.debug.xcconfig"; path = "Target Support Files/Pods-SSoftProject/Pods-SSoftProject.debug.xcconfig"; sourceTree = "<group>"; };
 		9C1A41F128942E1A002B7C80 /* CategoriesCoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CategoriesCoreDataModel.xcdatamodel; sourceTree = "<group>"; };
+		9C1A41FF2896D12A002B7C80 /* CoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataService.swift; sourceTree = "<group>"; };
 		9C48498628885BA900B95FA0 /* HelpVariantsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpVariantsView.swift; sourceTree = "<group>"; };
 		9C4849882888764C00B95FA0 /* UIButton+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+.swift"; sourceTree = "<group>"; };
 		9C773A7127CD4B7C00B6B589 /* SSoftProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SSoftProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -117,6 +119,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		9C1A42012896D134002B7C80 /* DataBase */ = {
+			isa = PBXGroup;
+			children = (
+				9CFB0BB42891A7610094CFFD /* RealmService.swift */,
+				9C1A41FF2896D12A002B7C80 /* CoreDataService.swift */,
+			);
+			path = DataBase;
+			sourceTree = "<group>";
+		};
 		9C773A6827CD4B7C00B6B589 = {
 			isa = PBXGroup;
 			children = (
@@ -168,7 +179,7 @@
 			isa = PBXGroup;
 			children = (
 				9C84CDAC2885E43300B643F5 /* JSONDecoderService.swift */,
-				9CFB0BB42891A7610094CFFD /* RealmService.swift */,
+				9C1A42012896D134002B7C80 /* DataBase */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -242,8 +253,8 @@
 			children = (
 				9CA69FE7287DF2B00073817D /* Categories.swift */,
 				9C84CDA72885C8EA00B643F5 /* Event.swift */,
-				9CFB0BB32891A59C0094CFFD /* Realm */,
 				9CA69FE9287DF3750073817D /* Section.swift */,
+				9CFB0BB32891A59C0094CFFD /* Realm */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -423,6 +434,7 @@
 				9C4849892888764C00B95FA0 /* UIButton+.swift in Sources */,
 				9C1A41F228942E1A002B7C80 /* CategoriesCoreDataModel.xcdatamodeld in Sources */,
 				9C48498728885BA900B95FA0 /* HelpVariantsView.swift in Sources */,
+				9C1A42002896D12A002B7C80 /* CoreDataService.swift in Sources */,
 				9C84CDD72887555000B643F5 /* TableFooterView.swift in Sources */,
 				9C84CDD5288735D100B643F5 /* UIStackView+.swift in Sources */,
 				9CA69FEA287DF3750073817D /* Section.swift in Sources */,
