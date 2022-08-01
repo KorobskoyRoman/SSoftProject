@@ -13,8 +13,8 @@ final class CharityEventsViewController: UIViewController {
     typealias DataSource = UICollectionViewDiffableDataSource<Section, Event>
     typealias Snapshot = NSDiffableDataSourceSnapshot<Section, Event>
 
-    private lazy var events = [Event]()
-    private lazy var filteredEvents = [Event]()
+    private var events = [Event]()
+    private var filteredEvents = [Event]()
     private lazy var segmentedControl: UISegmentedControl = {
         let segmentedControl = UISegmentedControl()
         segmentedControl.selectedSegmentTintColor = .leaf
@@ -101,10 +101,8 @@ final class CharityEventsViewController: UIViewController {
             }
             sleep(2) // "грузим"
             self.events = self.decodeService.decode([Event].self, from: JSONConstants.eventsJson)
-            self.events = self.events
-                            .filter { $0.category == catName }
-            self.filteredEvents = self.events
-                .filter { !$0.isDone }
+            self.events = self.events.filter { $0.category == catName }
+            self.filteredEvents = self.events.filter { !$0.isDone }
 
             DispatchQueue.main.async {
                 UIView.animate(withDuration: 0.3, delay: 0, options: .transitionCrossDissolve, animations: {
