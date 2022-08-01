@@ -10,6 +10,7 @@ import CoreData
 final class CoreDataService {
     static let shared = CoreDataService()
     private var categories = [Categories]()
+    private var events = [Event]()
     private let jsonDecoder = JSONDecoderService()
 
     private init() {}
@@ -84,17 +85,44 @@ final class CoreDataService {
 
     func getCategoriesIntoCoreData() {
         let context = self.managedObjectContext
-        let entity = NSEntityDescription.entity(forEntityName: "CategoriesCD", in: context)
+//        let entity = NSEntityDescription.entity(forEntityName: "CategoriesCD", in: context)
+        let entity = entityForName(entityName: "CategoriesCD")
         let count = fetchCountFor(entityName: "CategoriesCD", onMoc: context)
 
         self.categories = jsonDecoder.decode([Categories].self, from: JSONConstants.categoriesJson)
         if count < self.categories.count {
             self.categories.forEach { element in
                 print("----------------save object \(element.title)----------------")
-                let managedObject = NSManagedObject(entity: entity!, insertInto: context)
+                let managedObject = NSManagedObject(entity: entity, insertInto: context)
                 managedObject.setValue(element.id, forKey: "id")
                 managedObject.setValue(element.image, forKey: "image")
                 managedObject.setValue(element.title, forKey: "title")
+                saveContext(context: context)
+                print("----------------\(element.title) saved to core data----------------")
+            }
+        }
+    }
+
+    func getEventsIntoCoreData() {
+        let context = self.managedObjectContext
+        let count = fetchCountFor(entityName: "EventsCD", onMoc: context)
+
+        self.events = jsonDecoder.decode([Event].self, from: JSONConstants.eventsJson)
+        if count < self.events.count {
+            self.events.forEach { element in
+                print("----------------save object \(element.title)----------------")
+                let managedObject = EventsCD()
+                managedObject.id = element.id
+                managedObject.image = element.image
+                managedObject.title = element.title
+                managedObject.details = element.details
+                managedObject.date = element.date
+                managedObject.isDone = element.isDone
+                managedObject.category = element.category
+                managedObject.address = element.address
+                managedObject.phone = element.phone
+                managedObject.details2 = element.details2
+                managedObject.details3 = element.details3
                 saveContext(context: context)
                 print("----------------\(element.title) saved to core data----------------")
             }
@@ -130,7 +158,7 @@ final class CoreDataService {
         return count
     }
 
-    /// для заполнения массива данными
+    /// для заполнения массива категорий данными
     func getCategoriesFromCoreData() -> [CategoriesCD] {
         var results = [CategoriesCD]()
         do {
@@ -144,5 +172,41 @@ final class CoreDataService {
             print(error)
         }
         return results
+    }
+
+    func getEventsFromCoreData() -> [EventsCD] {
+        var results = [EventsCD]()
+        do {
+            let fetchRequest: NSFetchRequest<EventsCD> = EventsCD.fetchRequest()
+            let context = self.managedObjectContext
+            results = try context.fetch(fetchRequest)
+            results.forEach { element in
+                print("""
+                        \(element.id)
+                        \(element.image ?? "")
+                        \(element.title ?? "")
+                        \(element.details ?? "")
+                        \(element.date ?? "")
+                        \(element.isDone)
+                        \(element.category ?? "")
+                        \(element.address ?? "")
+                        \(element.phone ?? "")
+                        \(element.details2 ?? "")
+                        \(element.details3 ?? "")
+                    """)
+            }
+        } catch {
+            print(error)
+        }
+        return results
+    }
+}
+
+extension CoreDataService {
+    func entityForName(entityName: String) -> NSEntityDescription {
+        guard let entity = NSEntityDescription.entity(forEntityName: entityName,
+                                                      in: self.managedObjectContext)
+        else { return NSEntityDescription() }
+        return entity
     }
 }
