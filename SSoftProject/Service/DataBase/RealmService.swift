@@ -7,7 +7,7 @@
 
 import RealmSwift
 
-class RealmService {
+final class RealmService {
     static let shared = RealmService()
     private var decodedCategories = [RealmCategories]()
     private var decodedEvents = [RealmEvent]()
