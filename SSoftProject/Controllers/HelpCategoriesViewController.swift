@@ -16,7 +16,7 @@ final class HelpCategoriesViewController: UIViewController {
                                                        collectionViewLayout: createCompositialLayout())
     private lazy var dataSource = createDiffableDataSource()
     private let decodeService = JSONDecoderService()
-    private lazy var categories = decodeService.decode([Categories].self, from: JSONConstants.categoriesJson)
+    private lazy var categories = [Categories]()
 
     private lazy var backButton: UIBarButtonItem = {
         return UIBarButtonItem(image: ImageConstants.backImage,
@@ -61,7 +61,7 @@ final class HelpCategoriesViewController: UIViewController {
         collectionView.delegate = self
         setupNavBar()
         setupCollectionView()
-        applySnapshot()
+        getData()
     }
 
     private func setupNavBar() {
@@ -90,6 +90,27 @@ final class HelpCategoriesViewController: UIViewController {
         UINavigationBar.appearance().compactAppearance = appearance
 
         return appearance
+    }
+
+    private func getData() {
+        let queue = DispatchQueue.global(qos: .background)
+
+        queue.async { [weak self] in
+            guard let self = self else { return }
+
+            DispatchQueue.main.async {
+                self.view.showLoading(style: .medium, color: .grey)
+            }
+            sleep(2) // "грузим"
+            self.categories = self.decodeService.decode([Categories].self, from: JSONConstants.categoriesJson)
+
+            DispatchQueue.main.async {
+                UIView.animate(withDuration: 0.3, delay: 0, options: .transitionCrossDissolve, animations: {
+                    self.applySnapshot()
+                }, completion: nil)
+                self.view.stopLoading()
+            }
+        }
     }
 
     @objc private func backButtonTapped() {
@@ -208,9 +229,7 @@ extension HelpCategoriesViewController: UICollectionViewDelegate {
             guard let cell = collectionView.cellForItem(at: indexPath) as? HelpCategoriesCell
             else { return }
             let charityVC = CharityEventsViewController()
-            let decodedArr = decodeService.decode([Event].self, from: JSONConstants.eventsJson)
             charityVC.title = cell.navBarTitle
-            charityVC.events = decodedArr.filter({ $0.category == cell.navBarTitle })
             navigationController?.pushViewController(charityVC, animated: true)
         }
     }
