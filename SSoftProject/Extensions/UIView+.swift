@@ -20,26 +20,27 @@ extension UIView {
             // label setup
             let infoLabel: UILabel = {
                 let label = UILabel()
-                label.text = "Загрузка..."
+                label.text = ViewConstants.loadingText
                 label.font = .systemFont(ofSize: 13, weight: .light)
                 label.translatesAutoresizingMaskIntoConstraints = false
                 return label
             }()
 
-            loading?.translatesAutoresizingMaskIntoConstraints = false
-            loading!.startAnimating()
-            loading!.hidesWhenStopped = true
-            loading?.tag = UIView.loadingViewTag
+            guard let loading = loading else { return }
+            loading.translatesAutoresizingMaskIntoConstraints = false
+            loading.startAnimating()
+            loading.hidesWhenStopped = true
+            loading.tag = UIView.loadingViewTag
             infoLabel.tag = UIView.labelInfoTag
-            self.addSubview(loading!)
+            self.addSubview(loading)
             self.addSubview(infoLabel)
-            loading?.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-            loading?.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-            infoLabel.centerYAnchor.constraint(equalTo: loading!.centerYAnchor, constant: 25).isActive = true
-            infoLabel.centerXAnchor.constraint(equalTo: loading!.centerXAnchor).isActive = true
+            loading.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+            loading.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+            infoLabel.centerYAnchor.constraint(equalTo: loading.centerYAnchor, constant: 25).isActive = true
+            infoLabel.centerXAnchor.constraint(equalTo: loading.centerXAnchor).isActive = true
 
             if let color = color {
-                loading?.color = color
+                loading.color = color
                 infoLabel.textColor = color
             }
         }
@@ -54,4 +55,8 @@ extension UIView {
             infoLabel?.removeFromSuperview()
         }
     }
+}
+
+private enum ViewConstants {
+    static let loadingText = "Загрузка..."
 }
