@@ -166,7 +166,7 @@ final class CoreDataService {
             let context = self.managedObjectContext
             results = try context.fetch(fetchRequest)
             results.forEach { element in
-                print("ID - \(element.id)\nTITLE - \(element.title ?? "")\nIMAGE - \(element.image ?? "")")
+                print("ID - \(element.id)\nTITLE - \(element.title)\nIMAGE - \(element.image)")
             }
         } catch {
             print(error)

@@ -52,8 +52,8 @@ final class JSONDecoderService: Bundle {
     // MARK: - Общий для получения данных в сплэше
     func decodeToDataBase() {
         if !DataBase.isCoreData {
-            RealmService.shared.getCategories()
-            RealmService.shared.getEvents()
+            RealmService.shared.getCategoriesIntoRealm()
+            RealmService.shared.getEventsIntoRealm()
         } else {
             CoreDataService.shared.getCategoriesIntoCoreData()
             CoreDataService.shared.getEventsIntoCoreData()

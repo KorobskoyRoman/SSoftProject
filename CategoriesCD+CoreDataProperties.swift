@@ -9,7 +9,6 @@
 import Foundation
 import CoreData
 
-
 extension CategoriesCD {
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<CategoriesCD> {
@@ -17,11 +16,10 @@ extension CategoriesCD {
     }
 
     @NSManaged public var id: Int64
-    @NSManaged public var image: String?
-    @NSManaged public var title: String?
+    @NSManaged public var image: String
+    @NSManaged public var title: String
 
 }
 
-extension CategoriesCD : Identifiable {
-
+extension CategoriesCD: Identifiable {
 }

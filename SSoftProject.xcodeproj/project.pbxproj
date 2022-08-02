@@ -43,6 +43,8 @@
 		9CB541FC288EF03C000C868E /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB541FB288EF03C000C868E /* UIView+.swift */; };
 		9CBD1895289831DB005E4167 /* EventsCD+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBD1893289831DB005E4167 /* EventsCD+CoreDataClass.swift */; };
 		9CBD1896289831DB005E4167 /* EventsCD+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBD1894289831DB005E4167 /* EventsCD+CoreDataProperties.swift */; };
+		9CBD189928984D95005E4167 /* CategoriesCD+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBD189728984D95005E4167 /* CategoriesCD+CoreDataClass.swift */; };
+		9CBD189A28984D95005E4167 /* CategoriesCD+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBD189828984D95005E4167 /* CategoriesCD+CoreDataProperties.swift */; };
 		9CFB0BB02891A5840094CFFD /* RealmEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFB0BAF2891A5840094CFFD /* RealmEvent.swift */; };
 		9CFB0BB22891A5900094CFFD /* RealmCategories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFB0BB12891A5900094CFFD /* RealmCategories.swift */; };
 		9CFB0BB52891A7610094CFFD /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFB0BB42891A7610094CFFD /* RealmService.swift */; };
@@ -89,6 +91,8 @@
 		9CB541FB288EF03C000C868E /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
 		9CBD1893289831DB005E4167 /* EventsCD+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EventsCD+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 		9CBD1894289831DB005E4167 /* EventsCD+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EventsCD+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
+		9CBD189728984D95005E4167 /* CategoriesCD+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CategoriesCD+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		9CBD189828984D95005E4167 /* CategoriesCD+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CategoriesCD+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		9CFB0BAF2891A5840094CFFD /* RealmEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmEvent.swift; sourceTree = "<group>"; };
 		9CFB0BB12891A5900094CFFD /* RealmCategories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmCategories.swift; sourceTree = "<group>"; };
 		9CFB0BB42891A7610094CFFD /* RealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
@@ -171,6 +175,8 @@
 		9C84CDA32885C44200B643F5 /* Resourses */ = {
 			isa = PBXGroup;
 			children = (
+				9CBD189728984D95005E4167 /* CategoriesCD+CoreDataClass.swift */,
+				9CBD189828984D95005E4167 /* CategoriesCD+CoreDataProperties.swift */,
 				9CBD1893289831DB005E4167 /* EventsCD+CoreDataClass.swift */,
 				9CBD1894289831DB005E4167 /* EventsCD+CoreDataProperties.swift */,
 				9C84CDB52887052800B643F5 /* Constants.swift */,
@@ -421,6 +427,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9CA69FEC287DF5010073817D /* HelpCategoriesViewControllerCell.swift in Sources */,
+				9CBD189A28984D95005E4167 /* CategoriesCD+CoreDataProperties.swift in Sources */,
 				9CBD1895289831DB005E4167 /* EventsCD+CoreDataClass.swift in Sources */,
 				9C773A7927CD4B7C00B6B589 /* SplashScreenViewController.swift in Sources */,
 				9CA69FF7287F12D90073817D /* MainTabBarController.swift in Sources */,
@@ -444,6 +451,7 @@
 				9C48498728885BA900B95FA0 /* HelpVariantsView.swift in Sources */,
 				9C1A42002896D12A002B7C80 /* CoreDataService.swift in Sources */,
 				9C84CDD72887555000B643F5 /* TableFooterView.swift in Sources */,
+				9CBD189928984D95005E4167 /* CategoriesCD+CoreDataClass.swift in Sources */,
 				9C84CDD5288735D100B643F5 /* UIStackView+.swift in Sources */,
 				9CA69FEA287DF3750073817D /* Section.swift in Sources */,
 				9C773A7527CD4B7C00B6B589 /* AppDelegate.swift in Sources */,

@@ -8,7 +8,7 @@
 import RealmSwift
 
 class RealmCategories: Object, Decodable {
-    @Persisted var id: Int = 0
+    @Persisted var id: Int64 = 0
     @Persisted var image: String = ""
     @Persisted var title: String = ""
 }
