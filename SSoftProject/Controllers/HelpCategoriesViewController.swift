@@ -17,7 +17,7 @@ final class HelpCategoriesViewController: UIViewController {
                                                        collectionViewLayout: createCompositialLayout())
     private lazy var dataSource = createDiffableDataSource()
     private let decodeService = JSONDecoderService()
-    private var categories: Results<RealmCategories>?
+    private var categories = [RealmCategories]()
 
     private lazy var backButton: UIBarButtonItem = {
         return UIBarButtonItem(image: ImageConstants.backImage,
@@ -101,11 +101,10 @@ final class HelpCategoriesViewController: UIViewController {
 
             DispatchQueue.main.async {
                 self.view.showLoading(style: .medium, color: .grey)
-                // все равно грузит из БД, чет я не понял как абстрагироваться от конкретной модели
                 if !DataBase.isCoreData {
-                    self.categories = self.realm?.objects(RealmCategories.self)
+                    self.categories = self.realm?.getCategories() ?? []
                 } else {
-//                    print("core data is active")
+                    //
                 }
             }
             sleep(2)
@@ -222,7 +221,7 @@ extension HelpCategoriesViewController {
         var snapshot = Snapshot()
 
         snapshot.appendSections([.mainSection])
-        snapshot.appendItems(categories?.toArray() ?? [], toSection: .mainSection)
+        snapshot.appendItems(categories, toSection: .mainSection)
         dataSource.apply(snapshot, animatingDifferences: animatingDifferences)
     }
 }

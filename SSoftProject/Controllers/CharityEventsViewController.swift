@@ -13,8 +13,8 @@ final class CharityEventsViewController: UIViewController {
     typealias DataSource = UICollectionViewDiffableDataSource<Section, RealmEvent>
     typealias Snapshot = NSDiffableDataSourceSnapshot<Section, RealmEvent>
 
-    private var events: Results<RealmEvent>?
-    private var filteredEvents: Results<RealmEvent>?
+    private var events = [RealmEvent]()
+    private var filteredEvents = [RealmEvent]()
     private lazy var catName = self.navigationItem.title
 
     private lazy var segmentedControl: UISegmentedControl = {
@@ -102,10 +102,10 @@ final class CharityEventsViewController: UIViewController {
             DispatchQueue.main.async {
                 self.view.showLoading(style: .medium, color: .grey)
                 if !DataBase.isCoreData {
-                    self.events = self.realm?.objects(RealmEvent.self)
-                        .where { $0.isDone == false }
-                    self.filteredEvents = self.events?
-                        .where { $0.category == self.catName ?? "" }
+                    self.events = self.realm?.getEvents()
+                        .filter { !$0.isDone } ?? []
+                    self.filteredEvents = self.events
+                        .filter { $0.category == self.catName ?? "" }
                 } else {
                     print("core data is active")
                 }
@@ -168,17 +168,17 @@ final class CharityEventsViewController: UIViewController {
             // как я понял тут возникает Race condition, если .async
             switch index {
             case 0:
-                self.filteredEvents = self.realm?.objects(RealmEvent.self)
-                    .where { $0.isDone == false }
-                    .where { $0.category == self.catName ?? "" }
+                self.filteredEvents = self.realm?.getEvents()
+                    .filter { $0.category == self.catName ?? "" }
+                    .filter { !$0.isDone } ?? []
             case 1:
-                self.filteredEvents = self.realm?.objects(RealmEvent.self)
-                    .where { $0.isDone == true }
-                    .where { $0.category == self.catName ?? "" }
+                self.filteredEvents = self.realm?.getEvents()
+                    .filter { $0.category == self.catName ?? "" }
+                    .filter { $0.isDone } ?? []
             default:
-                self.filteredEvents = self.realm?.objects(RealmEvent.self)
-                    .where { $0.isDone == false }
-                    .where { $0.category == self.catName ?? "" }
+                self.filteredEvents = self.realm?.getEvents()
+                    .filter { $0.category == self.catName ?? "" }
+                    .filter { !$0.isDone } ?? []
             }
         }
     }
@@ -260,7 +260,7 @@ extension CharityEventsViewController {
         var snapshot = Snapshot()
 
         snapshot.appendSections([.mainSection])
-        snapshot.appendItems(filteredEvents?.toArray() ?? [], toSection: .mainSection)
+        snapshot.appendItems(filteredEvents, toSection: .mainSection)
         dataSource.apply(snapshot, animatingDifferences: animatingDifferences)
     }
 }
@@ -271,8 +271,8 @@ extension CharityEventsViewController: UICollectionViewDelegate {
         switch section {
         case .mainSection:
             let detailsVC = DetailEventViewController()
-//            detailsVC.eventInfo = filteredEvents.filter { $0.id == indexPath.item }
-            detailsVC.eventInfo = filteredEvents?.where {$0.id == indexPath.item }
+            detailsVC.eventInfo = filteredEvents.filter { $0.id == indexPath.item }
+//            detailsVC.eventInfo = filteredEvents?.where {$0.id == indexPath.item }
             navigationController?.pushViewController(detailsVC, animated: true)
         }
     }

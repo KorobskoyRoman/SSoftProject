@@ -36,13 +36,13 @@ final class RealmService {
         return array
     }
 
-    func getCategories() {
+    func getCategoriesIntoRealm() {
         if localRealm?.objects(RealmCategories.self).isEmpty ?? true {
             decodedCategories = decodeToRealm(from: JSONConstants.categoriesJson)
         }
     }
 
-    func getEvents() {
+    func getEventsIntoRealm() {
         if localRealm?.objects(RealmEvent.self).isEmpty ?? true {
             decodedEvents = decodeToRealm(from: JSONConstants.eventsJson)
         }
@@ -52,5 +52,19 @@ final class RealmService {
 extension Results {
     func toArray() -> [Element] {
         return compactMap { $0 }
+    }
+}
+
+extension Realm {
+    func getCategories() -> [RealmCategories] {
+        let localRealm = try? Realm()
+        let decodedCategories = localRealm?.objects(RealmCategories.self).toArray() ?? []
+        return decodedCategories
+    }
+
+    func getEvents() -> [RealmEvent] {
+        let localRealm = try? Realm()
+        let decodedCategories = localRealm?.objects(RealmEvent.self).toArray() ?? []
+        return decodedCategories
     }
 }
