@@ -43,5 +43,5 @@ enum UIKitConstants {
 }
 
 enum DataBase {
-    static let isCoreData: Bool = true
+    static let isCoreData: Bool = false
 }

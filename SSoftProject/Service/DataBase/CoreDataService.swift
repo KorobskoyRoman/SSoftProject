@@ -85,7 +85,6 @@ final class CoreDataService {
 
     func getCategoriesIntoCoreData() {
         let context = self.managedObjectContext
-//        let entity = NSEntityDescription.entity(forEntityName: "CategoriesCD", in: context)
         let entity = entityForName(entityName: "CategoriesCD")
         let count = fetchCountFor(entityName: "CategoriesCD", onMoc: context)
 
@@ -163,11 +162,9 @@ final class CoreDataService {
         var results = [CategoriesCD]()
         do {
             let fetchRequest: NSFetchRequest<CategoriesCD> = CategoriesCD.fetchRequest()
+            fetchRequest.returnsObjectsAsFaults = false
             let context = self.managedObjectContext
             results = try context.fetch(fetchRequest)
-            results.forEach { element in
-                print("ID - \(element.id)\nTITLE - \(element.title)\nIMAGE - \(element.image)")
-            }
         } catch {
             print(error)
         }
@@ -178,23 +175,9 @@ final class CoreDataService {
         var results = [EventsCD]()
         do {
             let fetchRequest: NSFetchRequest<EventsCD> = EventsCD.fetchRequest()
+            fetchRequest.returnsObjectsAsFaults = false
             let context = self.managedObjectContext
             results = try context.fetch(fetchRequest)
-            results.forEach { element in
-                print("""
-                        \(element.id)
-                        \(element.image ?? "")
-                        \(element.title ?? "")
-                        \(element.details ?? "")
-                        \(element.date ?? "")
-                        \(element.isDone)
-                        \(element.category ?? "")
-                        \(element.address ?? "")
-                        \(element.phone ?? "")
-                        \(element.details2 ?? "")
-                        \(element.details3 ?? "")
-                    """)
-            }
         } catch {
             print(error)
         }
