@@ -12,10 +12,12 @@ final class RealmService {
     private var decodedCategories = [RealmCategories]()
     private var decodedEvents = [RealmEvent]()
     private let jsonDecoder = JSONDecoderService()
+    private lazy var catsEntity = localRealm?.objects(RealmCategories.self)
+    private lazy var eventsEntity = localRealm?.objects(RealmEvent.self)
 
     private init() {}
 
-    let localRealm = try? Realm()
+    private let localRealm = try? Realm()
 
     private func saveToRealm<T: Object>(_ items: [T]) {
         guard let localRealm = localRealm else { return }
@@ -45,6 +47,18 @@ final class RealmService {
     func getEventsIntoRealm() {
         if localRealm?.objects(RealmEvent.self).isEmpty ?? true {
             decodedEvents = decodeToRealm(from: JSONConstants.eventsJson)
+        }
+    }
+
+    func getCategoriesIntoRealmWithNetwork(from arr: [RealmCategories]) {
+        if localRealm?.objects(RealmCategories.self).isEmpty ?? true {
+            saveToRealm(arr)
+        }
+    }
+
+    func getEventsIntoRealmWithNetwork(from arr: [RealmEvent]) {
+        if localRealm?.objects(RealmEvent.self).isEmpty ?? true {
+            saveToRealm(arr)
         }
     }
 }
