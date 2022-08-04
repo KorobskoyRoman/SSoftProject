@@ -16,6 +16,7 @@ final class HelpCategoriesViewController: UIViewController {
     private lazy var collectionView = UICollectionView(frame: view.bounds,
                                                        collectionViewLayout: createCompositialLayout())
     private lazy var dataSource = createDiffableDataSource()
+    private let networkingService = NetworkingService()
     private let decodeService = JSONDecoderService()
     private var categories = [RealmCategories]()
 
@@ -39,7 +40,7 @@ final class HelpCategoriesViewController: UIViewController {
             .isActive = true
         return label
     }()
-    let realm = try? Realm()
+    private let realm = try? Realm()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -101,11 +102,7 @@ final class HelpCategoriesViewController: UIViewController {
 
             DispatchQueue.main.async {
                 self.view.showLoading(style: .medium, color: .grey)
-                if !DataBase.isCoreData {
-                    self.categories = self.realm?.getCategories() ?? []
-                } else {
-                    //
-                }
+                self.fetchCategories()
             }
             sleep(2)
 
@@ -116,6 +113,10 @@ final class HelpCategoriesViewController: UIViewController {
                 self.view.stopLoading()
             }
         }
+    }
+
+    private func fetchCategories() {
+        self.categories = self.realm?.getCategories() ?? []
     }
 
     @objc private func backButtonTapped() {
