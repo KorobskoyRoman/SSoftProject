@@ -50,3 +50,7 @@ enum UIKitConstants {
 enum DataBase {
     static let isCoreData: Bool = false
 }
+
+enum Network {
+    static let isAlamofire: Bool = false
+}
