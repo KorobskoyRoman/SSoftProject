@@ -40,7 +40,7 @@ final class HelpCategoriesCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func configure(with model: RealmCategories) {
+    func configure(with model: Categories) {
         image.image = UIImage(named: model.image)
         title.text = model.title
     }

@@ -12,6 +12,11 @@ enum JSONConstants {
     static let eventsJson = "Events.json"
 }
 
+enum UrlConst {
+    static let categories = "https://ssoftproject-4a167-default-rtdb.europe-west1.firebasedatabase.app/categories.json"
+    static let events = "https://ssoftproject-4a167-default-rtdb.europe-west1.firebasedatabase.app/events.json"
+}
+
 enum ConstraintsConst {
     static let inset20: CGFloat = 20
     static let inset10: CGFloat = 10

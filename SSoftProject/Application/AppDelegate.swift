@@ -7,6 +7,7 @@
 
 import UIKit
 import CoreData
+import FirebaseCore
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,6 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         print("Documents Directory: ",
               FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).last ?? "Not Found!")
+        FirebaseApp.configure()
         return true
     }
 
