@@ -200,7 +200,7 @@ final class DetailEventCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func configure(from model: Event) {
+    func configure(from model: RealmEvent) {
         title.text = model.title
         dateLabel.text = model.date
         address.text = model.address

@@ -68,7 +68,7 @@ final class CharityCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func configure(with model: Event) {
+    func configure(with model: RealmEvent) {
         image.image = UIImage(named: model.image)
         title.text = model.title
         details.text = model.details
