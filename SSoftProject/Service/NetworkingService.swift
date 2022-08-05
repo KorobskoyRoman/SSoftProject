@@ -10,10 +10,10 @@ import Foundation
 import RealmSwift
 
 protocol NetworkingServiceProtocol {
-    func fetchCategoriesWithAlamofire(completion: @escaping ([RealmCategories]?, RequestError?) -> Void)
-    func fetchEventsWithAlamofire(completion: @escaping ([RealmEvent]?, RequestError?) -> Void)
-    func fetchCategoriesWithURL(completion: @escaping ([RealmCategories]?, RequestError?) -> Void)
-    func fetchEventsWithURL(completion: @escaping ([RealmEvent]?, RequestError?) -> Void)
+    func fetchCategoriesWithAlamofire(completion: @escaping (Result<[RealmCategories], RequestError>) -> Void)
+    func fetchEventsWithAlamofire(completion: @escaping (Result<[RealmEvent], RequestError>) -> Void)
+    func fetchCategoriesWithURL(completion: @escaping (Result<[RealmCategories], RequestError>) -> Void)
+    func fetchEventsWithURL(completion: @escaping (Result<[RealmEvent], RequestError>) -> Void)
     func fetchData()
 }
 
@@ -41,31 +41,31 @@ final class NetworkingService: NetworkingServiceProtocol {
 
     private let jsonService = JSONDecoderService()
 
-    func fetchCategoriesWithAlamofire(completion: @escaping ([RealmCategories]?, RequestError?) -> Void) {
-        let request = AF.request(UrlConst.categories)
+    func fetchCategoriesWithAlamofire(completion: @escaping (Result<[RealmCategories], RequestError>) -> Void) {
+        let request = AF.request(UrlConst.categoriesUrl)
         request.responseDecodable(of: [RealmCategories].self) { data in
             guard let cats = data.value else {
-                completion(nil, RequestError.invalidURL)
+                completion(.failure(.noResponse))
                 return
             }
-            completion(cats, nil)
+            completion(.success(cats))
         }
     }
 
-    func fetchEventsWithAlamofire(completion: @escaping ([RealmEvent]?, RequestError?) -> Void) {
-        let request = AF.request(UrlConst.events)
+    func fetchEventsWithAlamofire(completion: @escaping (Result<[RealmEvent], RequestError>) -> Void) {
+        let request = AF.request(UrlConst.eventsUrl)
         request.responseDecodable(of: [RealmEvent].self) { data in
             guard let events = data.value else {
-                completion(nil, RequestError.invalidURL)
+                completion(.failure(.noResponse))
                 return
             }
-            completion(events, nil)
+            completion(.success(events))
         }
     }
 
-    func fetchCategoriesWithURL(completion: @escaping ([RealmCategories]?, RequestError?) -> Void) {
-        guard let url = URL(string: UrlConst.categories) else {
-            completion(nil, .invalidURL)
+    func fetchCategoriesWithURL(completion: @escaping (Result<[RealmCategories], RequestError>) -> Void) {
+        guard let url = URL(string: UrlConst.categoriesUrl) else {
+            completion(.failure(.invalidURL))
             return
         }
         var request = URLRequest(url: url)
@@ -73,26 +73,27 @@ final class NetworkingService: NetworkingServiceProtocol {
 
         URLSession.shared.dataTask(with: url) { data, response, error in
             if error != nil {
-                return completion(nil, .noResponse)
+                completion(.failure(.noResponse))
+                return
             } else if let data = data,
                       let response = response as? HTTPURLResponse,
                       response.statusCode == 200 {
                 let decoder = JSONDecoder()
                 do {
                     let fetchedData = try decoder.decode([RealmCategories].self, from: data)
-                    return completion(fetchedData, nil)
+                    return completion(.success(fetchedData))
                 } catch {
-                    completion(nil, .decode)
+                    completion(.failure(.decode))
                 }
             } else {
-                completion(nil, .unknown)
+                completion(.failure(.unknown))
             }
         } .resume()
     }
 
-    func fetchEventsWithURL(completion: @escaping ([RealmEvent]?, RequestError?) -> Void) {
-        guard let url = URL(string: UrlConst.events) else {
-            completion(nil, .invalidURL)
+    func fetchEventsWithURL(completion: @escaping (Result<[RealmEvent], RequestError>) -> Void) {
+        guard let url = URL(string: UrlConst.eventsUrl) else {
+            completion(.failure(.invalidURL))
             return
         }
         var request = URLRequest(url: url)
@@ -100,69 +101,69 @@ final class NetworkingService: NetworkingServiceProtocol {
 
         URLSession.shared.dataTask(with: url) { data, response, error in
             if error != nil {
-                return completion(nil, .noResponse)
+                completion(.failure(.noResponse))
             } else if let data = data,
                       let response = response as? HTTPURLResponse,
                       response.statusCode == 200 {
                 let decoder = JSONDecoder()
                 do {
                     let fetchedData = try decoder.decode([RealmEvent].self, from: data)
-                    return completion(fetchedData, nil)
+                    return completion(.success(fetchedData))
                 } catch {
-                    completion(nil, .decode)
+                    completion(.failure(.decode))
                 }
             } else {
-                completion(nil, .unknown)
+                completion(.failure(.unknown))
             }
         } .resume()
     }
 
     func fetchData() {
         if Network.isAlamofire {
-            fetchCategoriesWithAlamofire { cats, err in
-                if let err = err {
-                    print(err.localizedDescription)
+            fetchCategoriesWithAlamofire { result in
+                switch result {
+                case .success(let cats):
+                    print("----------------GETTING CATEGORIES FROM NETWORK----------------")
+                    RealmService.shared.getCategoriesIntoRealmWithNetwork(from: cats)
+                case .failure(let error):
                     print("----------------GETTING CATEGORIES FROM LOCAL----------------")
                     self.jsonService.decodeToDataBase()
-                    return
+                    print(error)
                 }
-                guard let cats = cats else { return }
-                print("----------------GETTING CATEGORIES FROM NETWORK----------------")
-                RealmService.shared.getCategoriesIntoRealmWithNetwork(from: cats)
             }
-            fetchEventsWithAlamofire { events, err in
-                if let err = err {
-                    print(err.localizedDescription)
+            fetchEventsWithAlamofire { result in
+                switch result {
+                case .success(let events):
+                    print("----------------GETTING EVENTS FROM NETWORK----------------")
+                    RealmService.shared.getEventsIntoRealmWithNetwork(from: events)
+                case .failure(let error):
                     print("----------------GETTING EVENTS FROM LOCAL----------------")
                     self.jsonService.decodeToDataBase()
-                    return
+                    print(error)
                 }
-                guard let events = events else { return }
-                print("----------------GETTING EVENTS FROM NETWORK----------------")
-                RealmService.shared.getEventsIntoRealmWithNetwork(from: events)
             }
         } else {
-            fetchCategoriesWithURL { cats, err in
-                if let err = err {
-                    print(err)
+            fetchCategoriesWithURL { result in
+                switch result {
+                case .success(let cats):
+                    print("----------------GETTING CATEGORIES FROM NETWORK----------------")
+                    RealmService.shared.getCategoriesIntoRealmWithNetwork(from: cats)
+                case .failure(let error):
                     print("----------------GETTING CATEGORIES FROM LOCAL----------------")
                     self.jsonService.decodeToDataBase()
-                    return
+                    print(error)
                 }
-                guard let cats = cats else { return }
-                print("----------------GETTING CATEGORIES FROM NETWORK----------------")
-                RealmService.shared.getCategoriesIntoRealmWithNetwork(from: cats)
             }
-            fetchEventsWithURL { events, err in
-                if let err = err {
-                    print(err)
+            fetchEventsWithURL { result in
+                switch result {
+                case .success(let events):
+                    print("----------------GETTING EVENTS FROM NETWORK----------------")
+                    RealmService.shared.getEventsIntoRealmWithNetwork(from: events)
+                case .failure(let error):
                     print("----------------GETTING EVENTS FROM LOCAL----------------")
                     self.jsonService.decodeToDataBase()
-                    return
+                    print(error)
                 }
-                guard let events = events else { return }
-                print("----------------GETTING EVENTS FROM NETWORK----------------")
-                RealmService.shared.getEventsIntoRealmWithNetwork(from: events)
             }
         }
     }
