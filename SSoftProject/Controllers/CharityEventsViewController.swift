@@ -95,7 +95,6 @@ final class CharityEventsViewController: UIViewController {
     }
 
     private func getData() {
-        let backgroundQueue = DispatchQueue.global(qos: .background)
         backgroundQueue.async { [weak self] in
             guard let self = self else { return }
 
@@ -157,7 +156,7 @@ final class CharityEventsViewController: UIViewController {
     }
 
     private func getSegmentData(_ index: Int) {
-        DispatchQueue.global(qos: .background).sync {
+        backgroundQueue.sync {
             switch index {
             case 0:
                 self.filteredEvents = self.events

@@ -96,8 +96,7 @@ final class HelpCategoriesViewController: UIViewController {
     }
 
     private func getData() {
-        let queue = DispatchQueue.global(qos: .background)
-        queue.async { [weak self] in
+        backgroundQueue.async { [weak self] in
             guard let self = self else { return }
 
             DispatchQueue.main.async {

@@ -27,17 +27,20 @@ final class SplashScreenViewController: UIViewController {
             self.stackView.alpha = 1
         }, completion: nil)
 
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
+        DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
-            DispatchQueue.global(qos: .background).sync {
+            backgroundQueue.async {
                 self.networkingService.fetchData()
             }
+            sleep(2)
             let tabBarVC = MainTabBarController()
             tabBarVC.modalPresentationStyle = .fullScreen
             tabBarVC.modalTransitionStyle = .flipHorizontal
-            self.dismiss(animated: false) {
-                self.activityIndicator.stopAnimating()
-                self.present(tabBarVC, animated: true)
+            DispatchQueue.main.async {
+                self.dismiss(animated: false) {
+                    self.activityIndicator.stopAnimating()
+                    self.present(tabBarVC, animated: true)
+                }
             }
         }
     }
