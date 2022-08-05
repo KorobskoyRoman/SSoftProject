@@ -6,8 +6,13 @@
 //
 
 import Foundation
+import RealmSwift
+import CoreData
 
-class JSONDecoderService: Bundle {
+final class JSONDecoderService: Bundle {
+
+    private let localRealm = try? Realm()
+
     func decode<T: Decodable>(_ type: T.Type,
                               from file: String,
                               dateDecodingStrategy: JSONDecoder.DateDecodingStrategy = .deferredToDate,
@@ -27,9 +32,10 @@ class JSONDecoderService: Bundle {
         do {
             return try decoder.decode(T.self, from: data)
         } catch DecodingError.keyNotFound(let key, let context) {
-            fatalError(
-                "Failed to decode \(file) from bundle due to missing key '\(key.stringValue)' not found – \(context.debugDescription)"
-            )
+            fatalError("""
+                        Failed to decode \(file) from bundle due to missing key '\(key.stringValue)'
+                        not found – \(context.debugDescription)
+                    """)
         } catch DecodingError.typeMismatch(_, let context) {
             fatalError("Failed to decode \(file) from bundle due to type mismatch – \(context.debugDescription)")
         } catch DecodingError.valueNotFound(let type, let context) {
@@ -40,6 +46,17 @@ class JSONDecoderService: Bundle {
             fatalError("Failed to decode \(file) from bundle because it appears to be invalid JSON")
         } catch {
             fatalError("Failed to decode \(file) from bundle: \(error.localizedDescription)")
+        }
+    }
+
+    // MARK: - Общий для получения данных в сплэше
+    func decodeToDataBase() {
+        if !DataBase.isCoreData {
+            RealmService.shared.getCategoriesIntoRealm()
+            RealmService.shared.getEventsIntoRealm()
+        } else {
+            CoreDataService.shared.getCategoriesIntoCoreData()
+            CoreDataService.shared.getEventsIntoCoreData()
         }
     }
 }

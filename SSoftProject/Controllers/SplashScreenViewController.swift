@@ -10,6 +10,7 @@ import UIKit
 final class SplashScreenViewController: UIViewController {
     @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet private weak var stackView: UIStackView!
+    private let jsonService = JSONDecoderService()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +28,9 @@ final class SplashScreenViewController: UIViewController {
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
             guard let self = self else { return }
+            DispatchQueue.global(qos: .background).async {
+                self.jsonService.decodeToDataBase()
+            }
             let tabBarVC = MainTabBarController()
             tabBarVC.modalPresentationStyle = .fullScreen
             tabBarVC.modalTransitionStyle = .flipHorizontal

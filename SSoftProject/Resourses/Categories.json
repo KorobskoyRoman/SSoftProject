@@ -1,26 +1,26 @@
 [
     {
-        "id": 1,
+        "id": 0,
         "image": "childs",
         "title": "Дети"
     },
         {
-        "id": 2,
+        "id": 1,
         "image": "adults",
         "title": "Взрослые"
     },
         {
-        "id": 3,
+        "id": 2,
         "image": "aged",
         "title": "Пожилые"
     },
         {
-        "id": 4,
+        "id": 3,
         "image": "animals",
         "title": "Животные"
     },
         {
-        "id": 5,
+        "id": 4,
         "image": "events",
         "title": "Мероприятия"
     }

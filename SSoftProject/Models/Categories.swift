@@ -6,7 +6,7 @@
 //
 
 struct Categories: Codable, Hashable {
-    let id: Int
+    let id: Int64
     let image: String
     let title: String
 }
