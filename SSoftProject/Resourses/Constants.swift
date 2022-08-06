@@ -15,8 +15,9 @@ enum JSONConstants {
 }
 
 enum UrlConst {
-    static let categoriesUrl = "https://ssoftproject-4a167-default-rtdb.europe-west1.firebasedatabase.app/categories.json"
-    static let eventsUrl = "https://ssoftproject-4a167-default-rtdb.europe-west1.firebasedatabase.app/events.json"
+    static let url = "https://ssoftproject-4a167-default-rtdb.europe-west1.firebasedatabase.app/"
+    static let categoriesUrl = "categories.json"
+    static let eventsUrl = "events.json"
 }
 
 enum ConstraintsConst {
