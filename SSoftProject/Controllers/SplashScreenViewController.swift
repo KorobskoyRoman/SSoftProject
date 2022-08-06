@@ -10,8 +10,9 @@ import UIKit
 final class SplashScreenViewController: UIViewController {
     @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet private weak var stackView: UIStackView!
+    @IBOutlet private weak var infoLabel: UILabel!
     private let jsonService = JSONDecoderService()
-    private let networkingService = NetworkingService()
+    private let networkManager = NetworkManager()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +31,24 @@ final class SplashScreenViewController: UIViewController {
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
             backgroundQueue.async {
-                self.networkingService.fetchData()
+                self.networkManager.getCategories { result in
+                    switch result {
+                    case .success(let data):
+                        RealmService.shared.getCategoriesIntoRealmWithNetwork(from: data)
+                    case .failure(let error):
+                        print(error)
+                        self.jsonService.decodeToDataBase()
+                    }
+                }
+                self.networkManager.getEvents { result in
+                    switch result {
+                    case .success(let data):
+                        RealmService.shared.getEventsIntoRealmWithNetwork(from: data)
+                    case .failure(let error):
+                        print(error)
+                        self.jsonService.decodeToDataBase()
+                    }
+                }
             }
             sleep(2)
             let tabBarVC = MainTabBarController()
