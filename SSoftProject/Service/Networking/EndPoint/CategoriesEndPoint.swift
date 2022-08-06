@@ -22,9 +22,9 @@ extension CategoriesApi: EndPointType {
 
     var environmentBaseURL: String {
         switch NetworkManager.enviroment {
-        case .production: return "https://ssoftproject-4a167-default-rtdb.europe-west1.firebasedatabase.app/"
-        case .qa: return "https://ssoftproject-4a167-default-rtdb.europe-west1.firebasedatabase.app/"
-        case .staging: return "https://ssoftproject-4a167-default-rtdb.europe-west1.firebasedatabase.app/"
+        case .production: return UrlConst.url
+        case .qa: return UrlConst.url
+        case .staging: return UrlConst.url
         }
     }
 
@@ -36,9 +36,9 @@ extension CategoriesApi: EndPointType {
     var path: String {
         switch self {
         case .category:
-            return "categories.json"
+            return UrlConst.categoriesUrl
         case .event:
-            return "events.json"
+            return UrlConst.eventsUrl
         }
     }
 

@@ -16,7 +16,7 @@ final class HelpCategoriesViewController: UIViewController {
     private lazy var collectionView = UICollectionView(frame: view.bounds,
                                                        collectionViewLayout: createCompositialLayout())
     private lazy var dataSource = createDiffableDataSource()
-=    private let decodeService = JSONDecoderService()
+    private let decodeService = JSONDecoderService()
     private var categories = [RealmCategories]()
 
     private lazy var backButton: UIBarButtonItem = {

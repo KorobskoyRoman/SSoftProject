@@ -82,7 +82,13 @@ struct NetworkManager {
 
     func fetchCategoriesWithAlamofire(completion: @escaping (Swift.Result<[RealmCategories],
                                                              NetworkResponse>) -> Void) {
-        let request = AF.request(UrlConst.categoriesUrl)
+        let url = URL(string: UrlConst.url)
+        guard var url = url else {
+            completion(.failure(NetworkResponse.badReques))
+            return
+        }
+        url.appendPathComponent(UrlConst.categoriesUrl)
+        let request = AF.request(url)
         request.responseDecodable(of: [RealmCategories].self) { data in
             guard let cats = data.value else {
                 completion(.failure(.noData))
@@ -94,7 +100,13 @@ struct NetworkManager {
 
     func fetchEventsWithAlamofire(completion: @escaping (Swift.Result<[RealmEvent],
                                                          NetworkResponse>) -> Void) {
-        let request = AF.request(UrlConst.eventsUrl)
+        let url = URL(string: UrlConst.url)
+        guard var url = url else {
+            completion(.failure(NetworkResponse.badReques))
+            return
+        }
+        url.appendPathComponent(UrlConst.eventsUrl)
+        let request = AF.request(url)
         request.responseDecodable(of: [RealmEvent].self) { data in
             guard let events = data.value else {
                 completion(.failure(.noData))
