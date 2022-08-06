@@ -52,7 +52,6 @@ final class CharityEventsViewController: UIViewController {
                                                        collectionViewLayout: createCompositialLayout())
     private lazy var dataSource = createDiffableDataSource()
     private let realm = try? Realm()
-    private let networkingService = NetworkingService()
 
     override func viewDidLoad() {
         super.viewDidLoad()
