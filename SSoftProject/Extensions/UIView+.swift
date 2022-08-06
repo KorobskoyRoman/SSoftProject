@@ -11,7 +11,9 @@ extension UIView {
     static let loadingViewTag = 1938123987
     static let labelInfoTag = 1938123988
 
-    func showLoading(style: UIActivityIndicatorView.Style = .large, color: UIColor? = nil) {
+    func showLoading(style: UIActivityIndicatorView.Style = .large,
+                     color: UIColor? = nil,
+                     text: String = ViewConstants.loadingText) {
         DispatchQueue.main.async {
             var loading = self.viewWithTag(UIImageView.loadingViewTag) as? UIActivityIndicatorView
             if loading == nil {
@@ -20,7 +22,7 @@ extension UIView {
             // label setup
             let infoLabel: UILabel = {
                 let label = UILabel()
-                label.text = ViewConstants.loadingText
+                label.text = text
                 label.font = .systemFont(ofSize: 13, weight: .light)
                 label.translatesAutoresizingMaskIntoConstraints = false
                 return label
