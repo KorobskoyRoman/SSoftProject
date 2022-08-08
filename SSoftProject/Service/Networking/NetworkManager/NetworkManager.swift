@@ -18,7 +18,7 @@ enum NetworkResponse: String, Error {
     case unableToDecode = "can't decode response"
 }
 
-enum Result<String> {
+enum RequestResult<String> {
     case success
     case failure(String)
 }
@@ -28,7 +28,7 @@ struct NetworkManager {
     static let apiKey = ""
     private let router = Router<CategoriesApi>()
 
-    func getCategories(completion: @escaping (Swift.Result<[RealmCategories], Error>) -> Void) {
+    func getCategories(completion: @escaping (Result<[RealmCategories], Error>) -> Void) {
         router.request(.category) { data, response, error in
 
             if let response = response as? HTTPURLResponse {
@@ -54,7 +54,7 @@ struct NetworkManager {
         }
     }
 
-    func getEvents(completion: @escaping (Swift.Result<[RealmEvent], Error>) -> Void) {
+    func getEvents(completion: @escaping (Result<[RealmEvent], Error>) -> Void) {
         router.request(.event) { data, response, error in
 
             if let response = response as? HTTPURLResponse {
@@ -80,7 +80,7 @@ struct NetworkManager {
         }
     }
 
-    func fetchCategoriesWithAlamofire(completion: @escaping (Swift.Result<[RealmCategories],
+    func fetchCategoriesWithAlamofire(completion: @escaping (Result<[RealmCategories],
                                                              NetworkResponse>) -> Void) {
         let url = URL(string: UrlConst.url)
         guard var url = url else {
@@ -98,7 +98,7 @@ struct NetworkManager {
         }
     }
 
-    func fetchEventsWithAlamofire(completion: @escaping (Swift.Result<[RealmEvent],
+    func fetchEventsWithAlamofire(completion: @escaping (Result<[RealmEvent],
                                                          NetworkResponse>) -> Void) {
         let url = URL(string: UrlConst.url)
         guard var url = url else {
@@ -116,7 +116,7 @@ struct NetworkManager {
         }
     }
 
-    fileprivate func handleNetworkResponse(_ response: HTTPURLResponse) -> Result<String> {
+    fileprivate func handleNetworkResponse(_ response: HTTPURLResponse) -> RequestResult<String> {
         switch response.statusCode {
         case 200...299: return .success
         case 401...500: return .failure(NetworkResponse.authenticationError.rawValue)
