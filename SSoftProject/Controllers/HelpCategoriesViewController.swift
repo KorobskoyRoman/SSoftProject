@@ -13,6 +13,7 @@ final class HelpCategoriesViewController: UIViewController {
     typealias DataSource = UICollectionViewDiffableDataSource<Section, RealmCategories>
     typealias Snapshot = NSDiffableDataSourceSnapshot<Section, RealmCategories>
 
+    weak var coordinator: AppCoordinator?
     private lazy var collectionView = UICollectionView(frame: view.bounds,
                                                        collectionViewLayout: createCompositialLayout())
     private lazy var dataSource = createDiffableDataSource()

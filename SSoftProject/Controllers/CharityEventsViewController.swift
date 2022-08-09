@@ -10,6 +10,7 @@ import RealmSwift
 
 final class CharityEventsViewController: UIViewController {
 
+    weak var coordinator: AppCoordinator?
     typealias DataSource = UICollectionViewDiffableDataSource<Section, RealmEvent>
     typealias Snapshot = NSDiffableDataSourceSnapshot<Section, RealmEvent>
 

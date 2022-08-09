@@ -8,8 +8,9 @@
 import UIKit
 
 final class MainTabBarController: UITabBarController {
-    private let middleButtonDiameter: CGFloat = 42
+    weak var coordinator: AppCoordinator?
 
+    private let middleButtonDiameter: CGFloat = 42
     private let redColor: UIColor = UIColor(red: 254.0 / 255.0, green: 116.0 / 255.0, blue: 96.0 / 255.0, alpha: 1.0)
     private let greenColor: UIColor = UIColor(red: 102.0 / 255.0, green: 166.0 / 255.0, blue: 54.0 / 255.0, alpha: 1.0)
 

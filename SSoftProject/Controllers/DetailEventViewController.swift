@@ -10,6 +10,7 @@ import RealmSwift
 
 final class DetailEventViewController: UIViewController {
 
+    weak var coordinator: AppCoordinator?
     var eventInfo = [RealmEvent]()
     private lazy var tableView = UITableView(frame: view.bounds, style: .plain)
     private var images = [UIImageView(image: UIImage(named: "childs1")), UIImageView(image: UIImage(named: "childs2")),
