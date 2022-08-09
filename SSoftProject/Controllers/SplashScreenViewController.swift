@@ -32,9 +32,7 @@ final class SplashScreenViewController: UIViewController {
 
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
-//            guard let networkManager = self.networkManager else { return }
-//            guard let jsonService = self.jsonService else { return }
-            backgroundQueue.async {
+            backgroundQueue.sync {
                 self.networkManager?.getCategories { result in
                     switch result {
                     case .success(let data):
@@ -55,15 +53,10 @@ final class SplashScreenViewController: UIViewController {
                 }
             }
             sleep(2)
-//            let tabBarVC = MainTabBarController()
-//            tabBarVC.modalPresentationStyle = .fullScreen
-//            tabBarVC.modalTransitionStyle = .flipHorizontal
             DispatchQueue.main.async {
-//                self.dismiss(animated: false) {
-                    self.activityIndicator.stopAnimating()
-//                    self.present(tabBarVC, animated: true)
-                    self.coordinator?.perfornTransition(with: .set(.tabbar))
-//                }
+                self.activityIndicator.stopAnimating()
+                self.coordinator?.perfornTransition(with: .pop)
+                self.coordinator?.perfornTransition(with: .set(.tabbar))
             }
         }
     }

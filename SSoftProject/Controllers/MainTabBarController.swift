@@ -58,11 +58,13 @@ final class MainTabBarController: UITabBarController {
         searchVC.tabBarItem.image = TabBarConstants.searchVCImage
 
         let helpVC = HelpCategoriesViewController() // heart button
-        let helpVCNav = UINavigationController(rootViewController: helpVC)
+        var helpVCNav = UINavigationController()
         helpVCNav.navigationBar.standardAppearance = configureNavBarAppearence()
         helpVCNav.navigationBar.compactAppearance = configureNavBarAppearence()
         helpVCNav.navigationBar.scrollEdgeAppearance = configureNavBarAppearence()
         helpVCNav.tabBarItem.title = TabBarConstants.helpVCTitle
+        helpVCNav = coordinator?.switchToTabbar(mainVC: helpVC, to: helpVCNav)
+            ?? UINavigationController(rootViewController: helpVC)
 
         let historyVC = UIViewController()
         historyVC.view.backgroundColor = .systemFill
