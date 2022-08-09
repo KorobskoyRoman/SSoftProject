@@ -23,6 +23,8 @@
 		9C542626289EBA0F009F1FE8 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C542625289EBA0F009F1FE8 /* NetworkManager.swift */; };
 		9C54262D28A17E16009F1FE8 /* CoordinatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C54262C28A17E16009F1FE8 /* CoordinatorProtocol.swift */; };
 		9C54262F28A18156009F1FE8 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C54262E28A18156009F1FE8 /* AppCoordinator.swift */; };
+		9C54263228A1938E009F1FE8 /* TabBarConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C54263128A1938E009F1FE8 /* TabBarConfigurator.swift */; };
+		9C54263428A19ABC009F1FE8 /* SplashScreenViewControllerConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C54263328A19ABC009F1FE8 /* SplashScreenViewControllerConfigurator.swift */; };
 		9C773A7527CD4B7C00B6B589 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C773A7427CD4B7C00B6B589 /* AppDelegate.swift */; };
 		9C773A7727CD4B7C00B6B589 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C773A7627CD4B7C00B6B589 /* SceneDelegate.swift */; };
 		9C773A7927CD4B7C00B6B589 /* SplashScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C773A7827CD4B7C00B6B589 /* SplashScreenViewController.swift */; };
@@ -57,7 +59,10 @@
 		9CBD189928984D95005E4167 /* CategoriesCD+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBD189728984D95005E4167 /* CategoriesCD+CoreDataClass.swift */; };
 		9CBD189A28984D95005E4167 /* CategoriesCD+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBD189828984D95005E4167 /* CategoriesCD+CoreDataProperties.swift */; };
 		9CBD18D9289B1809005E4167 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9CBD18D8289B1809005E4167 /* GoogleService-Info.plist */; };
-		9CBD18DB289B2654005E4167 /* NetworkingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBD18DA289B2654005E4167 /* NetworkingService.swift */; };
+		9CDA121328A2E3FD00A6A609 /* ConfiguratorProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CDA121228A2E3FD00A6A609 /* ConfiguratorProtocols.swift */; };
+		9CDA121528A2E46400A6A609 /* HelpCategoriesConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CDA121428A2E46400A6A609 /* HelpCategoriesConfigurator.swift */; };
+		9CDA121728A2F55500A6A609 /* DetailEventsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CDA121628A2F55500A6A609 /* DetailEventsConfigurator.swift */; };
+		9CDA121928A2F5CF00A6A609 /* CharityEventsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CDA121828A2F5CF00A6A609 /* CharityEventsConfigurator.swift */; };
 		9CFB0BB02891A5840094CFFD /* RealmEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFB0BAF2891A5840094CFFD /* RealmEvent.swift */; };
 		9CFB0BB22891A5900094CFFD /* RealmCategories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFB0BB12891A5900094CFFD /* RealmCategories.swift */; };
 		9CFB0BB52891A7610094CFFD /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFB0BB42891A7610094CFFD /* RealmService.swift */; };
@@ -82,6 +87,8 @@
 		9C542625289EBA0F009F1FE8 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		9C54262C28A17E16009F1FE8 /* CoordinatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorProtocol.swift; sourceTree = "<group>"; };
 		9C54262E28A18156009F1FE8 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		9C54263128A1938E009F1FE8 /* TabBarConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarConfigurator.swift; sourceTree = "<group>"; };
+		9C54263328A19ABC009F1FE8 /* SplashScreenViewControllerConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenViewControllerConfigurator.swift; sourceTree = "<group>"; };
 		9C773A7127CD4B7C00B6B589 /* SSoftProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SSoftProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C773A7427CD4B7C00B6B589 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9C773A7627CD4B7C00B6B589 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -118,7 +125,10 @@
 		9CBD189728984D95005E4167 /* CategoriesCD+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CategoriesCD+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 		9CBD189828984D95005E4167 /* CategoriesCD+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CategoriesCD+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		9CBD18D8289B1809005E4167 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		9CBD18DA289B2654005E4167 /* NetworkingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingService.swift; sourceTree = "<group>"; };
+		9CDA121228A2E3FD00A6A609 /* ConfiguratorProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfiguratorProtocols.swift; sourceTree = "<group>"; };
+		9CDA121428A2E46400A6A609 /* HelpCategoriesConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpCategoriesConfigurator.swift; sourceTree = "<group>"; };
+		9CDA121628A2F55500A6A609 /* DetailEventsConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailEventsConfigurator.swift; sourceTree = "<group>"; };
+		9CDA121828A2F5CF00A6A609 /* CharityEventsConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharityEventsConfigurator.swift; sourceTree = "<group>"; };
 		9CFB0BAF2891A5840094CFFD /* RealmEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmEvent.swift; sourceTree = "<group>"; };
 		9CFB0BB12891A5900094CFFD /* RealmCategories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmCategories.swift; sourceTree = "<group>"; };
 		9CFB0BB42891A7610094CFFD /* RealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
@@ -213,10 +223,24 @@
 		9C54262B28A17E01009F1FE8 /* Coordinator */ = {
 			isa = PBXGroup;
 			children = (
+				9C54263028A1936F009F1FE8 /* Configurators */,
 				9C54262C28A17E16009F1FE8 /* CoordinatorProtocol.swift */,
 				9C54262E28A18156009F1FE8 /* AppCoordinator.swift */,
 			);
 			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		9C54263028A1936F009F1FE8 /* Configurators */ = {
+			isa = PBXGroup;
+			children = (
+				9CDA121228A2E3FD00A6A609 /* ConfiguratorProtocols.swift */,
+				9C54263328A19ABC009F1FE8 /* SplashScreenViewControllerConfigurator.swift */,
+				9C54263128A1938E009F1FE8 /* TabBarConfigurator.swift */,
+				9CDA121428A2E46400A6A609 /* HelpCategoriesConfigurator.swift */,
+				9CDA121828A2F5CF00A6A609 /* CharityEventsConfigurator.swift */,
+				9CDA121628A2F55500A6A609 /* DetailEventsConfigurator.swift */,
+			);
+			path = Configurators;
 			sourceTree = "<group>";
 		};
 		9C773A6827CD4B7C00B6B589 = {
@@ -276,7 +300,6 @@
 			children = (
 				9C542612289EA9B9009F1FE8 /* Networking */,
 				9C84CDAC2885E43300B643F5 /* JSONDecoderService.swift */,
-				9CBD18DA289B2654005E4167 /* NetworkingService.swift */,
 				9C1A42012896D134002B7C80 /* DataBase */,
 			);
 			path = Service;
@@ -518,22 +541,25 @@
 				9CA69FEC287DF5010073817D /* HelpCategoriesViewControllerCell.swift in Sources */,
 				9CBD189A28984D95005E4167 /* CategoriesCD+CoreDataProperties.swift in Sources */,
 				9CBD1895289831DB005E4167 /* EventsCD+CoreDataClass.swift in Sources */,
+				9C54263228A1938E009F1FE8 /* TabBarConfigurator.swift in Sources */,
 				9C542626289EBA0F009F1FE8 /* NetworkManager.swift in Sources */,
 				9C773A7927CD4B7C00B6B589 /* SplashScreenViewController.swift in Sources */,
 				9C54262D28A17E16009F1FE8 /* CoordinatorProtocol.swift in Sources */,
 				9CA69FF7287F12D90073817D /* MainTabBarController.swift in Sources */,
 				9CA69FF9287F13E20073817D /* CustomTabBar.swift in Sources */,
+				9CDA121728A2F55500A6A609 /* DetailEventsConfigurator.swift in Sources */,
 				9C84CDA82885C8EA00B643F5 /* Event.swift in Sources */,
 				9C84CDB02885EA9D00B643F5 /* CharityCell.swift in Sources */,
 				9C54261C289EADDE009F1FE8 /* URLParameterEncoder.swift in Sources */,
 				9C542622289EB17C009F1FE8 /* Router.swift in Sources */,
+				9CDA121328A2E3FD00A6A609 /* ConfiguratorProtocols.swift in Sources */,
 				9CA69FEE287DF6140073817D /* SectionHeader.swift in Sources */,
 				9CA69FE8287DF2B00073817D /* Categories.swift in Sources */,
 				9C542624289EB6EE009F1FE8 /* CategoriesEndPoint.swift in Sources */,
 				9CA69FDC287DDBC90073817D /* UIColor+.swift in Sources */,
-				9CBD18DB289B2654005E4167 /* NetworkingService.swift in Sources */,
 				9CA69FE2287DEA050073817D /* UIFont+.swift in Sources */,
 				9C542614289EA9EA009F1FE8 /* EndPointType.swift in Sources */,
+				9C54263428A19ABC009F1FE8 /* SplashScreenViewControllerConfigurator.swift in Sources */,
 				9C54261A289EAC06009F1FE8 /* ParameterEncoding.swift in Sources */,
 				9C84CDAA2885CB5300B643F5 /* CharityEventsViewController.swift in Sources */,
 				9CA69FE4287DEB5F0073817D /* HelpCategoriesViewController.swift in Sources */,
@@ -554,8 +580,10 @@
 				9CA69FEA287DF3750073817D /* Section.swift in Sources */,
 				9C773A7527CD4B7C00B6B589 /* AppDelegate.swift in Sources */,
 				9CFB0BB02891A5840094CFFD /* RealmEvent.swift in Sources */,
+				9CDA121528A2E46400A6A609 /* HelpCategoriesConfigurator.swift in Sources */,
 				9C542616289EAA77009F1FE8 /* HTTPMethod.swift in Sources */,
 				9C773A7727CD4B7C00B6B589 /* SceneDelegate.swift in Sources */,
+				9CDA121928A2F5CF00A6A609 /* CharityEventsConfigurator.swift in Sources */,
 				9C54262F28A18156009F1FE8 /* AppCoordinator.swift in Sources */,
 				9C84CDB62887052800B643F5 /* Constants.swift in Sources */,
 				9CFB0BB22891A5900094CFFD /* RealmCategories.swift in Sources */,
@@ -714,9 +742,9 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SSoftProject/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Хочу помочь";
+				INFOPLIST_KEY_NSMainNibFile = Main;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -746,9 +774,9 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SSoftProject/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Хочу помочь";
+				INFOPLIST_KEY_NSMainNibFile = Main;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
