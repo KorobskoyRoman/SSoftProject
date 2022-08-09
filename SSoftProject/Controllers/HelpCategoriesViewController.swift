@@ -39,7 +39,7 @@ final class HelpCategoriesViewController: UIViewController {
             .isActive = true
         return label
     }()
-    let realm = try? Realm()
+    private let realm = try? Realm()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -95,17 +95,12 @@ final class HelpCategoriesViewController: UIViewController {
     }
 
     private func getData() {
-        let queue = DispatchQueue.global(qos: .background)
-        queue.async { [weak self] in
+        backgroundQueue.async { [weak self] in
             guard let self = self else { return }
 
             DispatchQueue.main.async {
                 self.view.showLoading(style: .medium, color: .grey)
-                if !DataBase.isCoreData {
-                    self.categories = self.realm?.getCategories() ?? []
-                } else {
-                    //
-                }
+                self.fetchCategories()
             }
             sleep(2)
 
@@ -116,6 +111,10 @@ final class HelpCategoriesViewController: UIViewController {
                 self.view.stopLoading()
             }
         }
+    }
+
+    private func fetchCategories() {
+        self.categories = self.realm?.getCategories() ?? []
     }
 
     @objc private func backButtonTapped() {

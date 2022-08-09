@@ -62,6 +62,7 @@
                     </view>
                     <connections>
                         <outlet property="activityIndicator" destination="vRl-IE-cDR" id="1Bg-MV-KmS"/>
+                        <outlet property="infoLabel" destination="dGZ-1l-GMh" id="db0-Dh-beS"/>
                         <outlet property="stackView" destination="ocO-2x-vbh" id="c0Y-AP-WvR"/>
                     </connections>
                 </viewController>

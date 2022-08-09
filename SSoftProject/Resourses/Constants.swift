@@ -7,9 +7,17 @@
 
 import UIKit
 
+let backgroundQueue = DispatchQueue.global(qos: .background)
+
 enum JSONConstants {
     static let categoriesJson = "Categories.json"
     static let eventsJson = "Events.json"
+}
+
+enum UrlConst {
+    static let url = "https://ssoftproject-4a167-default-rtdb.europe-west1.firebasedatabase.app/"
+    static let categoriesUrl = "categories.json"
+    static let eventsUrl = "events.json"
 }
 
 enum ConstraintsConst {
@@ -44,4 +52,8 @@ enum UIKitConstants {
 
 enum DataBase {
     static let isCoreData: Bool = false
+}
+
+enum Network {
+    static let isAlamofire: Bool = false
 }

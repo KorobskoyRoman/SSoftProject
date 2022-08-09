@@ -51,8 +51,7 @@ final class CharityEventsViewController: UIViewController {
     private lazy var collectionView = UICollectionView(frame: collView.bounds,
                                                        collectionViewLayout: createCompositialLayout())
     private lazy var dataSource = createDiffableDataSource()
-    private let backgroundQueue = DispatchQueue.global(qos: .background)
-    let realm = try? Realm()
+    private let realm = try? Realm()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -95,20 +94,12 @@ final class CharityEventsViewController: UIViewController {
     }
 
     private func getData() {
-
         backgroundQueue.async { [weak self] in
             guard let self = self else { return }
 
             DispatchQueue.main.async {
                 self.view.showLoading(style: .medium, color: .grey)
-                if !DataBase.isCoreData {
-                    self.events = self.realm?.getEvents()
-                        .filter { !$0.isDone } ?? []
-                    self.filteredEvents = self.events
-                        .filter { $0.category == self.catName ?? "" }
-                } else {
-                    print("core data is active")
-                }
+                self.fetchEvents()
             }
             sleep(2)
 
@@ -165,22 +156,28 @@ final class CharityEventsViewController: UIViewController {
 
     private func getSegmentData(_ index: Int) {
         backgroundQueue.sync {
-            // как я понял тут возникает Race condition, если .async
             switch index {
             case 0:
-                self.filteredEvents = self.realm?.getEvents()
-                    .filter { $0.category == self.catName ?? "" }
-                    .filter { !$0.isDone } ?? []
+                self.filteredEvents = self.events
+                    .filter { $0.category == self.catName }
+                    .filter { !$0.isDone }
             case 1:
-                self.filteredEvents = self.realm?.getEvents()
-                    .filter { $0.category == self.catName ?? "" }
-                    .filter { $0.isDone } ?? []
+                self.filteredEvents = self.events
+                    .filter { $0.category == self.catName }
+                    .filter { $0.isDone }
             default:
-                self.filteredEvents = self.realm?.getEvents()
-                    .filter { $0.category == self.catName ?? "" }
-                    .filter { !$0.isDone } ?? []
+                self.filteredEvents = self.events
+                    .filter { $0.category == self.catName }
+                    .filter { !$0.isDone }
             }
         }
+    }
+
+    private func fetchEvents() {
+        self.events = self.realm?.getEvents() ?? []
+        self.filteredEvents = events
+            .filter { $0.category == self.catName }
+            .filter { !$0.isDone }
     }
 
     @objc private func segmentedControlChangeState(_ sender: UISegmentedControl) {

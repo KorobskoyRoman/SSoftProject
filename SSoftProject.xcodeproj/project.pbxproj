@@ -12,6 +12,17 @@
 		9C1A42002896D12A002B7C80 /* CoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C1A41FF2896D12A002B7C80 /* CoreDataService.swift */; };
 		9C48498728885BA900B95FA0 /* HelpVariantsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C48498628885BA900B95FA0 /* HelpVariantsView.swift */; };
 		9C4849892888764C00B95FA0 /* UIButton+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4849882888764C00B95FA0 /* UIButton+.swift */; };
+		9C542614289EA9EA009F1FE8 /* EndPointType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C542613289EA9EA009F1FE8 /* EndPointType.swift */; };
+		9C542616289EAA77009F1FE8 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C542615289EAA77009F1FE8 /* HTTPMethod.swift */; };
+		9C542618289EAB1F009F1FE8 /* HTTPTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C542617289EAB1F009F1FE8 /* HTTPTask.swift */; };
+		9C54261A289EAC06009F1FE8 /* ParameterEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C542619289EAC06009F1FE8 /* ParameterEncoding.swift */; };
+		9C54261C289EADDE009F1FE8 /* URLParameterEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C54261B289EADDE009F1FE8 /* URLParameterEncoder.swift */; };
+		9C54261E289EAFC8009F1FE8 /* JSONParameterEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C54261D289EAFC8009F1FE8 /* JSONParameterEncoder.swift */; };
+		9C542622289EB17C009F1FE8 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C542621289EB17C009F1FE8 /* Router.swift */; };
+		9C542624289EB6EE009F1FE8 /* CategoriesEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C542623289EB6EE009F1FE8 /* CategoriesEndPoint.swift */; };
+		9C542626289EBA0F009F1FE8 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C542625289EBA0F009F1FE8 /* NetworkManager.swift */; };
+		9C54262D28A17E16009F1FE8 /* CoordinatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C54262C28A17E16009F1FE8 /* CoordinatorProtocol.swift */; };
+		9C54262F28A18156009F1FE8 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C54262E28A18156009F1FE8 /* AppCoordinator.swift */; };
 		9C773A7527CD4B7C00B6B589 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C773A7427CD4B7C00B6B589 /* AppDelegate.swift */; };
 		9C773A7727CD4B7C00B6B589 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C773A7627CD4B7C00B6B589 /* SceneDelegate.swift */; };
 		9C773A7927CD4B7C00B6B589 /* SplashScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C773A7827CD4B7C00B6B589 /* SplashScreenViewController.swift */; };
@@ -45,6 +56,8 @@
 		9CBD1896289831DB005E4167 /* EventsCD+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBD1894289831DB005E4167 /* EventsCD+CoreDataProperties.swift */; };
 		9CBD189928984D95005E4167 /* CategoriesCD+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBD189728984D95005E4167 /* CategoriesCD+CoreDataClass.swift */; };
 		9CBD189A28984D95005E4167 /* CategoriesCD+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBD189828984D95005E4167 /* CategoriesCD+CoreDataProperties.swift */; };
+		9CBD18D9289B1809005E4167 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9CBD18D8289B1809005E4167 /* GoogleService-Info.plist */; };
+		9CBD18DB289B2654005E4167 /* NetworkingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBD18DA289B2654005E4167 /* NetworkingService.swift */; };
 		9CFB0BB02891A5840094CFFD /* RealmEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFB0BAF2891A5840094CFFD /* RealmEvent.swift */; };
 		9CFB0BB22891A5900094CFFD /* RealmCategories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFB0BB12891A5900094CFFD /* RealmCategories.swift */; };
 		9CFB0BB52891A7610094CFFD /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFB0BB42891A7610094CFFD /* RealmService.swift */; };
@@ -58,6 +71,17 @@
 		9C1A41FF2896D12A002B7C80 /* CoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataService.swift; sourceTree = "<group>"; };
 		9C48498628885BA900B95FA0 /* HelpVariantsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpVariantsView.swift; sourceTree = "<group>"; };
 		9C4849882888764C00B95FA0 /* UIButton+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+.swift"; sourceTree = "<group>"; };
+		9C542613289EA9EA009F1FE8 /* EndPointType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPointType.swift; sourceTree = "<group>"; };
+		9C542615289EAA77009F1FE8 /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
+		9C542617289EAB1F009F1FE8 /* HTTPTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPTask.swift; sourceTree = "<group>"; };
+		9C542619289EAC06009F1FE8 /* ParameterEncoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParameterEncoding.swift; sourceTree = "<group>"; };
+		9C54261B289EADDE009F1FE8 /* URLParameterEncoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLParameterEncoder.swift; sourceTree = "<group>"; };
+		9C54261D289EAFC8009F1FE8 /* JSONParameterEncoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONParameterEncoder.swift; sourceTree = "<group>"; };
+		9C542621289EB17C009F1FE8 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		9C542623289EB6EE009F1FE8 /* CategoriesEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesEndPoint.swift; sourceTree = "<group>"; };
+		9C542625289EBA0F009F1FE8 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		9C54262C28A17E16009F1FE8 /* CoordinatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorProtocol.swift; sourceTree = "<group>"; };
+		9C54262E28A18156009F1FE8 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		9C773A7127CD4B7C00B6B589 /* SSoftProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SSoftProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C773A7427CD4B7C00B6B589 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9C773A7627CD4B7C00B6B589 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -93,6 +117,8 @@
 		9CBD1894289831DB005E4167 /* EventsCD+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EventsCD+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		9CBD189728984D95005E4167 /* CategoriesCD+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CategoriesCD+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 		9CBD189828984D95005E4167 /* CategoriesCD+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CategoriesCD+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
+		9CBD18D8289B1809005E4167 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		9CBD18DA289B2654005E4167 /* NetworkingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingService.swift; sourceTree = "<group>"; };
 		9CFB0BAF2891A5840094CFFD /* RealmEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmEvent.swift; sourceTree = "<group>"; };
 		9CFB0BB12891A5900094CFFD /* RealmCategories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmCategories.swift; sourceTree = "<group>"; };
 		9CFB0BB42891A7610094CFFD /* RealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
@@ -136,6 +162,63 @@
 			path = DataBase;
 			sourceTree = "<group>";
 		};
+		9C542612289EA9B9009F1FE8 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				9C542627289EC95C009F1FE8 /* EndPoint */,
+				9C542628289EC96C009F1FE8 /* NetworkManager */,
+				9C542629289EC98A009F1FE8 /* Service */,
+				9C54262A289EC9A6009F1FE8 /* Encoding */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		9C542627289EC95C009F1FE8 /* EndPoint */ = {
+			isa = PBXGroup;
+			children = (
+				9C542623289EB6EE009F1FE8 /* CategoriesEndPoint.swift */,
+			);
+			path = EndPoint;
+			sourceTree = "<group>";
+		};
+		9C542628289EC96C009F1FE8 /* NetworkManager */ = {
+			isa = PBXGroup;
+			children = (
+				9C542625289EBA0F009F1FE8 /* NetworkManager.swift */,
+			);
+			path = NetworkManager;
+			sourceTree = "<group>";
+		};
+		9C542629289EC98A009F1FE8 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				9C542613289EA9EA009F1FE8 /* EndPointType.swift */,
+				9C542615289EAA77009F1FE8 /* HTTPMethod.swift */,
+				9C542617289EAB1F009F1FE8 /* HTTPTask.swift */,
+				9C542621289EB17C009F1FE8 /* Router.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		9C54262A289EC9A6009F1FE8 /* Encoding */ = {
+			isa = PBXGroup;
+			children = (
+				9C542619289EAC06009F1FE8 /* ParameterEncoding.swift */,
+				9C54261B289EADDE009F1FE8 /* URLParameterEncoder.swift */,
+				9C54261D289EAFC8009F1FE8 /* JSONParameterEncoder.swift */,
+			);
+			path = Encoding;
+			sourceTree = "<group>";
+		};
+		9C54262B28A17E01009F1FE8 /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				9C54262C28A17E16009F1FE8 /* CoordinatorProtocol.swift */,
+				9C54262E28A18156009F1FE8 /* AppCoordinator.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
 		9C773A6827CD4B7C00B6B589 = {
 			isa = PBXGroup;
 			children = (
@@ -168,6 +251,7 @@
 				9C84CDA32885C44200B643F5 /* Resourses */,
 				9C84CDAB2885E40C00B643F5 /* Service */,
 				9C773A8227CD4B7F00B6B589 /* Info.plist */,
+				9CBD18D8289B1809005E4167 /* GoogleService-Info.plist */,
 			);
 			path = SSoftProject;
 			sourceTree = "<group>";
@@ -190,7 +274,9 @@
 		9C84CDAB2885E40C00B643F5 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				9C542612289EA9B9009F1FE8 /* Networking */,
 				9C84CDAC2885E43300B643F5 /* JSONDecoderService.swift */,
+				9CBD18DA289B2654005E4167 /* NetworkingService.swift */,
 				9C1A42012896D134002B7C80 /* DataBase */,
 			);
 			path = Service;
@@ -211,6 +297,7 @@
 		9CA69FDD287DDFE20073817D /* Application */ = {
 			isa = PBXGroup;
 			children = (
+				9C54262B28A17E01009F1FE8 /* Coordinator */,
 				9C773A7427CD4B7C00B6B589 /* AppDelegate.swift */,
 				9C773A7627CD4B7C00B6B589 /* SceneDelegate.swift */,
 			);
@@ -357,6 +444,7 @@
 				9C773A7E27CD4B7F00B6B589 /* Assets.xcassets in Resources */,
 				9C84CDD928875D0700B643F5 /* Ubuntu-Regular.ttf in Resources */,
 				9C773A7C27CD4B7C00B6B589 /* Main.storyboard in Resources */,
+				9CBD18D9289B1809005E4167 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -426,21 +514,31 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9C54261E289EAFC8009F1FE8 /* JSONParameterEncoder.swift in Sources */,
 				9CA69FEC287DF5010073817D /* HelpCategoriesViewControllerCell.swift in Sources */,
 				9CBD189A28984D95005E4167 /* CategoriesCD+CoreDataProperties.swift in Sources */,
 				9CBD1895289831DB005E4167 /* EventsCD+CoreDataClass.swift in Sources */,
+				9C542626289EBA0F009F1FE8 /* NetworkManager.swift in Sources */,
 				9C773A7927CD4B7C00B6B589 /* SplashScreenViewController.swift in Sources */,
+				9C54262D28A17E16009F1FE8 /* CoordinatorProtocol.swift in Sources */,
 				9CA69FF7287F12D90073817D /* MainTabBarController.swift in Sources */,
 				9CA69FF9287F13E20073817D /* CustomTabBar.swift in Sources */,
 				9C84CDA82885C8EA00B643F5 /* Event.swift in Sources */,
 				9C84CDB02885EA9D00B643F5 /* CharityCell.swift in Sources */,
+				9C54261C289EADDE009F1FE8 /* URLParameterEncoder.swift in Sources */,
+				9C542622289EB17C009F1FE8 /* Router.swift in Sources */,
 				9CA69FEE287DF6140073817D /* SectionHeader.swift in Sources */,
 				9CA69FE8287DF2B00073817D /* Categories.swift in Sources */,
+				9C542624289EB6EE009F1FE8 /* CategoriesEndPoint.swift in Sources */,
 				9CA69FDC287DDBC90073817D /* UIColor+.swift in Sources */,
+				9CBD18DB289B2654005E4167 /* NetworkingService.swift in Sources */,
 				9CA69FE2287DEA050073817D /* UIFont+.swift in Sources */,
+				9C542614289EA9EA009F1FE8 /* EndPointType.swift in Sources */,
+				9C54261A289EAC06009F1FE8 /* ParameterEncoding.swift in Sources */,
 				9C84CDAA2885CB5300B643F5 /* CharityEventsViewController.swift in Sources */,
 				9CA69FE4287DEB5F0073817D /* HelpCategoriesViewController.swift in Sources */,
 				9CB541FC288EF03C000C868E /* UIView+.swift in Sources */,
+				9C542618289EAB1F009F1FE8 /* HTTPTask.swift in Sources */,
 				9CFB0BB52891A7610094CFFD /* RealmService.swift in Sources */,
 				9C84CDC9288723D800B643F5 /* DetailEventCell.swift in Sources */,
 				9C84CDC728871C5C00B643F5 /* DetailEventViewController.swift in Sources */,
@@ -456,7 +554,9 @@
 				9CA69FEA287DF3750073817D /* Section.swift in Sources */,
 				9C773A7527CD4B7C00B6B589 /* AppDelegate.swift in Sources */,
 				9CFB0BB02891A5840094CFFD /* RealmEvent.swift in Sources */,
+				9C542616289EAA77009F1FE8 /* HTTPMethod.swift in Sources */,
 				9C773A7727CD4B7C00B6B589 /* SceneDelegate.swift in Sources */,
+				9C54262F28A18156009F1FE8 /* AppCoordinator.swift in Sources */,
 				9C84CDB62887052800B643F5 /* Constants.swift in Sources */,
 				9CFB0BB22891A5900094CFFD /* RealmCategories.swift in Sources */,
 			);
