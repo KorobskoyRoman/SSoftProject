@@ -13,15 +13,10 @@ class AppCoordinator: Coordinator {
     var rootViewController: UINavigationController?
 
     func start(window: UIWindow?) {
-        rootViewController = UINavigationController(rootViewController: getViewControllerByType(type: .tabbar))
-//        rootViewController = UINavigationController(rootViewController: SplashScreenViewController.instantiate())
-        rootViewController?.isNavigationBarHidden = true
-//        let controller = getViewControllerByType(type: .splash)
-//        let controller = SplashScreenViewController.instantiate()
-//        window?.rootViewController = controller
-
+        rootViewController = UINavigationController(rootViewController: getViewControllerByType(type: .splash))
         guard let controller = rootViewController else { return }
         window?.rootViewController = controller
+        window?.makeKeyAndVisible()
     }
 
     func perfornTransition(with type: Transition) {
@@ -32,6 +27,16 @@ class AppCoordinator: Coordinator {
         case .pop:
             rootViewController?.popViewController(animated: true)
         }
+    }
+
+    func switchToTabbar(mainVC: UIViewController,
+                        to navVC: UINavigationController) -> UINavigationController {
+        rootViewController = navVC
+        navVC.setViewControllers([mainVC], animated: true)
+        guard let controller = rootViewController else {
+            return UINavigationController(rootViewController: mainVC)
+        }
+        return controller
     }
 
     private func getViewControllerByType(type: ViewControllers) -> UIViewController {
