@@ -16,7 +16,7 @@ class SplashConfigurator: ConfiguratorProtocol {
         else {
             return UIViewController()
         }
-        let viewController = SplashScreenViewController()
+        let viewController = SplashScreenViewController.instantiate()
         viewController.jsonService = jsonService
         viewController.networkManager = networkManager
         viewController.coordinator = coordinator

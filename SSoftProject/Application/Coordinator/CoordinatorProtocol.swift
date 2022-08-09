@@ -33,8 +33,6 @@ enum ViewControllers {
         case .tabbar:
             return MainTabBarController()
         case .splash:
-//            let splashVC = UIStoryboard(name: "Main", bundle: nil)
-//                .instantiateViewController(withIdentifier: "SplashScreenViewController")
             let splashVC = SplashScreenViewController.instantiate()
             return splashVC
         case .help:
