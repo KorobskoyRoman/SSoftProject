@@ -19,7 +19,7 @@ class AppCoordinator: Coordinator {
         window?.makeKeyAndVisible()
     }
 
-    func perfornTransition(with type: Transition) {
+    func performTransition(with type: Transition) {
         switch type {
         case .set(let viewController):
             let controller = getViewControllerByType(type: viewController)
