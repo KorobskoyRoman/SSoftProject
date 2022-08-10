@@ -63,6 +63,7 @@
 		9CDA121528A2E46400A6A609 /* HelpCategoriesConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CDA121428A2E46400A6A609 /* HelpCategoriesConfigurator.swift */; };
 		9CDA121728A2F55500A6A609 /* DetailEventsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CDA121628A2F55500A6A609 /* DetailEventsConfigurator.swift */; };
 		9CDA121928A2F5CF00A6A609 /* CharityEventsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CDA121828A2F5CF00A6A609 /* CharityEventsConfigurator.swift */; };
+		9CDA121B28A44C7E00A6A609 /* StoryboardedProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CDA121A28A44C7E00A6A609 /* StoryboardedProtocol.swift */; };
 		9CFB0BB02891A5840094CFFD /* RealmEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFB0BAF2891A5840094CFFD /* RealmEvent.swift */; };
 		9CFB0BB22891A5900094CFFD /* RealmCategories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFB0BB12891A5900094CFFD /* RealmCategories.swift */; };
 		9CFB0BB52891A7610094CFFD /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFB0BB42891A7610094CFFD /* RealmService.swift */; };
@@ -129,6 +130,7 @@
 		9CDA121428A2E46400A6A609 /* HelpCategoriesConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpCategoriesConfigurator.swift; sourceTree = "<group>"; };
 		9CDA121628A2F55500A6A609 /* DetailEventsConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailEventsConfigurator.swift; sourceTree = "<group>"; };
 		9CDA121828A2F5CF00A6A609 /* CharityEventsConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharityEventsConfigurator.swift; sourceTree = "<group>"; };
+		9CDA121A28A44C7E00A6A609 /* StoryboardedProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardedProtocol.swift; sourceTree = "<group>"; };
 		9CFB0BAF2891A5840094CFFD /* RealmEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmEvent.swift; sourceTree = "<group>"; };
 		9CFB0BB12891A5900094CFFD /* RealmCategories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmCategories.swift; sourceTree = "<group>"; };
 		9CFB0BB42891A7610094CFFD /* RealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
@@ -224,7 +226,7 @@
 			isa = PBXGroup;
 			children = (
 				9C54263028A1936F009F1FE8 /* Configurators */,
-				9C54262C28A17E16009F1FE8 /* CoordinatorProtocol.swift */,
+				9CDA121C28A44DB200A6A609 /* Protocols */,
 				9C54262E28A18156009F1FE8 /* AppCoordinator.swift */,
 			);
 			path = Coordinator;
@@ -388,6 +390,15 @@
 				9C84CDD828875D0700B643F5 /* Ubuntu-Regular.ttf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		9CDA121C28A44DB200A6A609 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				9C54262C28A17E16009F1FE8 /* CoordinatorProtocol.swift */,
+				9CDA121A28A44C7E00A6A609 /* StoryboardedProtocol.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 		9CFB0BB32891A59C0094CFFD /* Realm */ = {
@@ -561,6 +572,7 @@
 				9C542614289EA9EA009F1FE8 /* EndPointType.swift in Sources */,
 				9C54263428A19ABC009F1FE8 /* SplashScreenViewControllerConfigurator.swift in Sources */,
 				9C54261A289EAC06009F1FE8 /* ParameterEncoding.swift in Sources */,
+				9CDA121B28A44C7E00A6A609 /* StoryboardedProtocol.swift in Sources */,
 				9C84CDAA2885CB5300B643F5 /* CharityEventsViewController.swift in Sources */,
 				9CA69FE4287DEB5F0073817D /* HelpCategoriesViewController.swift in Sources */,
 				9CB541FC288EF03C000C868E /* UIView+.swift in Sources */,

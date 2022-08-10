@@ -13,7 +13,7 @@ protocol Coordinator {
     var networkManager: NetworkManager { get set }
 
     func start(window: UIWindow?)
-    func perfornTransition(with type: Transition)
+    func performTransition(with type: Transition)
 }
 
 enum Transition {
@@ -31,31 +31,18 @@ enum ViewControllers {
     var viewController: UIViewController {
         switch self {
         case .tabbar:
-            return MainTabBarController()
+//            return MainTabBarController()
+            return MainTabBarController.instantiate()
         case .splash:
             let splashVC = SplashScreenViewController.instantiate()
             return splashVC
         case .help:
-            return HelpCategoriesViewController()
+//            return HelpCategoriesViewController()
+            return HelpCategoriesViewController.instantiate()
         case .charity:
             return CharityEventsViewController()
         case .detailEvent:
             return DetailEventViewController()
         }
-    }
-}
-
-protocol Storyboarded {
-    static func instantiate() -> Self
-}
-
-extension Storyboarded where Self: UIViewController {
-    static func instantiate() -> Self {
-        let fullName = NSStringFromClass(self)
-        let className = fullName.components(separatedBy: ".")[1]
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        // swiftlint:disable force_cast
-        return storyboard.instantiateViewController(withIdentifier: className) as! Self
-        // swiftlint:enable force_cast
     }
 }
