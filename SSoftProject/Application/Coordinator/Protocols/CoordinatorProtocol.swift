@@ -31,14 +31,11 @@ enum ViewControllers {
     var viewController: UIViewController {
         switch self {
         case .tabbar:
-//            return MainTabBarController()
-            return MainTabBarController.instantiate()
+            return MainTabBarController()
         case .splash:
-            let splashVC = SplashScreenViewController.instantiate()
-            return splashVC
+            return SplashScreenViewController.instantiate()
         case .help:
-//            return HelpCategoriesViewController()
-            return HelpCategoriesViewController.instantiate()
+            return HelpCategoriesViewController()
         case .charity:
             return CharityEventsViewController()
         case .detailEvent:
