@@ -10,6 +10,8 @@
 		589E63461E80358E1F54C402 /* Pods_SSoftProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 134D26F55E15E05254E11928 /* Pods_SSoftProject.framework */; };
 		9C1A41F228942E1A002B7C80 /* CategoriesCoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9C1A41F028942E1A002B7C80 /* CategoriesCoreDataModel.xcdatamodeld */; };
 		9C1A42002896D12A002B7C80 /* CoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C1A41FF2896D12A002B7C80 /* CoreDataService.swift */; };
+		9C2B2FC328A6F42F0074DE7C /* HelpCategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C2B2FC228A6F42F0074DE7C /* HelpCategoriesViewController.swift */; };
+		9C2B2FC628A6F4730074DE7C /* HelpCategoriesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C2B2FC528A6F4730074DE7C /* HelpCategoriesPresenter.swift */; };
 		9C48498728885BA900B95FA0 /* HelpVariantsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C48498628885BA900B95FA0 /* HelpVariantsView.swift */; };
 		9C4849892888764C00B95FA0 /* UIButton+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4849882888764C00B95FA0 /* UIButton+.swift */; };
 		9C542614289EA9EA009F1FE8 /* EndPointType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C542613289EA9EA009F1FE8 /* EndPointType.swift */; };
@@ -46,7 +48,7 @@
 		9C84CDD928875D0700B643F5 /* Ubuntu-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9C84CDD828875D0700B643F5 /* Ubuntu-Regular.ttf */; };
 		9CA69FDC287DDBC90073817D /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA69FDB287DDBC90073817D /* UIColor+.swift */; };
 		9CA69FE2287DEA050073817D /* UIFont+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA69FE1287DEA050073817D /* UIFont+.swift */; };
-		9CA69FE4287DEB5F0073817D /* HelpCategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA69FE3287DEB5F0073817D /* HelpCategoriesViewController.swift */; };
+		9CA69FE4287DEB5F0073817D /* HelpCategoriesViewController1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA69FE3287DEB5F0073817D /* HelpCategoriesViewController1.swift */; };
 		9CA69FE8287DF2B00073817D /* Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA69FE7287DF2B00073817D /* Categories.swift */; };
 		9CA69FEA287DF3750073817D /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA69FE9287DF3750073817D /* Section.swift */; };
 		9CA69FEC287DF5010073817D /* HelpCategoriesViewControllerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA69FEB287DF5010073817D /* HelpCategoriesViewControllerCell.swift */; };
@@ -75,6 +77,8 @@
 		91C79F6CA6A07609843A1CFF /* Pods-SSoftProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SSoftProject.debug.xcconfig"; path = "Target Support Files/Pods-SSoftProject/Pods-SSoftProject.debug.xcconfig"; sourceTree = "<group>"; };
 		9C1A41F128942E1A002B7C80 /* CategoriesCoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CategoriesCoreDataModel.xcdatamodel; sourceTree = "<group>"; };
 		9C1A41FF2896D12A002B7C80 /* CoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataService.swift; sourceTree = "<group>"; };
+		9C2B2FC228A6F42F0074DE7C /* HelpCategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpCategoriesViewController.swift; sourceTree = "<group>"; };
+		9C2B2FC528A6F4730074DE7C /* HelpCategoriesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpCategoriesPresenter.swift; sourceTree = "<group>"; };
 		9C48498628885BA900B95FA0 /* HelpVariantsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpVariantsView.swift; sourceTree = "<group>"; };
 		9C4849882888764C00B95FA0 /* UIButton+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+.swift"; sourceTree = "<group>"; };
 		9C542613289EA9EA009F1FE8 /* EndPointType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPointType.swift; sourceTree = "<group>"; };
@@ -113,7 +117,7 @@
 		9C84CDD828875D0700B643F5 /* Ubuntu-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Ubuntu-Regular.ttf"; sourceTree = "<group>"; };
 		9CA69FDB287DDBC90073817D /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		9CA69FE1287DEA050073817D /* UIFont+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+.swift"; sourceTree = "<group>"; };
-		9CA69FE3287DEB5F0073817D /* HelpCategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpCategoriesViewController.swift; sourceTree = "<group>"; };
+		9CA69FE3287DEB5F0073817D /* HelpCategoriesViewController1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpCategoriesViewController1.swift; sourceTree = "<group>"; };
 		9CA69FE7287DF2B00073817D /* Categories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Categories.swift; sourceTree = "<group>"; };
 		9CA69FE9287DF3750073817D /* Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
 		9CA69FEB287DF5010073817D /* HelpCategoriesViewControllerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpCategoriesViewControllerCell.swift; sourceTree = "<group>"; };
@@ -172,6 +176,32 @@
 				9C1A41FF2896D12A002B7C80 /* CoreDataService.swift */,
 			);
 			path = DataBase;
+			sourceTree = "<group>";
+		};
+		9C2B2FC128A6F4020074DE7C /* HelpCategoriesModule */ = {
+			isa = PBXGroup;
+			children = (
+				9C2B2FC428A6F4530074DE7C /* Views */,
+				9C2B2FC528A6F4730074DE7C /* HelpCategoriesPresenter.swift */,
+			);
+			path = HelpCategoriesModule;
+			sourceTree = "<group>";
+		};
+		9C2B2FC428A6F4530074DE7C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				9CA69FEB287DF5010073817D /* HelpCategoriesViewControllerCell.swift */,
+				9C2B2FC228A6F42F0074DE7C /* HelpCategoriesViewController.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		9C2B2FC728A6FE4F0074DE7C /* Old */ = {
+			isa = PBXGroup;
+			children = (
+				9CA69FE3287DEB5F0073817D /* HelpCategoriesViewController1.swift */,
+			);
+			path = Old;
 			sourceTree = "<group>";
 		};
 		9C542612289EA9B9009F1FE8 /* Networking */ = {
@@ -341,9 +371,10 @@
 		9CA69FDF287DE0520073817D /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				9C2B2FC728A6FE4F0074DE7C /* Old */,
 				9CA69FF6287F12D90073817D /* MainTabBarController.swift */,
 				9C773A7827CD4B7C00B6B589 /* SplashScreenViewController.swift */,
-				9CA69FE3287DEB5F0073817D /* HelpCategoriesViewController.swift */,
+				9C2B2FC128A6F4020074DE7C /* HelpCategoriesModule */,
 				9C84CDA92885CB5300B643F5 /* CharityEventsViewController.swift */,
 				9C84CDC628871C5C00B643F5 /* DetailEventViewController.swift */,
 			);
@@ -361,7 +392,6 @@
 		9CA69FE5287DECB50073817D /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				9CA69FEB287DF5010073817D /* HelpCategoriesViewControllerCell.swift */,
 				9C84CDAF2885EA9D00B643F5 /* CharityCell.swift */,
 				9C84CDC8288723D800B643F5 /* DetailEventCell.swift */,
 				9C84CDD62887555000B643F5 /* TableFooterView.swift */,
@@ -548,6 +578,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9C2B2FC628A6F4730074DE7C /* HelpCategoriesPresenter.swift in Sources */,
 				9C54261E289EAFC8009F1FE8 /* JSONParameterEncoder.swift in Sources */,
 				9CA69FEC287DF5010073817D /* HelpCategoriesViewControllerCell.swift in Sources */,
 				9CBD189A28984D95005E4167 /* CategoriesCD+CoreDataProperties.swift in Sources */,
@@ -574,7 +605,7 @@
 				9C54261A289EAC06009F1FE8 /* ParameterEncoding.swift in Sources */,
 				9CDA121B28A44C7E00A6A609 /* StoryboardedProtocol.swift in Sources */,
 				9C84CDAA2885CB5300B643F5 /* CharityEventsViewController.swift in Sources */,
-				9CA69FE4287DEB5F0073817D /* HelpCategoriesViewController.swift in Sources */,
+				9CA69FE4287DEB5F0073817D /* HelpCategoriesViewController1.swift in Sources */,
 				9CB541FC288EF03C000C868E /* UIView+.swift in Sources */,
 				9C542618289EAB1F009F1FE8 /* HTTPTask.swift in Sources */,
 				9CFB0BB52891A7610094CFFD /* RealmService.swift in Sources */,
@@ -599,6 +630,7 @@
 				9C54262F28A18156009F1FE8 /* AppCoordinator.swift in Sources */,
 				9C84CDB62887052800B643F5 /* Constants.swift in Sources */,
 				9CFB0BB22891A5900094CFFD /* RealmCategories.swift in Sources */,
+				9C2B2FC328A6F42F0074DE7C /* HelpCategoriesViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

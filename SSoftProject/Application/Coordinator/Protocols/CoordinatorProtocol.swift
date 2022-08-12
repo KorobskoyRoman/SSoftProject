@@ -35,7 +35,8 @@ enum ViewControllers {
         case .splash:
             return SplashScreenViewController.instantiate()
         case .help:
-            return HelpCategoriesViewController()
+            let presenter = HelpCategoriesPresenter()
+            return HelpCategoriesViewController(presenter: presenter)
         case .charity:
             return CharityEventsViewController()
         case .detailEvent:
