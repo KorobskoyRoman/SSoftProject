@@ -8,7 +8,7 @@
 import UIKit
 
 protocol TabBarConfiguratorProtocol {
-    func configure(coordinator: TabBarCoordinator?) -> UITabBarController
+    func configure(coordinator: AppCoordinator?) -> UITabBarController
 }
 
 protocol ConfiguratorProtocol {

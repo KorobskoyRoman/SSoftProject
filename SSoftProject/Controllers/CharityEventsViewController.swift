@@ -153,6 +153,7 @@ final class CharityEventsViewController: UIViewController {
 
     @objc private func backButtonPresed() {
         navigationController?.popViewController(animated: true)
+//        coordinator?.performTransition(with: .pop)
     }
 
     private func getSegmentData(_ index: Int) {

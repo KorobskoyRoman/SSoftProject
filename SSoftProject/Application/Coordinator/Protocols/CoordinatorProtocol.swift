@@ -31,7 +31,7 @@ enum ViewControllers {
     var viewController: UIViewController {
         switch self {
         case .tabbar:
-            return MainTabBarController()
+            return MainTabBarController(coordinator: nil)
         case .splash:
             return SplashScreenViewController.instantiate()
         case .help:

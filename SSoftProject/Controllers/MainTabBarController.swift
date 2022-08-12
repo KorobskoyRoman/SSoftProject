@@ -8,8 +8,8 @@
 import UIKit
 
 final class MainTabBarController: UITabBarController {
-//    weak var coordinator: AppCoordinator?
-    weak var coordinator: TabBarCoordinator?
+    weak var coordinator: AppCoordinator?
+//    weak var coordinator: TabBarCoordinator?
 
     private let middleButtonDiameter: CGFloat = 42
     private let redColor: UIColor = UIColor(red: 254.0 / 255.0, green: 116.0 / 255.0, blue: 96.0 / 255.0, alpha: 1.0)
@@ -38,6 +38,15 @@ final class MainTabBarController: UITabBarController {
         makeUI()
     }
 
+    init(coordinator: AppCoordinator?) {
+        self.coordinator = coordinator
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     @objc private func didPressMiddleButton() {
         selectedIndex = TabBarConstants.currentIndexOfMiddleButton
         middleButton.backgroundColor = greenColor
@@ -47,7 +56,7 @@ final class MainTabBarController: UITabBarController {
     private func makeUI() {
         tabBar.addSubview(middleButton)
         middleButton.addSubview(heartImageView)
-
+//        coordinator?.setupTabbar(self)
 //        let newsVC = UIViewController()
 //        newsVC.view.backgroundColor = .yellow
 //        newsVC.tabBarItem.title = TabBarConstants.newsVCTitle
@@ -59,7 +68,7 @@ final class MainTabBarController: UITabBarController {
 //        searchVC.tabBarItem.image = TabBarConstants.searchVCImage
 //
 //        let helpVC = HelpCategoriesViewController() // heart button
-//        var helpVCNav = UINavigationController()
+//        let helpVCNav = UINavigationController(rootViewController: helpVC)
 //        helpVCNav.navigationBar.standardAppearance = configureNavBarAppearence()
 //        helpVCNav.navigationBar.compactAppearance = configureNavBarAppearence()
 //        helpVCNav.navigationBar.scrollEdgeAppearance = configureNavBarAppearence()
@@ -77,8 +86,8 @@ final class MainTabBarController: UITabBarController {
 //        profileVC.tabBarItem.title = TabBarConstants.profileVCTitle
 //        profileVC.tabBarItem.image = TabBarConstants.profileVCImage
 //
-        tabBar.tintColor = greenColor
-        UITabBarItem.appearance().setTitleTextAttributes([.foregroundColor: greenColor], for: .selected)
+//        tabBar.tintColor = greenColor
+//        UITabBarItem.appearance().setTitleTextAttributes([.foregroundColor: greenColor], for: .selected)
 //
 //        viewControllers = [newsVC, searchVC, helpVCNav, historyVC, profileVC]
 //        selectedViewController = viewControllers?[TabBarConstants.currentIndexOfMiddleButton]

@@ -47,6 +47,11 @@ final class HelpCategoriesViewController: UIViewController {
         setupView()
     }
 
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
+//        coordinator?.rootViewController = self.navigationController
+//    }
+
     private func setupCollectionView() {
         collectionView.autoresizingMask = [.flexibleWidth, .flexibleWidth]
         view.addSubview(collectionView)
@@ -234,10 +239,10 @@ extension HelpCategoriesViewController: UICollectionViewDelegate {
             guard let cell = collectionView.cellForItem(at: indexPath) as? HelpCategoriesCell
             else { return }
             print(indexPath.item)
-//            let charityVC = CharityEventsViewController()
-//            charityVC.title = cell.navBarTitle
-//            navigationController?.pushViewController(charityVC, animated: true)
-            coordinator?.performTransition(with: .set(.charity))
+            let charityVC = CharityEventsViewController()
+            charityVC.title = cell.navBarTitle
+            navigationController?.pushViewController(charityVC, animated: true)
+//            coordinator?.performTransition(with: .set(.charity))
         }
     }
 }
