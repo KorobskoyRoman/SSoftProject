@@ -233,12 +233,16 @@ extension HelpCategoriesViewController: UICollectionViewDelegate {
         case .mainSection:
             guard let cell = collectionView.cellForItem(at: indexPath) as? HelpCategoriesCell
             else { return }
-            let charityVC = CharityEventsViewController()
-            charityVC.title = cell.navBarTitle
-            navigationController?.pushViewController(charityVC, animated: true)
+            print(indexPath.item)
+//            let charityVC = CharityEventsViewController()
+//            charityVC.title = cell.navBarTitle
+//            navigationController?.pushViewController(charityVC, animated: true)
+            coordinator?.performTransition(with: .set(.charity))
         }
     }
 }
+
+extension HelpCategoriesViewController: Storyboarded {}
 
 private enum HelpConstants {
     static let title = "Помочь"

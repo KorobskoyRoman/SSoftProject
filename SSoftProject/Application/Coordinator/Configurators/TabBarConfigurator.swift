@@ -8,7 +8,7 @@
 import UIKit
 
 class TabBarConfigurator: TabBarConfiguratorProtocol {
-    func configure(coordinator: AppCoordinator?) -> UITabBarController {
+    func configure(coordinator: TabBarCoordinator?) -> UITabBarController {
         let tabbarControler = MainTabBarController()
         tabbarControler.modalPresentationStyle = .fullScreen
         tabbarControler.modalTransitionStyle = .flipHorizontal

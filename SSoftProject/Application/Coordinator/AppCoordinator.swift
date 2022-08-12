@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AppCoordinator: Coordinator {
+final class AppCoordinator: Coordinator {
     var jsonService = JSONDecoderService()
     var networkManager = NetworkManager()
     var rootViewController: UINavigationController?
@@ -29,6 +29,11 @@ class AppCoordinator: Coordinator {
         }
     }
 
+    func showMainFlow() {
+        let tabCoordinator = TabBarCoordinator(rootViewController ?? UINavigationController())
+        tabCoordinator.start()
+    }
+
     func switchToTabbar(mainVC: UIViewController,
                         to navVC: UINavigationController) -> UINavigationController {
         rootViewController = navVC
@@ -44,8 +49,9 @@ class AppCoordinator: Coordinator {
         switch type {
         case .tabbar:
             let config = TabBarConfigurator()
-            viewController = config.configure(coordinator: self)
-            return MainTabBarController()
+            viewController = config.configure(coordinator:
+                                                TabBarCoordinator(rootViewController ?? UINavigationController()))
+            return viewController
         case .splash:
             let config = SplashConfigurator()
             viewController = config.configure(jsonService: jsonService,
@@ -64,6 +70,175 @@ class AppCoordinator: Coordinator {
             let config = DetailEventsConfigurator()
             viewController = config.configure(coordinator: self)
             return viewController
+        }
+    }
+}
+
+protocol TabCoordinatorProtocol {
+    var tabBarController: UITabBarController { get set }
+
+    func selectPage(_ page: TabBarPage)
+
+    func setSelectedIndex(_ index: Int)
+
+    func currentPage() -> TabBarPage?
+}
+
+final class TabBarCoordinator: TabCoordinatorProtocol {
+    var navigationController: UINavigationController
+    var tabBarController: UITabBarController
+
+    required init(_ navigationController: UINavigationController) {
+        self.navigationController = navigationController
+        self.tabBarController = .init()
+    }
+
+    func start() {
+        let pages: [TabBarPage] = [.news, .search, .help, .history, .profile]
+        let controllers: [UINavigationController] = pages.map({ getTabController($0) })
+        prepareTabBarController(withTabControllers: controllers)
+    }
+
+    private func prepareTabBarController(withTabControllers tabControllers: [UIViewController]) {
+        tabBarController.setViewControllers(tabControllers, animated: true)
+        tabBarController.selectedIndex = TabBarPage.help.pageOrderNumber()
+        tabBarController.tabBar.isTranslucent = false
+        navigationController.viewControllers = [tabBarController]
+    }
+
+    private func getTabController(_ page: TabBarPage) -> UINavigationController {
+        let navController = UINavigationController()
+        navController.setNavigationBarHidden(false, animated: false)
+
+        navController.tabBarItem = UITabBarItem.init(title: page.pageTitleValue(),
+                                                     image: page.getIcon(),
+                                                     tag: page.pageOrderNumber())
+
+        switch page {
+        case .news:
+            let newsVC = UIViewController()
+            newsVC.view.backgroundColor = .yellow
+            navController.pushViewController(newsVC, animated: true)
+        case .search:
+            let searchVC = UIViewController()
+            searchVC.view.backgroundColor = .systemRed
+            navController.pushViewController(searchVC, animated: true)
+        case .help:
+            let helpVC = HelpCategoriesViewController()
+            navController.pushViewController(helpVC, animated: true)
+        case .history:
+            let historyVC = UIViewController()
+            historyVC.view.backgroundColor = .systemFill
+            navController.pushViewController(historyVC, animated: true)
+        case .profile:
+            let profileVC = UIViewController()
+            profileVC.view.backgroundColor = .charcoalGrey
+            navController.pushViewController(profileVC, animated: true)
+        }
+        navController.navigationBar.standardAppearance = configureNavBarAppearence()
+        navController.navigationBar.compactAppearance = configureNavBarAppearence()
+        navController.navigationBar.scrollEdgeAppearance = configureNavBarAppearence()
+        return navController
+    }
+
+    private func configureNavBarAppearence() -> UINavigationBarAppearance {
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = .leaf
+        appearance.titleTextAttributes = [.foregroundColor: UIColor.white, .font: UIFont.textStyle3]
+
+        let backButtonAppearance = UIBarButtonItemAppearance(style: .plain)
+        backButtonAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.clear]
+
+        appearance.backButtonAppearance = backButtonAppearance
+        UINavigationBar.appearance().tintColor = .white
+
+        UINavigationBar.appearance().scrollEdgeAppearance = appearance
+        UINavigationBar.appearance().standardAppearance = appearance
+        UINavigationBar.appearance().compactAppearance = appearance
+
+        return appearance
+    }
+
+    func currentPage() -> TabBarPage? { TabBarPage.init(index: tabBarController.selectedIndex) }
+
+    func selectPage(_ page: TabBarPage) {
+        tabBarController.selectedIndex = page.pageOrderNumber()
+    }
+
+    func setSelectedIndex(_ index: Int) {
+        guard let page = TabBarPage.init(index: index) else { return }
+
+        tabBarController.selectedIndex = page.pageOrderNumber()
+    }
+}
+
+enum TabBarPage {
+    case news
+    case search
+    case help
+    case history
+    case profile
+
+    init?(index: Int) {
+        switch index {
+        case 0:
+            self = .news
+        case 1:
+            self = .search
+        case 2:
+            self = .help
+        case 3:
+            self = .history
+        case 4:
+            self = .profile
+        default:
+            return nil
+        }
+    }
+
+    func pageTitleValue() -> String {
+        switch self {
+        case .news:
+            return TabBarConstants.newsVCTitle
+        case .search:
+            return TabBarConstants.searchVCTitle
+        case .help:
+            return TabBarConstants.helpVCTitle
+        case .history:
+            return TabBarConstants.historyVCTitle
+        case .profile:
+            return TabBarConstants.profileVCTitle
+        }
+    }
+
+    func pageOrderNumber() -> Int {
+        switch self {
+        case .news:
+            return 0
+        case .search:
+            return 1
+        case .help:
+            return 2
+        case .history:
+            return 3
+        case .profile:
+            return 4
+        }
+    }
+
+    func getIcon() -> UIImage? {
+        switch self {
+        case .news:
+            return TabBarConstants.newsVCImage
+        case .search:
+            return TabBarConstants.searchVCImage
+        case .help:
+            return nil
+        case .history:
+            return TabBarConstants.historyVCImage
+        case .profile:
+            return TabBarConstants.profileVCImage
         }
     }
 }
