@@ -40,7 +40,6 @@ final class HelpCategoriesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-        reload()
     }
 
     init(presenter: HelpCategoriesPresenter) {

@@ -20,7 +20,6 @@ class HelpCategoriesPresenter: Presenter {
         categories.count
     }
     private let decodeService = JSONDecoderService()
-//    private let realm = try? Realm()
 
     func getData() {
         self.fetchCategories()
@@ -32,10 +31,7 @@ class HelpCategoriesPresenter: Presenter {
     }
 
     private func fetchCategories() {
-//        backgroundQueue.async { [weak self] in
-//            guard let self = self else { return }
-            let realm = try? Realm()
-            self.categories = realm?.getCategories() ?? []
-//        }
+        let realm = try? Realm()
+        self.categories = realm?.getCategories() ?? []
     }
 }

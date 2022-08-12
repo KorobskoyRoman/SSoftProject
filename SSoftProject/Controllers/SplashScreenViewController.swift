@@ -52,8 +52,8 @@ final class SplashScreenViewController: UIViewController {
                     }
                 }
             }
-            sleep(2)
-            DispatchQueue.main.async {
+
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                 self.activityIndicator.stopAnimating()
                 self.coordinator?.performTransition(with: .pop)
                 self.coordinator?.performTransition(with: .set(.tabbar))
