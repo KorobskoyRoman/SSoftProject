@@ -281,21 +281,21 @@ enum TabBarPage {
 
 extension AppCoordinator {
     private func configureNavBarAppearence() -> UINavigationBarAppearance {
-            let appearance = UINavigationBarAppearance()
-            appearance.configureWithOpaqueBackground()
-            appearance.backgroundColor = .leaf
-            appearance.titleTextAttributes = [.foregroundColor: UIColor.white, .font: UIFont.textStyle3]
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = .leaf
+        appearance.titleTextAttributes = [.foregroundColor: UIColor.white, .font: UIFont.textStyle3]
 
-            let backButtonAppearance = UIBarButtonItemAppearance(style: .plain)
-            backButtonAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.clear]
+        let backButtonAppearance = UIBarButtonItemAppearance(style: .plain)
+        backButtonAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.clear]
 
-            appearance.backButtonAppearance = backButtonAppearance
-            UINavigationBar.appearance().tintColor = .white
+        appearance.backButtonAppearance = backButtonAppearance
+        UINavigationBar.appearance().tintColor = .white
 
-            UINavigationBar.appearance().scrollEdgeAppearance = appearance
-            UINavigationBar.appearance().standardAppearance = appearance
-            UINavigationBar.appearance().compactAppearance = appearance
+        UINavigationBar.appearance().scrollEdgeAppearance = appearance
+        UINavigationBar.appearance().standardAppearance = appearance
+        UINavigationBar.appearance().compactAppearance = appearance
 
-            return appearance
-        }
+        return appearance
+    }
 }
