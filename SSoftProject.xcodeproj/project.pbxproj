@@ -34,7 +34,7 @@
 		9C773A7E27CD4B7F00B6B589 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C773A7D27CD4B7F00B6B589 /* Assets.xcassets */; };
 		9C773A8127CD4B7F00B6B589 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C773A7F27CD4B7F00B6B589 /* LaunchScreen.storyboard */; };
 		9C84CDA82885C8EA00B643F5 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C84CDA72885C8EA00B643F5 /* Event.swift */; };
-		9C84CDAA2885CB5300B643F5 /* CharityEventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C84CDA92885CB5300B643F5 /* CharityEventsViewController.swift */; };
+		9C84CDAA2885CB5300B643F5 /* CharityEventsViewController1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C84CDA92885CB5300B643F5 /* CharityEventsViewController1.swift */; };
 		9C84CDAD2885E43300B643F5 /* JSONDecoderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C84CDAC2885E43300B643F5 /* JSONDecoderService.swift */; };
 		9C84CDB02885EA9D00B643F5 /* CharityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C84CDAF2885EA9D00B643F5 /* CharityCell.swift */; };
 		9C84CDB42887046300B643F5 /* Categories.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C84CDB32887046200B643F5 /* Categories.json */; };
@@ -56,6 +56,9 @@
 		9CA69FF7287F12D90073817D /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA69FF6287F12D90073817D /* MainTabBarController.swift */; };
 		9CA69FF9287F13E20073817D /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA69FF8287F13E20073817D /* CustomTabBar.swift */; };
 		9CB541FC288EF03C000C868E /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB541FB288EF03C000C868E /* UIView+.swift */; };
+		9CB7539F28AADB38001697A6 /* CharityEventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB7539E28AADB38001697A6 /* CharityEventsViewController.swift */; };
+		9CB753A128AADBB0001697A6 /* CharityEventsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB753A028AADBB0001697A6 /* CharityEventsConfigurator.swift */; };
+		9CB753A328AADF72001697A6 /* CharityEventsPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB753A228AADF72001697A6 /* CharityEventsPresenterProtocol.swift */; };
 		9CBD1895289831DB005E4167 /* EventsCD+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBD1893289831DB005E4167 /* EventsCD+CoreDataClass.swift */; };
 		9CBD1896289831DB005E4167 /* EventsCD+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBD1894289831DB005E4167 /* EventsCD+CoreDataProperties.swift */; };
 		9CBD189928984D95005E4167 /* CategoriesCD+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBD189728984D95005E4167 /* CategoriesCD+CoreDataClass.swift */; };
@@ -103,7 +106,7 @@
 		9C773A8027CD4B7F00B6B589 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9C773A8227CD4B7F00B6B589 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9C84CDA72885C8EA00B643F5 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
-		9C84CDA92885CB5300B643F5 /* CharityEventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharityEventsViewController.swift; sourceTree = "<group>"; };
+		9C84CDA92885CB5300B643F5 /* CharityEventsViewController1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharityEventsViewController1.swift; sourceTree = "<group>"; };
 		9C84CDAC2885E43300B643F5 /* JSONDecoderService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONDecoderService.swift; sourceTree = "<group>"; };
 		9C84CDAF2885EA9D00B643F5 /* CharityCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharityCell.swift; sourceTree = "<group>"; };
 		9C84CDB32887046200B643F5 /* Categories.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Categories.json; sourceTree = "<group>"; };
@@ -125,6 +128,9 @@
 		9CA69FF6287F12D90073817D /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		9CA69FF8287F13E20073817D /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
 		9CB541FB288EF03C000C868E /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
+		9CB7539E28AADB38001697A6 /* CharityEventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharityEventsViewController.swift; sourceTree = "<group>"; };
+		9CB753A028AADBB0001697A6 /* CharityEventsConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharityEventsConfigurator.swift; sourceTree = "<group>"; };
+		9CB753A228AADF72001697A6 /* CharityEventsPresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharityEventsPresenterProtocol.swift; sourceTree = "<group>"; };
 		9CBD1893289831DB005E4167 /* EventsCD+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EventsCD+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 		9CBD1894289831DB005E4167 /* EventsCD+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EventsCD+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		9CBD189728984D95005E4167 /* CategoriesCD+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CategoriesCD+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
@@ -375,7 +381,8 @@
 				9CA69FF6287F12D90073817D /* MainTabBarController.swift */,
 				9C773A7827CD4B7C00B6B589 /* SplashScreenViewController.swift */,
 				9C2B2FC128A6F4020074DE7C /* HelpCategoriesModule */,
-				9C84CDA92885CB5300B643F5 /* CharityEventsViewController.swift */,
+				9CB7539D28AADB27001697A6 /* CharityEvents */,
+				9C84CDA92885CB5300B643F5 /* CharityEventsViewController1.swift */,
 				9C84CDC628871C5C00B643F5 /* DetailEventViewController.swift */,
 			);
 			path = Controllers;
@@ -420,6 +427,16 @@
 				9C84CDD828875D0700B643F5 /* Ubuntu-Regular.ttf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		9CB7539D28AADB27001697A6 /* CharityEvents */ = {
+			isa = PBXGroup;
+			children = (
+				9CB7539E28AADB38001697A6 /* CharityEventsViewController.swift */,
+				9CB753A028AADBB0001697A6 /* CharityEventsConfigurator.swift */,
+				9CB753A228AADF72001697A6 /* CharityEventsPresenterProtocol.swift */,
+			);
+			path = CharityEvents;
 			sourceTree = "<group>";
 		};
 		9CDA121C28A44DB200A6A609 /* Protocols */ = {
@@ -584,6 +601,7 @@
 				9CBD189A28984D95005E4167 /* CategoriesCD+CoreDataProperties.swift in Sources */,
 				9CBD1895289831DB005E4167 /* EventsCD+CoreDataClass.swift in Sources */,
 				9C54263228A1938E009F1FE8 /* TabBarConfigurator.swift in Sources */,
+				9CB753A128AADBB0001697A6 /* CharityEventsConfigurator.swift in Sources */,
 				9C542626289EBA0F009F1FE8 /* NetworkManager.swift in Sources */,
 				9C773A7927CD4B7C00B6B589 /* SplashScreenViewController.swift in Sources */,
 				9C54262D28A17E16009F1FE8 /* CoordinatorProtocol.swift in Sources */,
@@ -604,7 +622,7 @@
 				9C54263428A19ABC009F1FE8 /* SplashScreenViewControllerConfigurator.swift in Sources */,
 				9C54261A289EAC06009F1FE8 /* ParameterEncoding.swift in Sources */,
 				9CDA121B28A44C7E00A6A609 /* StoryboardedProtocol.swift in Sources */,
-				9C84CDAA2885CB5300B643F5 /* CharityEventsViewController.swift in Sources */,
+				9C84CDAA2885CB5300B643F5 /* CharityEventsViewController1.swift in Sources */,
 				9CA69FE4287DEB5F0073817D /* HelpCategoriesViewController1.swift in Sources */,
 				9CB541FC288EF03C000C868E /* UIView+.swift in Sources */,
 				9C542618289EAB1F009F1FE8 /* HTTPTask.swift in Sources */,
@@ -627,9 +645,11 @@
 				9C542616289EAA77009F1FE8 /* HTTPMethod.swift in Sources */,
 				9C773A7727CD4B7C00B6B589 /* SceneDelegate.swift in Sources */,
 				9CDA121928A2F5CF00A6A609 /* CharityEventsConfigurator.swift in Sources */,
+				9CB753A328AADF72001697A6 /* CharityEventsPresenterProtocol.swift in Sources */,
 				9C54262F28A18156009F1FE8 /* AppCoordinator.swift in Sources */,
 				9C84CDB62887052800B643F5 /* Constants.swift in Sources */,
 				9CFB0BB22891A5900094CFFD /* RealmCategories.swift in Sources */,
+				9CB7539F28AADB38001697A6 /* CharityEventsViewController.swift in Sources */,
 				9C2B2FC328A6F42F0074DE7C /* HelpCategoriesViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

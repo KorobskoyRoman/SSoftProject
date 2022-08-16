@@ -244,7 +244,7 @@ extension HelpCategoriesViewController: UICollectionViewDelegate {
             let charityVC = CharityEventsViewController()
             charityVC.title = cell.navBarTitle
             navigationController?.pushViewController(charityVC, animated: true)
-//            coordinator?.performTransition(with: .set(.charity))
+//            presenter.pop(coordinator: coordinator)
         }
     }
 }

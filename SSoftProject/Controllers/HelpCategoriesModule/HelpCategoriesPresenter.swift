@@ -11,6 +11,7 @@ import RealmSwift
 protocol Presenter {
     var reload: (() -> Void)? { get set }
     func getData()
+    func pop(coordinator: AppCoordinator?)
 }
 
 class HelpCategoriesPresenter: Presenter {
@@ -33,5 +34,12 @@ class HelpCategoriesPresenter: Presenter {
     private func fetchCategories() {
         let realm = try? Realm()
         self.categories = realm?.getCategories() ?? []
+    }
+
+    func pop(coordinator: AppCoordinator?) {
+        guard let coordinator = coordinator else {
+            return
+        }
+        coordinator.performTransition(with: .set(.charity))
     }
 }
