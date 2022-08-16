@@ -126,7 +126,6 @@ final class HelpCategoriesViewController: UIViewController {
     }
 
     @objc private func backButtonTapped() {
-        print("backButtonTapped")
         exit(0)
     }
 }
@@ -240,7 +239,6 @@ extension HelpCategoriesViewController: UICollectionViewDelegate {
         case .mainSection:
             guard let cell = collectionView.cellForItem(at: indexPath) as? HelpCategoriesCell
             else { return }
-            print(indexPath.item)
             let charityVC = CharityEventsViewController()
             charityVC.title = cell.navBarTitle
             navigationController?.pushViewController(charityVC, animated: true)
