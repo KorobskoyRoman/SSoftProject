@@ -58,7 +58,10 @@
 		9CB541FC288EF03C000C868E /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB541FB288EF03C000C868E /* UIView+.swift */; };
 		9CB7539F28AADB38001697A6 /* CharityEventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB7539E28AADB38001697A6 /* CharityEventsViewController.swift */; };
 		9CB753A128AADBB0001697A6 /* CharityEventsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB753A028AADBB0001697A6 /* CharityEventsConfigurator.swift */; };
-		9CB753A328AADF72001697A6 /* CharityEventsPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB753A228AADF72001697A6 /* CharityEventsPresenterProtocol.swift */; };
+		9CB753A328AADF72001697A6 /* CharityEventsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB753A228AADF72001697A6 /* CharityEventsPresenter.swift */; };
+		9CB753A528AC091A001697A6 /* CharityEventsProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB753A428AC091A001697A6 /* CharityEventsProtocols.swift */; };
+		9CB753A828AC1F3D001697A6 /* CharityEventsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB753A728AC1F3D001697A6 /* CharityEventsInteractor.swift */; };
+		9CB753AA28AC2564001697A6 /* CharityEventsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB753A928AC2564001697A6 /* CharityEventsRouter.swift */; };
 		9CBD1895289831DB005E4167 /* EventsCD+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBD1893289831DB005E4167 /* EventsCD+CoreDataClass.swift */; };
 		9CBD1896289831DB005E4167 /* EventsCD+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBD1894289831DB005E4167 /* EventsCD+CoreDataProperties.swift */; };
 		9CBD189928984D95005E4167 /* CategoriesCD+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBD189728984D95005E4167 /* CategoriesCD+CoreDataClass.swift */; };
@@ -67,7 +70,7 @@
 		9CDA121328A2E3FD00A6A609 /* ConfiguratorProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CDA121228A2E3FD00A6A609 /* ConfiguratorProtocols.swift */; };
 		9CDA121528A2E46400A6A609 /* HelpCategoriesConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CDA121428A2E46400A6A609 /* HelpCategoriesConfigurator.swift */; };
 		9CDA121728A2F55500A6A609 /* DetailEventsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CDA121628A2F55500A6A609 /* DetailEventsConfigurator.swift */; };
-		9CDA121928A2F5CF00A6A609 /* CharityEventsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CDA121828A2F5CF00A6A609 /* CharityEventsConfigurator.swift */; };
+		9CDA121928A2F5CF00A6A609 /* CharityEventConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CDA121828A2F5CF00A6A609 /* CharityEventConfigurator.swift */; };
 		9CDA121B28A44C7E00A6A609 /* StoryboardedProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CDA121A28A44C7E00A6A609 /* StoryboardedProtocol.swift */; };
 		9CFB0BB02891A5840094CFFD /* RealmEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFB0BAF2891A5840094CFFD /* RealmEvent.swift */; };
 		9CFB0BB22891A5900094CFFD /* RealmCategories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFB0BB12891A5900094CFFD /* RealmCategories.swift */; };
@@ -130,7 +133,10 @@
 		9CB541FB288EF03C000C868E /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
 		9CB7539E28AADB38001697A6 /* CharityEventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharityEventsViewController.swift; sourceTree = "<group>"; };
 		9CB753A028AADBB0001697A6 /* CharityEventsConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharityEventsConfigurator.swift; sourceTree = "<group>"; };
-		9CB753A228AADF72001697A6 /* CharityEventsPresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharityEventsPresenterProtocol.swift; sourceTree = "<group>"; };
+		9CB753A228AADF72001697A6 /* CharityEventsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharityEventsPresenter.swift; sourceTree = "<group>"; };
+		9CB753A428AC091A001697A6 /* CharityEventsProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharityEventsProtocols.swift; sourceTree = "<group>"; };
+		9CB753A728AC1F3D001697A6 /* CharityEventsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharityEventsInteractor.swift; sourceTree = "<group>"; };
+		9CB753A928AC2564001697A6 /* CharityEventsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharityEventsRouter.swift; sourceTree = "<group>"; };
 		9CBD1893289831DB005E4167 /* EventsCD+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EventsCD+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 		9CBD1894289831DB005E4167 /* EventsCD+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EventsCD+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		9CBD189728984D95005E4167 /* CategoriesCD+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CategoriesCD+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
@@ -139,7 +145,7 @@
 		9CDA121228A2E3FD00A6A609 /* ConfiguratorProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfiguratorProtocols.swift; sourceTree = "<group>"; };
 		9CDA121428A2E46400A6A609 /* HelpCategoriesConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpCategoriesConfigurator.swift; sourceTree = "<group>"; };
 		9CDA121628A2F55500A6A609 /* DetailEventsConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailEventsConfigurator.swift; sourceTree = "<group>"; };
-		9CDA121828A2F5CF00A6A609 /* CharityEventsConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharityEventsConfigurator.swift; sourceTree = "<group>"; };
+		9CDA121828A2F5CF00A6A609 /* CharityEventConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharityEventConfigurator.swift; sourceTree = "<group>"; };
 		9CDA121A28A44C7E00A6A609 /* StoryboardedProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardedProtocol.swift; sourceTree = "<group>"; };
 		9CFB0BAF2891A5840094CFFD /* RealmEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmEvent.swift; sourceTree = "<group>"; };
 		9CFB0BB12891A5900094CFFD /* RealmCategories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmCategories.swift; sourceTree = "<group>"; };
@@ -205,6 +211,7 @@
 		9C2B2FC728A6FE4F0074DE7C /* Old */ = {
 			isa = PBXGroup;
 			children = (
+				9C84CDA92885CB5300B643F5 /* CharityEventsViewController1.swift */,
 				9CA69FE3287DEB5F0073817D /* HelpCategoriesViewController1.swift */,
 			);
 			path = Old;
@@ -275,7 +282,7 @@
 				9C54263328A19ABC009F1FE8 /* SplashScreenViewControllerConfigurator.swift */,
 				9C54263128A1938E009F1FE8 /* TabBarConfigurator.swift */,
 				9CDA121428A2E46400A6A609 /* HelpCategoriesConfigurator.swift */,
-				9CDA121828A2F5CF00A6A609 /* CharityEventsConfigurator.swift */,
+				9CDA121828A2F5CF00A6A609 /* CharityEventConfigurator.swift */,
 				9CDA121628A2F55500A6A609 /* DetailEventsConfigurator.swift */,
 			);
 			path = Configurators;
@@ -381,8 +388,7 @@
 				9CA69FF6287F12D90073817D /* MainTabBarController.swift */,
 				9C773A7827CD4B7C00B6B589 /* SplashScreenViewController.swift */,
 				9C2B2FC128A6F4020074DE7C /* HelpCategoriesModule */,
-				9CB7539D28AADB27001697A6 /* CharityEvents */,
-				9C84CDA92885CB5300B643F5 /* CharityEventsViewController1.swift */,
+				9CB7539D28AADB27001697A6 /* CharityEventsModule */,
 				9C84CDC628871C5C00B643F5 /* DetailEventViewController.swift */,
 			);
 			path = Controllers;
@@ -399,7 +405,6 @@
 		9CA69FE5287DECB50073817D /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				9C84CDAF2885EA9D00B643F5 /* CharityCell.swift */,
 				9C84CDC8288723D800B643F5 /* DetailEventCell.swift */,
 				9C84CDD62887555000B643F5 /* TableFooterView.swift */,
 				9C48498628885BA900B95FA0 /* HelpVariantsView.swift */,
@@ -429,14 +434,26 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
-		9CB7539D28AADB27001697A6 /* CharityEvents */ = {
+		9CB7539D28AADB27001697A6 /* CharityEventsModule */ = {
 			isa = PBXGroup;
 			children = (
-				9CB7539E28AADB38001697A6 /* CharityEventsViewController.swift */,
+				9CB753A628AC1032001697A6 /* View */,
 				9CB753A028AADBB0001697A6 /* CharityEventsConfigurator.swift */,
-				9CB753A228AADF72001697A6 /* CharityEventsPresenterProtocol.swift */,
+				9CB7539E28AADB38001697A6 /* CharityEventsViewController.swift */,
+				9CB753A228AADF72001697A6 /* CharityEventsPresenter.swift */,
+				9CB753A728AC1F3D001697A6 /* CharityEventsInteractor.swift */,
+				9CB753A928AC2564001697A6 /* CharityEventsRouter.swift */,
+				9CB753A428AC091A001697A6 /* CharityEventsProtocols.swift */,
 			);
-			path = CharityEvents;
+			path = CharityEventsModule;
+			sourceTree = "<group>";
+		};
+		9CB753A628AC1032001697A6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				9C84CDAF2885EA9D00B643F5 /* CharityCell.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		9CDA121C28A44DB200A6A609 /* Protocols */ = {
@@ -612,10 +629,12 @@
 				9C84CDB02885EA9D00B643F5 /* CharityCell.swift in Sources */,
 				9C54261C289EADDE009F1FE8 /* URLParameterEncoder.swift in Sources */,
 				9C542622289EB17C009F1FE8 /* Router.swift in Sources */,
+				9CB753AA28AC2564001697A6 /* CharityEventsRouter.swift in Sources */,
 				9CDA121328A2E3FD00A6A609 /* ConfiguratorProtocols.swift in Sources */,
 				9CA69FEE287DF6140073817D /* SectionHeader.swift in Sources */,
 				9CA69FE8287DF2B00073817D /* Categories.swift in Sources */,
 				9C542624289EB6EE009F1FE8 /* CategoriesEndPoint.swift in Sources */,
+				9CB753A528AC091A001697A6 /* CharityEventsProtocols.swift in Sources */,
 				9CA69FDC287DDBC90073817D /* UIColor+.swift in Sources */,
 				9CA69FE2287DEA050073817D /* UIFont+.swift in Sources */,
 				9C542614289EA9EA009F1FE8 /* EndPointType.swift in Sources */,
@@ -636,6 +655,7 @@
 				9C48498728885BA900B95FA0 /* HelpVariantsView.swift in Sources */,
 				9C1A42002896D12A002B7C80 /* CoreDataService.swift in Sources */,
 				9C84CDD72887555000B643F5 /* TableFooterView.swift in Sources */,
+				9CB753A828AC1F3D001697A6 /* CharityEventsInteractor.swift in Sources */,
 				9CBD189928984D95005E4167 /* CategoriesCD+CoreDataClass.swift in Sources */,
 				9C84CDD5288735D100B643F5 /* UIStackView+.swift in Sources */,
 				9CA69FEA287DF3750073817D /* Section.swift in Sources */,
@@ -644,8 +664,8 @@
 				9CDA121528A2E46400A6A609 /* HelpCategoriesConfigurator.swift in Sources */,
 				9C542616289EAA77009F1FE8 /* HTTPMethod.swift in Sources */,
 				9C773A7727CD4B7C00B6B589 /* SceneDelegate.swift in Sources */,
-				9CDA121928A2F5CF00A6A609 /* CharityEventsConfigurator.swift in Sources */,
-				9CB753A328AADF72001697A6 /* CharityEventsPresenterProtocol.swift in Sources */,
+				9CDA121928A2F5CF00A6A609 /* CharityEventConfigurator.swift in Sources */,
+				9CB753A328AADF72001697A6 /* CharityEventsPresenter.swift in Sources */,
 				9C54262F28A18156009F1FE8 /* AppCoordinator.swift in Sources */,
 				9C84CDB62887052800B643F5 /* Constants.swift in Sources */,
 				9CFB0BB22891A5900094CFFD /* RealmCategories.swift in Sources */,
