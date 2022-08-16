@@ -12,7 +12,7 @@ class CharityEventsConfigurator: ConfiguratorProtocol {
                    networkManager: NetworkManager? = nil,
                    coordinator: AppCoordinator) -> UIViewController {
         let viewController = CharityEventsViewController()
-        viewController.coordinator = coordinator
+        viewController.configurator.configure(with: viewController)
         return viewController
     }
 }
