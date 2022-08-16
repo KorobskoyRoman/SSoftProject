@@ -104,21 +104,12 @@ final class CharityEventsViewController: UIViewController {
 }
 
 extension CharityEventsViewController: CharityEventsViewProtocol {
-    @objc func segmentedControlChangeState(_ sender: UISegmentedControl) {
-        getSegmentData(sender.selectedSegmentIndex,
-                       catName ?? "")
-    }
-
-    func getSegmentData(_ index: Int,
-                        _ catName: String) {
-        presenter?.getSegmentData(index, catName)
-    }
-
     func setupView() {
         containerView.backgroundColor = .white
         collView.backgroundColor = .mainBackground()
         view.backgroundColor = .mainBackground()
         navigationItem.leftBarButtonItem = backButton
+        collectionView.delegate = self
         setConstraints()
         setupCollectionView()
         reload()
@@ -133,10 +124,6 @@ extension CharityEventsViewController: CharityEventsViewProtocol {
         collectionView.register(SectionHeader.self,
                                 forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
                                 withReuseIdentifier: SectionHeader.reuseId)
-    }
-
-    @objc func backButtonPressed() {
-        presenter?.backButtonPressed()
     }
 
     func createCompositialLayout() -> UICollectionViewLayout {
@@ -218,6 +205,35 @@ extension CharityEventsViewController: CharityEventsViewProtocol {
         presenter?.reload = { [weak self] in
             guard let self = self else { return }
             self.applySnapshot(animatingDifferences: true)
+        }
+    }
+
+    func getSegmentData(_ index: Int,
+                        _ catName: String) {
+        presenter?.getSegmentData(index, catName)
+    }
+
+    @objc func segmentedControlChangeState(_ sender: UISegmentedControl) {
+        getSegmentData(sender.selectedSegmentIndex,
+                       catName ?? "")
+    }
+
+    @objc func backButtonPressed() {
+        presenter?.backButtonPressed()
+    }
+}
+
+extension CharityEventsViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let section = Section(rawValue: indexPath.section) else { fatalError("No section") }
+        switch section {
+        case .mainSection:
+//            guard let cell = collectionView.cellForItem(at: indexPath) as? HelpCategoriesCell
+//            else { return }
+//            let charityVC = CharityEventsViewController()
+//            charityVC.title = cell.navBarTitle
+            presenter?.push(data: presenter?.filteredEvents ?? [],
+                            row: indexPath.row)
         }
     }
 }

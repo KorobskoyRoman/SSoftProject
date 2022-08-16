@@ -18,6 +18,10 @@ final class CharityEventsPresenter: CharityEventsPresenterProtocol {
         router?.backButtonPressed()
     }
 
+    func push(data: [RealmEvent], row: Int) {
+        router?.push(data: data, row: row)
+    }
+
     func getSegmentData(_ index: Int,
                         _ catName: String) {
         switch index {

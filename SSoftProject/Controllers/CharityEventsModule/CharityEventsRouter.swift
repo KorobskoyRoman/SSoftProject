@@ -15,10 +15,13 @@ final class CharityEventsRouter: CharityEventsRouterProtocol {
     }
 
     func backButtonPressed() {
-        print(#function)
+        viewController?.navigationController?.popViewController(animated: true)
     }
 
-    func push() {
-        print(#function)
+    func push(data: [RealmEvent], row: Int) {
+        let detailsVC = DetailEventViewController()
+        detailsVC.eventInfo = data
+            .filter { $0.id == row }
+        viewController?.navigationController?.pushViewController(detailsVC, animated: true)
     }
 }

@@ -29,6 +29,7 @@ protocol CharityEventsPresenterProtocol: AnyObject {
     var events: [RealmEvent] { get set }
     var filteredEvents: [RealmEvent] { get set }
     func backButtonPressed()
+    func push(data: [RealmEvent], row: Int)
     func getSegmentData(_ index: Int, _ catName: String)
     func fetchEvents(for name: String)
 }
@@ -40,5 +41,5 @@ protocol CharityEventsInteractorProtocol: AnyObject {
 
 protocol CharityEventsRouterProtocol: AnyObject {
     func backButtonPressed()
-    func push()
+    func push(data: [RealmEvent], row: Int)
 }
