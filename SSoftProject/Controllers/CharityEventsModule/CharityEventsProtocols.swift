@@ -37,6 +37,8 @@ protocol CharityEventsPresenterProtocol: AnyObject {
 protocol CharityEventsInteractorProtocol: AnyObject {
     var events: [RealmEvent] { get set }
     func fetchEvents()
+    func getSegmentData(_ index: Int,
+                        _ catName: String)
 }
 
 protocol CharityEventsRouterProtocol: AnyObject {

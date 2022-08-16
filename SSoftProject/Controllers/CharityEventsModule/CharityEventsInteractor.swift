@@ -17,7 +17,25 @@ final class CharityEventsInteractor: CharityEventsInteractorProtocol {
     }
 
     func fetchEvents() {
-        let events = realm?.getEvents() ?? []
+        events = realm?.getEvents() ?? []
         presenter?.events = events
+    }
+
+    func getSegmentData(_ index: Int,
+                        _ catName: String) {
+        switch index {
+        case 0:
+            presenter?.filteredEvents = self.events
+                .filter { $0.category == catName }
+                .filter { !$0.isDone }
+        case 1:
+            presenter?.filteredEvents = events
+                .filter { $0.category == catName }
+                .filter { $0.isDone }
+        default:
+            presenter?.filteredEvents = self.events
+                .filter { $0.category == catName }
+                .filter { !$0.isDone }
+        }
     }
 }

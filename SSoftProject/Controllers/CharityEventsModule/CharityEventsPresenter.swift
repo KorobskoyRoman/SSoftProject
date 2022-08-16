@@ -24,26 +24,15 @@ final class CharityEventsPresenter: CharityEventsPresenterProtocol {
 
     func getSegmentData(_ index: Int,
                         _ catName: String) {
-        switch index {
-        case 0:
-            self.filteredEvents = self.events
-                .filter { $0.category == catName }
-                .filter { !$0.isDone }
-        case 1:
-            filteredEvents = events
-                .filter { $0.category == catName }
-                .filter { $0.isDone }
-        default:
-            self.filteredEvents = self.events
-                .filter { $0.category == catName }
-                .filter { !$0.isDone }
-        }
+        interactor?.getSegmentData(index, catName)
         reload?()
     }
 
     func fetchEvents(for name: String) {
         interactor?.fetchEvents()
-        filteredEvents = events.filter { $0.category == name }.filter { !$0.isDone }
+        filteredEvents = events
+            .filter { $0.category == name }
+            .filter { !$0.isDone }
         reload?()
     }
 }
