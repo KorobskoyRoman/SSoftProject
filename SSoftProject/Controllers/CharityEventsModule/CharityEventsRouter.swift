@@ -5,7 +5,7 @@
 //  Created by Roman Korobskoy on 16.08.2022.
 //
 
-import Foundation
+import UIKit
 
 final class CharityEventsRouter: CharityEventsRouterProtocol {
     weak var viewController: CharityEventsViewController?
@@ -15,13 +15,14 @@ final class CharityEventsRouter: CharityEventsRouterProtocol {
     }
 
     func backButtonPressed() {
-        viewController?.navigationController?.popViewController(animated: true)
+        let coordinator = AppCoordinator()
+        coordinator.performTransition(with: .pop, nav: viewController?.navigationController)
     }
 
-    func push(data: [RealmEvent], row: Int) {
-        let detailsVC = DetailEventViewController()
-        detailsVC.eventInfo = data
-            .filter { $0.id == row }
-        viewController?.navigationController?.pushViewController(detailsVC, animated: true)
+    func push(data: [RealmEvent], title: String) {
+        let coordinator = AppCoordinator()
+        coordinator.performTransition(with: .perform(.detailEvent),
+                                      nav: viewController?.navigationController,
+                                      title: title)
     }
 }

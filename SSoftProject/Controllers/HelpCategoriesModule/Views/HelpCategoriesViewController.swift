@@ -239,10 +239,9 @@ extension HelpCategoriesViewController: UICollectionViewDelegate {
         case .mainSection:
             guard let cell = collectionView.cellForItem(at: indexPath) as? HelpCategoriesCell
             else { return }
-            let charityVC = CharityEventsViewController()
-            charityVC.title = cell.navBarTitle
-            navigationController?.pushViewController(charityVC, animated: true)
-//            presenter.pop(coordinator: coordinator)
+            presenter.push(coordinator: coordinator,
+                           nav: navigationController ?? UINavigationController(),
+                           title: cell.navBarTitle)
         }
     }
 }

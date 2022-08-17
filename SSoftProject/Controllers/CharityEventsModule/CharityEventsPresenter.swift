@@ -5,7 +5,7 @@
 //  Created by Roman Korobskoy on 15.08.2022.
 //
 
-import Foundation
+import UIKit
 
 final class CharityEventsPresenter: CharityEventsPresenterProtocol {
     var interactor: CharityEventsInteractorProtocol?
@@ -18,8 +18,10 @@ final class CharityEventsPresenter: CharityEventsPresenterProtocol {
         router?.backButtonPressed()
     }
 
-    func push(data: [RealmEvent], row: Int) {
-        router?.push(data: data, row: row)
+    func push(row: Int, title: String) {
+        let event = filteredEvents
+            .filter { $0.id == row }
+        router?.push(data: event, title: title)
     }
 
     func getSegmentData(_ index: Int,

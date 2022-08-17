@@ -228,12 +228,9 @@ extension CharityEventsViewController: UICollectionViewDelegate {
         guard let section = Section(rawValue: indexPath.section) else { fatalError("No section") }
         switch section {
         case .mainSection:
-//            guard let cell = collectionView.cellForItem(at: indexPath) as? HelpCategoriesCell
-//            else { return }
-//            let charityVC = CharityEventsViewController()
-//            charityVC.title = cell.navBarTitle
-            presenter?.push(data: presenter?.filteredEvents ?? [],
-                            row: indexPath.row)
+            guard let cell = collectionView.cellForItem(at: indexPath) as? CharityCell
+            else { return }
+            presenter?.push(row: indexPath.item, title: cell.title.text ?? "")
         }
     }
 }
