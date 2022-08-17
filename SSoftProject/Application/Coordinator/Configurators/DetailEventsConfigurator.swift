@@ -7,12 +7,12 @@
 
 import UIKit
 
-class DetailEventsConfigurator: ConfiguratorProtocol {
+class DetailEventsConfigurator {
     func configure(jsonService: JSONDecoderService? = nil,
                    networkManager: NetworkManager? = nil,
-                   coordinator: AppCoordinator) -> UIViewController {
-        let viewController = DetailEventViewController()
-        viewController.coordinator = coordinator
+                   coordinator: AppCoordinator?) -> UIViewController {
+        let viewController = DetailEventViewController(coordinator: coordinator)
+//        viewController.coordinator = coordinator
         return viewController
     }
 }

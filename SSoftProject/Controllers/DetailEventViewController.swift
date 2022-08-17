@@ -33,6 +33,7 @@ final class DetailEventViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        getData()
         setupView()
         setupTableView()
     }
@@ -45,6 +46,21 @@ final class DetailEventViewController: UIViewController {
             self.tabBarController?.tabBar.alpha = self.tabBarController?.tabBar.alpha == 1 ? 0 : 1
         },
                        completion: nil)
+    }
+
+    init(coordinator: AppCoordinator?) {
+        self.coordinator = coordinator
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    private func getData() {
+        let realm = try? Realm()
+        eventInfo = realm?.getEvents()
+            .filter { $0.title == navigationItem.title ?? "" } ?? []
     }
 
     private func setupView() {
@@ -81,7 +97,8 @@ final class DetailEventViewController: UIViewController {
     }
 
     @objc private func backButtonPresed() {
-        navigationController?.popViewController(animated: true)
+//        coordinator?.performTransition(with: .pop, nav: self.navigationController) // ?
+        self.navigationController?.popViewController(animated: true)
     }
 }
 

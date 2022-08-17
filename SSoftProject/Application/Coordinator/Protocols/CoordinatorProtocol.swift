@@ -13,12 +13,15 @@ protocol Coordinator {
     var networkManager: NetworkManager { get set }
 
     func start(window: UIWindow?)
-    func performTransition(with type: Transition)
+    func performTransition(with type: Transition,
+                           nav: UINavigationController?,
+                           title: String?)
 }
 
 enum Transition {
     case set(ViewControllers)
     case pop
+    case perform(ViewControllers)
 }
 
 enum ViewControllers {
@@ -40,7 +43,7 @@ enum ViewControllers {
         case .charity:
             return CharityEventsViewController()
         case .detailEvent:
-            return DetailEventViewController()
+            return DetailEventViewController(coordinator: nil)
         }
     }
 }
