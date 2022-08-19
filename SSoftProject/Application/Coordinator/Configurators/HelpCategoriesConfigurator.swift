@@ -13,7 +13,7 @@ class HelpCategoriesConfigurator: ConfiguratorProtocol {
                    coordinator: AppCoordinator) -> UIViewController {
         let presenter = HelpCategoriesPresenter()
         let viewController = HelpCategoriesViewController(presenter: presenter)
-        viewController.coordinator = coordinator
+        presenter.coordinator = coordinator
         return viewController
     }
 }

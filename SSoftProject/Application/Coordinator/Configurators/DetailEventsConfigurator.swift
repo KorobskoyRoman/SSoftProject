@@ -12,7 +12,6 @@ class DetailEventsConfigurator {
                    networkManager: NetworkManager? = nil,
                    coordinator: AppCoordinator?) -> UIViewController {
         let viewController = DetailEventViewController(coordinator: coordinator)
-//        viewController.coordinator = coordinator
         return viewController
     }
 }
