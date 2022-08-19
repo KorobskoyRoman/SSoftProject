@@ -10,13 +10,14 @@ import RealmSwift
 
 protocol Presenter {
     var reload: (() -> Void)? { get set }
+
     func getData()
-    func push(coordinator: AppCoordinator?,
-              nav: UINavigationController,
+    func push(nav: UINavigationController,
               title: String?)
 }
 
 class HelpCategoriesPresenter: Presenter {
+    weak var coordinator: AppCoordinator?
     var categories = [RealmCategories]()
     var reload: (() -> Void)?
     var categoriesCount: Int {
@@ -30,7 +31,7 @@ class HelpCategoriesPresenter: Presenter {
     }
 
     func category(at index: Int) -> RealmCategories {
-        categories[index]
+        categories[safe: index] ?? RealmCategories()
     }
 
     private func fetchCategories() {
@@ -38,11 +39,9 @@ class HelpCategoriesPresenter: Presenter {
         self.categories = realm?.getCategories() ?? []
     }
 
-    func push(coordinator: AppCoordinator?,
-              nav: UINavigationController,
+    func push(nav: UINavigationController,
               title: String?) {
-        guard let coordinator = coordinator else { return }
-        coordinator.rootViewController = nav
-        coordinator.performTransition(with: .perform(.charity), nav: nav, title: title)
+        coordinator?.rootViewController = nav
+        coordinator?.performTransition(with: .perform(.charity), nav: nav, title: title)
     }
 }

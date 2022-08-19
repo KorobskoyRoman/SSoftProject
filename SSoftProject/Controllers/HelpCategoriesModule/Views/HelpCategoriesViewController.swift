@@ -11,7 +11,6 @@ final class HelpCategoriesViewController: UIViewController {
     typealias DataSource = UICollectionViewDiffableDataSource<Section, RealmCategories>
     typealias Snapshot = NSDiffableDataSourceSnapshot<Section, RealmCategories>
 
-    weak var coordinator: AppCoordinator?
     private lazy var collectionView = UICollectionView(frame: view.bounds,
                                                        collectionViewLayout: createCompositialLayout())
     private lazy var dataSource = createDiffableDataSource()
@@ -239,8 +238,7 @@ extension HelpCategoriesViewController: UICollectionViewDelegate {
         case .mainSection:
             guard let cell = collectionView.cellForItem(at: indexPath) as? HelpCategoriesCell
             else { return }
-            presenter.push(coordinator: coordinator,
-                           nav: navigationController ?? UINavigationController(),
+            presenter.push(nav: navigationController ?? UINavigationController(),
                            title: cell.navBarTitle)
         }
     }
