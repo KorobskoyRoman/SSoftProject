@@ -8,6 +8,7 @@
 import UIKit
 
 final class CharityEventsPresenter: CharityEventsPresenterProtocol {
+    weak var view: CharityEventsViewProtocol?
     var interactor: CharityEventsInteractorProtocol?
     var router: CharityEventsRouterProtocol?
     var reload: (() -> Void)?
@@ -31,10 +32,16 @@ final class CharityEventsPresenter: CharityEventsPresenterProtocol {
     }
 
     func fetchEvents(for name: String) {
+        view?.showLoading()
         interactor?.fetchEvents()
-        filteredEvents = events
+        filteredEvents = self.events
             .filter { $0.category == name }
             .filter { !$0.isDone }
+        view?.hideLoading()
         reload?()
+    }
+
+    func didReceiveEvents(_ events: [RealmEvent]) {
+        self.events = events
     }
 }

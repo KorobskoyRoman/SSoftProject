@@ -17,8 +17,11 @@ final class CharityEventsInteractor: CharityEventsInteractorProtocol {
     }
 
     func fetchEvents() {
-        events = realm?.getEvents() ?? []
-        presenter?.events = events
+//        backgroundQueue.asyncAfter(deadline: .now() + 2) { [weak self] in
+//            guard let self = self else { return }
+            self.events = self.realm?.getEvents() ?? []
+//        }
+        presenter?.didReceiveEvents(events)
     }
 
     func getSegmentData(_ index: Int,

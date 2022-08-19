@@ -8,7 +8,7 @@
 import UIKit
 
 protocol CharityEventsConfiguratorProtocol: AnyObject {
-    func configure(with viewController: CharityEventsViewController)
+    func configure(with viewController: CharityEventsViewController, coordinator: AppCoordinator)
 }
 
 protocol CharityEventsViewProtocol: AnyObject {
@@ -22,6 +22,8 @@ protocol CharityEventsViewProtocol: AnyObject {
     func applySnapshot(animatingDifferences: Bool)
     func fetchEvents(for name: String)
     func getSegmentData(_ index: Int, _ catName: String)
+    func showLoading()
+    func hideLoading()
 }
 
 protocol CharityEventsPresenterProtocol: AnyObject {
@@ -32,6 +34,7 @@ protocol CharityEventsPresenterProtocol: AnyObject {
     func push(row: Int, title: String)
     func getSegmentData(_ index: Int, _ catName: String)
     func fetchEvents(for name: String)
+    func didReceiveEvents(_ events: [RealmEvent])
 }
 
 protocol CharityEventsInteractorProtocol: AnyObject {
