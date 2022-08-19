@@ -2,23 +2,18 @@
 //  HelpCategoriesViewController.swift
 //  SSoftProject
 //
-//  Created by Roman Korobskoy on 12.07.2022.
+//  Created by Roman Korobskoy on 12.08.2022.
 //
 
 import UIKit
-import RealmSwift
 
 final class HelpCategoriesViewController: UIViewController {
-
     typealias DataSource = UICollectionViewDiffableDataSource<Section, RealmCategories>
     typealias Snapshot = NSDiffableDataSourceSnapshot<Section, RealmCategories>
 
     private lazy var collectionView = UICollectionView(frame: view.bounds,
                                                        collectionViewLayout: createCompositialLayout())
     private lazy var dataSource = createDiffableDataSource()
-    private let decodeService = JSONDecoderService()
-    private var categories = [RealmCategories]()
-
     private lazy var backButton: UIBarButtonItem = {
         return UIBarButtonItem(image: ImageConstants.backImage,
                                style: .plain,
@@ -39,11 +34,30 @@ final class HelpCategoriesViewController: UIViewController {
             .isActive = true
         return label
     }()
-    private let realm = try? Realm()
+    private var presenter: HelpCategoriesPresenter
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
+    }
+
+    init(presenter: HelpCategoriesPresenter) {
+        self.presenter = presenter
+        super.init(nibName: nil, bundle: nil)
+        reload()
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    private func reload() {
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            self.presenter.reload = {
+                self.applySnapshot()
+            }
+        }
     }
 
     private func setupCollectionView() {
@@ -95,30 +109,22 @@ final class HelpCategoriesViewController: UIViewController {
     }
 
     private func getData() {
-        backgroundQueue.async { [weak self] in
+        DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
+            self.view.showLoading(style: .medium, color: .grey)
+        }
 
-            DispatchQueue.main.async {
-                self.view.showLoading(style: .medium, color: .grey)
-                self.fetchCategories()
-            }
-            sleep(2)
-
-            DispatchQueue.main.async {
-                UIView.animate(withDuration: 0.3, delay: 0, options: .transitionCrossDissolve, animations: {
-                    self.applySnapshot()
-                }, completion: nil)
-                self.view.stopLoading()
-            }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
+            guard let self = self else { return }
+            UIView.animate(withDuration: 0.3, delay: 0, options: .transitionCrossDissolve, animations: {
+                self.presenter.getData()
+                self.reload()
+            }, completion: nil)
+            self.view.stopLoading()
         }
     }
 
-    private func fetchCategories() {
-        self.categories = self.realm?.getCategories() ?? []
-    }
-
     @objc private func backButtonTapped() {
-        print("backButtonTapped")
         exit(0)
     }
 }
@@ -220,7 +226,7 @@ extension HelpCategoriesViewController {
         var snapshot = Snapshot()
 
         snapshot.appendSections([.mainSection])
-        snapshot.appendItems(categories, toSection: .mainSection)
+        snapshot.appendItems(presenter.categories, toSection: .mainSection)
         dataSource.apply(snapshot, animatingDifferences: animatingDifferences)
     }
 }
@@ -232,12 +238,13 @@ extension HelpCategoriesViewController: UICollectionViewDelegate {
         case .mainSection:
             guard let cell = collectionView.cellForItem(at: indexPath) as? HelpCategoriesCell
             else { return }
-            let charityVC = CharityEventsViewController()
-            charityVC.title = cell.navBarTitle
-            navigationController?.pushViewController(charityVC, animated: true)
+            presenter.push(nav: navigationController ?? UINavigationController(),
+                           title: cell.navBarTitle)
         }
     }
 }
+
+extension HelpCategoriesViewController: Storyboarded {}
 
 private enum HelpConstants {
     static let title = "Помочь"

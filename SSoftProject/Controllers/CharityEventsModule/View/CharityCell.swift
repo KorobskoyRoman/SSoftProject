@@ -15,7 +15,7 @@ final class CharityCell: UICollectionViewCell {
         imageView.contentMode = .scaleAspectFill
         return imageView
     }()
-    private lazy var title: UILabel = {
+    lazy var title: UILabel = {
         let title = UILabel()
         title.textColor = .blueGrey
         title.font = .textStyle

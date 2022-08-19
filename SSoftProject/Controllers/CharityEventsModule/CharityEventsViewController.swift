@@ -2,21 +2,22 @@
 //  CharityEventsViewController.swift
 //  SSoftProject
 //
-//  Created by Roman Korobskoy on 18.07.2022.
+//  Created by Roman Korobskoy on 15.08.2022.
 //
 
 import UIKit
-import RealmSwift
 
 final class CharityEventsViewController: UIViewController {
-
     typealias DataSource = UICollectionViewDiffableDataSource<Section, RealmEvent>
     typealias Snapshot = NSDiffableDataSourceSnapshot<Section, RealmEvent>
 
-    private var events = [RealmEvent]()
-    private var filteredEvents = [RealmEvent]()
-    private lazy var catName = self.navigationItem.title
-
+    var presenter: CharityEventsPresenterProtocol?
+    let configurator: CharityEventsConfiguratorProtocol = CharityEventsVCConfigurator()
+    private var containerView = UIView()
+    private var collView = UIView()
+    private lazy var collectionView = UICollectionView(frame: collView.bounds,
+                                                       collectionViewLayout: createCompositialLayout())
+    private lazy var dataSource = createDiffableDataSource()
     private lazy var segmentedControl: UISegmentedControl = {
         let segmentedControl = UISegmentedControl()
         segmentedControl.selectedSegmentTintColor = .leaf
@@ -37,29 +38,17 @@ final class CharityEventsViewController: UIViewController {
         segmentedControl.addTarget(self, action: #selector(segmentedControlChangeState(_:)), for: .valueChanged)
         return segmentedControl
     }()
-
     private lazy var backButton: UIBarButtonItem = {
         return UIBarButtonItem(image: ImageConstants.backImage,
                                style: .plain,
                                target: self,
-                               action: #selector(backButtonPresed))
+                               action: #selector(backButtonPressed))
     }()
-
-    private let decodeService = JSONDecoderService()
-    private var containerView = UIView()
-    private var collView = UIView()
-    private lazy var collectionView = UICollectionView(frame: collView.bounds,
-                                                       collectionViewLayout: createCompositialLayout())
-    private lazy var dataSource = createDiffableDataSource()
-    private let realm = try? Realm()
+    private lazy var catName = self.navigationItem.title
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        collectionView.backgroundColor = .mainBackground()
-        collectionView.delegate = self
-        getData()
         setupView()
-        applySnapshot()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -71,44 +60,6 @@ final class CharityEventsViewController: UIViewController {
                            animations: {
                 self.tabBarController?.tabBar.alpha = 1
             }, completion: nil)
-        }
-    }
-
-    private func setupView() {
-        containerView.backgroundColor = .white
-        collView.backgroundColor = .mainBackground()
-        view.backgroundColor = .mainBackground()
-        navigationItem.leftBarButtonItem = backButton
-        setConstraints()
-        setupCollectionView()
-    }
-
-    private func setupCollectionView() {
-        collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        collectionView.heightAnchor.constraint(equalTo: collView.heightAnchor).isActive = true
-        collectionView.widthAnchor.constraint(equalTo: collView.widthAnchor).isActive = true
-        collectionView.register(CharityCell.self, forCellWithReuseIdentifier: CharityCell.reuseId)
-        collectionView.register(SectionHeader.self,
-                                forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
-                                withReuseIdentifier: SectionHeader.reuseId)
-    }
-
-    private func getData() {
-        backgroundQueue.async { [weak self] in
-            guard let self = self else { return }
-
-            DispatchQueue.main.async {
-                self.view.showLoading(style: .medium, color: .grey)
-                self.fetchEvents()
-            }
-            sleep(2)
-
-            DispatchQueue.main.async {
-                UIView.animate(withDuration: 0.3, delay: 0, options: .transitionCrossDissolve, animations: {
-                    self.applySnapshot()
-                }, completion: nil)
-                self.view.stopLoading()
-            }
         }
     }
 
@@ -149,45 +100,32 @@ final class CharityEventsViewController: UIViewController {
             collView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -tabBarHeight)
         ])
     }
-
-    @objc private func backButtonPresed() {
-        navigationController?.popViewController(animated: true)
-    }
-
-    private func getSegmentData(_ index: Int) {
-        backgroundQueue.sync {
-            switch index {
-            case 0:
-                self.filteredEvents = self.events
-                    .filter { $0.category == self.catName }
-                    .filter { !$0.isDone }
-            case 1:
-                self.filteredEvents = self.events
-                    .filter { $0.category == self.catName }
-                    .filter { $0.isDone }
-            default:
-                self.filteredEvents = self.events
-                    .filter { $0.category == self.catName }
-                    .filter { !$0.isDone }
-            }
-        }
-    }
-
-    private func fetchEvents() {
-        self.events = self.realm?.getEvents() ?? []
-        self.filteredEvents = events
-            .filter { $0.category == self.catName }
-            .filter { !$0.isDone }
-    }
-
-    @objc private func segmentedControlChangeState(_ sender: UISegmentedControl) {
-        getSegmentData(sender.selectedSegmentIndex)
-        self.applySnapshot()
-    }
 }
 
-extension CharityEventsViewController {
-    private func createCompositialLayout() -> UICollectionViewLayout {
+extension CharityEventsViewController: CharityEventsViewProtocol {
+    func setupView() {
+        containerView.backgroundColor = .white
+        collView.backgroundColor = .mainBackground()
+        view.backgroundColor = .mainBackground()
+        navigationItem.leftBarButtonItem = backButton
+        collectionView.delegate = self
+        setConstraints()
+        setupCollectionView()
+        reload()
+        fetchEvents(for: catName ?? "")
+    }
+
+    func setupCollectionView() {
+        collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        collectionView.heightAnchor.constraint(equalTo: collView.heightAnchor).isActive = true
+        collectionView.widthAnchor.constraint(equalTo: collView.widthAnchor).isActive = true
+        collectionView.register(CharityCell.self, forCellWithReuseIdentifier: CharityCell.reuseId)
+        collectionView.register(SectionHeader.self,
+                                forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+                                withReuseIdentifier: SectionHeader.reuseId)
+    }
+
+    func createCompositialLayout() -> UICollectionViewLayout {
         let layout = UICollectionViewCompositionalLayout { sectionIndex, _ in
             guard let section = Section(rawValue: sectionIndex) else {
                 fatalError("Section not found")
@@ -203,7 +141,7 @@ extension CharityEventsViewController {
         return layout
     }
 
-    private func createMainSection() -> NSCollectionLayoutSection {
+    func createMainSection() -> NSCollectionLayoutSection {
         let itemSize = NSCollectionLayoutSize(widthDimension: .absolute(HelpConstants.Constraints.cellWidth),
                                               heightDimension: .absolute(HelpConstants.Constraints.cellHeight))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
@@ -231,10 +169,8 @@ extension CharityEventsViewController {
 
         return section
     }
-}
 
-extension CharityEventsViewController {
-    private func createDiffableDataSource() -> DataSource {
+    func createDiffableDataSource() -> UICollectionViewDiffableDataSource<Section, RealmEvent> {
         let dataSource = DataSource(collectionView: collectionView) { collectionView, indexPath, model in
             guard let section = Section(rawValue: indexPath.section) else {
                 fatalError("No section")
@@ -242,23 +178,55 @@ extension CharityEventsViewController {
             switch section {
             case .mainSection:
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CharityCell.reuseId,
-                                                              for: indexPath) as? CharityCell
+                                                                    for: indexPath) as? CharityCell
                 else { return nil }
                 // configure
                 cell.configure(with: model)
                 return cell
             }
         }
-
         return dataSource
     }
 
-    private func applySnapshot(animatingDifferences: Bool = true) {
+    func applySnapshot(animatingDifferences: Bool) {
         var snapshot = Snapshot()
 
         snapshot.appendSections([.mainSection])
-        snapshot.appendItems(filteredEvents, toSection: .mainSection)
+        snapshot.appendItems(presenter?.filteredEvents ?? [], toSection: .mainSection)
         dataSource.apply(snapshot, animatingDifferences: animatingDifferences)
+    }
+
+    func fetchEvents(for name: String) {
+        self.presenter?.fetchEvents(for: name)
+    }
+
+    private func reload() {
+        presenter?.reload = { [weak self] in
+            guard let self = self else { return }
+            self.applySnapshot(animatingDifferences: true)
+        }
+    }
+
+    func getSegmentData(_ index: Int,
+                        _ catName: String) {
+        presenter?.getSegmentData(index, catName)
+    }
+
+    @objc func segmentedControlChangeState(_ sender: UISegmentedControl) {
+        getSegmentData(sender.selectedSegmentIndex,
+                       catName ?? "")
+    }
+
+    @objc func backButtonPressed() {
+        presenter?.backButtonPressed()
+    }
+
+    func showLoading() {
+        view.showLoading()
+    }
+
+    func hideLoading() {
+        view.stopLoading()
     }
 }
 
@@ -267,10 +235,8 @@ extension CharityEventsViewController: UICollectionViewDelegate {
         guard let section = Section(rawValue: indexPath.section) else { fatalError("No section") }
         switch section {
         case .mainSection:
-            let detailsVC = DetailEventViewController()
-            detailsVC.eventInfo = filteredEvents.filter { $0.id == indexPath.item }
-//            detailsVC.eventInfo = filteredEvents?.where {$0.id == indexPath.item }
-            navigationController?.pushViewController(detailsVC, animated: true)
+            guard let cell = collectionView.cellForItem(at: indexPath) as? CharityCell else { return }
+            presenter?.push(row: indexPath.item, title: cell.title.text ?? "")
         }
     }
 }

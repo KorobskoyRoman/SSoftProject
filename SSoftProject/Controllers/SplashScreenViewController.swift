@@ -8,15 +8,17 @@
 import UIKit
 
 final class SplashScreenViewController: UIViewController {
+    weak var coordinator: AppCoordinator?
+    var jsonService: JSONDecoderService?
+    var networkManager: NetworkManager?
     @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet private weak var stackView: UIStackView!
     @IBOutlet private weak var infoLabel: UILabel!
-    private let jsonService = JSONDecoderService()
-    private let networkManager = NetworkManager()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
+        print("loaded")
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -30,35 +32,30 @@ final class SplashScreenViewController: UIViewController {
 
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
-            backgroundQueue.async {
-                self.networkManager.getCategories { result in
+            backgroundQueue.sync {
+                self.networkManager?.getCategories { result in
                     switch result {
                     case .success(let data):
                         RealmService.shared.getCategoriesIntoRealmWithNetwork(from: data)
                     case .failure(let error):
                         print(error)
-                        self.jsonService.decodeToDataBase()
+                        self.jsonService?.decodeToDataBase()
                     }
                 }
-                self.networkManager.getEvents { result in
+                self.networkManager?.getEvents { result in
                     switch result {
                     case .success(let data):
                         RealmService.shared.getEventsIntoRealmWithNetwork(from: data)
                     case .failure(let error):
                         print(error)
-                        self.jsonService.decodeToDataBase()
+                        self.jsonService?.decodeToDataBase()
                     }
                 }
             }
-            sleep(2)
-            let tabBarVC = MainTabBarController()
-            tabBarVC.modalPresentationStyle = .fullScreen
-            tabBarVC.modalTransitionStyle = .flipHorizontal
-            DispatchQueue.main.async {
-                self.dismiss(animated: false) {
-                    self.activityIndicator.stopAnimating()
-                    self.present(tabBarVC, animated: true)
-                }
+
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                self.activityIndicator.stopAnimating()
+                self.coordinator?.performTransition(with: .set(.tabbar))
             }
         }
     }
@@ -68,3 +65,5 @@ final class SplashScreenViewController: UIViewController {
         navigationController?.navigationBar.isHidden = true
     }
 }
+
+extension SplashScreenViewController: Storyboarded {}

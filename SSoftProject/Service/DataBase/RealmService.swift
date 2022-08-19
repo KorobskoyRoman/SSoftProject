@@ -12,8 +12,6 @@ final class RealmService {
     private var decodedCategories = [RealmCategories]()
     private var decodedEvents = [RealmEvent]()
     private let jsonDecoder = JSONDecoderService()
-    private lazy var catsEntity = localRealm?.objects(RealmCategories.self)
-    private lazy var eventsEntity = localRealm?.objects(RealmEvent.self)
 
     private init() {}
 

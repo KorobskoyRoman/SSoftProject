@@ -8,8 +8,9 @@
 import UIKit
 
 final class MainTabBarController: UITabBarController {
-    private let middleButtonDiameter: CGFloat = 42
+    weak var coordinator: AppCoordinator?
 
+    private let middleButtonDiameter: CGFloat = 42
     private let redColor: UIColor = UIColor(red: 254.0 / 255.0, green: 116.0 / 255.0, blue: 96.0 / 255.0, alpha: 1.0)
     private let greenColor: UIColor = UIColor(red: 102.0 / 255.0, green: 166.0 / 255.0, blue: 54.0 / 255.0, alpha: 1.0)
 
@@ -36,6 +37,15 @@ final class MainTabBarController: UITabBarController {
         makeUI()
     }
 
+    init(coordinator: AppCoordinator?) {
+        self.coordinator = coordinator
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     @objc private func didPressMiddleButton() {
         selectedIndex = TabBarConstants.currentIndexOfMiddleButton
         middleButton.backgroundColor = greenColor
@@ -45,41 +55,6 @@ final class MainTabBarController: UITabBarController {
     private func makeUI() {
         tabBar.addSubview(middleButton)
         middleButton.addSubview(heartImageView)
-
-        let newsVC = UIViewController()
-        newsVC.view.backgroundColor = .yellow
-        newsVC.tabBarItem.title = TabBarConstants.newsVCTitle
-        newsVC.tabBarItem.image = TabBarConstants.newsVCImage
-
-        let searchVC = UIViewController()
-        searchVC.view.backgroundColor = .systemRed
-        searchVC.tabBarItem.title = TabBarConstants.searchVCTitle
-        searchVC.tabBarItem.image = TabBarConstants.searchVCImage
-
-        let helpVC = HelpCategoriesViewController() // heart button
-        let helpVCNav = UINavigationController(rootViewController: helpVC)
-        helpVCNav.navigationBar.standardAppearance = configureNavBarAppearence()
-        helpVCNav.navigationBar.compactAppearance = configureNavBarAppearence()
-        helpVCNav.navigationBar.scrollEdgeAppearance = configureNavBarAppearence()
-        helpVCNav.tabBarItem.title = TabBarConstants.helpVCTitle
-
-        let historyVC = UIViewController()
-        historyVC.view.backgroundColor = .systemFill
-        historyVC.tabBarItem.title = TabBarConstants.historyVCTitle
-        historyVC.tabBarItem.image = TabBarConstants.historyVCImage
-
-        let profileVC = UIViewController()
-        profileVC.view.backgroundColor = .charcoalGrey
-        profileVC.tabBarItem.title = TabBarConstants.profileVCTitle
-        profileVC.tabBarItem.image = TabBarConstants.profileVCImage
-
-        tabBar.tintColor = greenColor
-        UITabBarItem.appearance().setTitleTextAttributes([.foregroundColor: greenColor], for: .selected)
-
-        viewControllers = [newsVC, searchVC, helpVCNav, historyVC, profileVC]
-        selectedViewController = viewControllers?[TabBarConstants.currentIndexOfMiddleButton]
-        selectedIndex = TabBarConstants.currentIndexOfMiddleButton
-
         setConstraints()
     }
 
@@ -135,7 +110,9 @@ extension MainTabBarController {
     }
 }
 
-private enum TabBarConstants {
+extension MainTabBarController: Storyboarded {}
+
+enum TabBarConstants {
     /// Индекс центральной кнопки
     static let currentIndexOfMiddleButton = 2
     static let heartButtonImage = UIImage(systemName: "heart.fill")

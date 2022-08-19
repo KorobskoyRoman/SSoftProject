@@ -93,7 +93,7 @@ final class DetailEventCell: UITableViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    private var mailButton: UIButton = {
+    private lazy var mailButton: UIButton = {
         let button = UIButton(type: .system)
         let yourAttributes: [NSAttributedString.Key: Any] = [
             .font: UIFont.textStyle5,
@@ -105,7 +105,7 @@ final class DetailEventCell: UITableViewCell {
             attributes: yourAttributes
         )
         button.setAttributedTitle(attributeString, for: .normal)
-        button.addTarget(DetailEventViewController().self, action: #selector(mailButtonTapped), for: .touchUpInside)
+        button.addTarget(self, action: #selector(mailButtonTapped), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -160,7 +160,7 @@ final class DetailEventCell: UITableViewCell {
                                                    spacing: ConstraintsConst.inset10,
                                                    distribution: .fillProportionally)
 
-    private var organizationButton: UIButton = {
+    private lazy var organizationButton: UIButton = {
         let button = UIButton(type: .system)
         let yourAttributes: [NSAttributedString.Key: Any] = [
             .font: UIFont.textStyle5,
@@ -172,7 +172,7 @@ final class DetailEventCell: UITableViewCell {
             attributes: yourAttributes
         )
         button.setAttributedTitle(attributeString, for: .normal)
-        button.addTarget(DetailEventViewController().self,
+        button.addTarget(self,
                          action: #selector(organizationButtonTapped),
                          for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
