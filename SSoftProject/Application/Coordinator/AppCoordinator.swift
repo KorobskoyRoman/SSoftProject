@@ -27,7 +27,6 @@ final class AppCoordinator: Coordinator {
             let controller = getViewControllerByType(type: viewController)
             rootViewController?.setViewControllers([controller], animated: true)
         case .pop:
-//            rootViewController?.popViewController(animated: true)
             nav?.popViewController(animated: true)
         case .perform(let viewController):
             let controller = getViewControllerByType(type: viewController)
