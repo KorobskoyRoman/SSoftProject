@@ -31,31 +31,33 @@ final class SplashScreenViewController: UIViewController {
         }, completion: nil)
 
         DispatchQueue.main.async { [weak self] in
-            guard let self = self else { return }
-            backgroundQueue.sync {
-                self.networkManager?.getCategories { result in
-                    switch result {
-                    case .success(let data):
-                        RealmService.shared.getCategoriesIntoRealmWithNetwork(from: data)
-                    case .failure(let error):
-                        print(error)
-                        self.jsonService?.decodeToDataBase()
+            autoreleasepool {
+                guard let self = self else { return }
+                backgroundQueue.sync {
+                    self.networkManager?.getCategories { result in
+                        switch result {
+                        case .success(let data):
+                            RealmService.shared.getCategoriesIntoRealmWithNetwork(from: data)
+                        case .failure(let error):
+                            print(error)
+                            self.jsonService?.decodeToDataBase()
+                        }
+                    }
+                    self.networkManager?.getEvents { result in
+                        switch result {
+                        case .success(let data):
+                            RealmService.shared.getEventsIntoRealmWithNetwork(from: data)
+                        case .failure(let error):
+                            print(error)
+                            self.jsonService?.decodeToDataBase()
+                        }
                     }
                 }
-                self.networkManager?.getEvents { result in
-                    switch result {
-                    case .success(let data):
-                        RealmService.shared.getEventsIntoRealmWithNetwork(from: data)
-                    case .failure(let error):
-                        print(error)
-                        self.jsonService?.decodeToDataBase()
-                    }
-                }
-            }
 
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                self.activityIndicator.stopAnimating()
-                self.coordinator?.performTransition(with: .set(.tabbar))
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                    self.activityIndicator.stopAnimating()
+                    self.coordinator?.performTransition(with: .set(.tabbar))
+                }
             }
         }
     }
