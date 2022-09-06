@@ -769,6 +769,12 @@ PODS:
   - Realm/Headers (10.28.3)
   - RealmSwift (10.28.3):
     - Realm (= 10.28.3)
+  - RxCocoa (6.5.0):
+    - RxRelay (= 6.5.0)
+    - RxSwift (= 6.5.0)
+  - RxRelay (6.5.0):
+    - RxSwift (= 6.5.0)
+  - RxSwift (6.5.0)
   - SwiftLint (0.48.0)
 
 DEPENDENCIES:
@@ -777,6 +783,8 @@ DEPENDENCIES:
   - FirebaseAuth
   - FirebaseFirestore
   - RealmSwift (~> 10)
+  - RxCocoa (= 6.5.0)
+  - RxSwift (= 6.5.0)
   - SwiftLint
 
 SPEC REPOS:
@@ -803,6 +811,9 @@ SPEC REPOS:
     - PromisesObjC
     - Realm
     - RealmSwift
+    - RxCocoa
+    - RxRelay
+    - RxSwift
     - SwiftLint
 
 SPEC CHECKSUMS:
@@ -828,8 +839,11 @@ SPEC CHECKSUMS:
   PromisesObjC: ab77feca74fa2823e7af4249b8326368e61014cb
   Realm: 64e66568d981de2496f81ecab2e1372b27dc7d58
   RealmSwift: 29bcda3a1fa5613b358bd7ec638f5e12afc89c3a
+  RxCocoa: 94f817b71c07517321eb4f9ad299112ca8af743b
+  RxRelay: 1de1523e604c72b6c68feadedd1af3b1b4d0ecbd
+  RxSwift: 5710a9e6b17f3c3d6e40d6e559b9fa1e813b2ef8
   SwiftLint: 284cea64b6187c5d6bd83e9a548a64104d546447
 
-PODFILE CHECKSUM: 91269b6a903b102810d578b9854506033373c0bf
+PODFILE CHECKSUM: a2ca8c219cd47ae5321ce81508154f06f06c3db2
 
 COCOAPODS: 1.11.3
