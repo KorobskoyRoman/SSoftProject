@@ -11,9 +11,9 @@ class HelpCategoriesConfigurator: ConfiguratorProtocol {
     func configure(jsonService: JSONDecoderService? = nil,
                    networkManager: NetworkManager? = nil,
                    coordinator: AppCoordinator) -> UIViewController {
-        let presenter = HelpCategoriesPresenter()
-        let viewController = HelpCategoriesViewController(presenter: presenter)
-        presenter.coordinator = coordinator
+        let viewModel = HelpCategoriesViewModel()
+        let viewController = HelpCategoriesViewController(viewModel: viewModel)
+        viewModel.coordinator = coordinator
         return viewController
     }
 }

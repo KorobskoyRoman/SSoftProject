@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 final class HelpCategoriesViewController: UIViewController {
     typealias DataSource = UICollectionViewDiffableDataSource<Section, RealmCategories>
@@ -34,15 +36,15 @@ final class HelpCategoriesViewController: UIViewController {
             .isActive = true
         return label
     }()
-    private var presenter: HelpCategoriesPresenter
+    private var viewModel: HelpCategoriesViewModel
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
     }
 
-    init(presenter: HelpCategoriesPresenter) {
-        self.presenter = presenter
+    init(viewModel: HelpCategoriesViewModel) {
+        self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
         reload()
     }
@@ -54,9 +56,7 @@ final class HelpCategoriesViewController: UIViewController {
     private func reload() {
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
-            self.presenter.reload = {
-                self.applySnapshot()
-            }
+            self.applySnapshot()
         }
     }
 
@@ -77,7 +77,6 @@ final class HelpCategoriesViewController: UIViewController {
         collectionView.delegate = self
         setupNavBar()
         setupCollectionView()
-        getData()
     }
 
     private func setupNavBar() {
@@ -106,22 +105,6 @@ final class HelpCategoriesViewController: UIViewController {
         UINavigationBar.appearance().compactAppearance = appearance
 
         return appearance
-    }
-
-    private func getData() {
-        DispatchQueue.main.async { [weak self] in
-            guard let self = self else { return }
-            self.view.showLoading(style: .medium, color: .grey)
-        }
-
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
-            guard let self = self else { return }
-            UIView.animate(withDuration: 0.3, delay: 0, options: .transitionCrossDissolve, animations: {
-                self.presenter.getData()
-                self.reload()
-            }, completion: nil)
-            self.view.stopLoading()
-        }
     }
 
     @objc private func backButtonTapped() {
@@ -226,7 +209,7 @@ extension HelpCategoriesViewController {
         var snapshot = Snapshot()
 
         snapshot.appendSections([.mainSection])
-        snapshot.appendItems(presenter.categories, toSection: .mainSection)
+        snapshot.appendItems(viewModel.categories.value, toSection: .mainSection)
         dataSource.apply(snapshot, animatingDifferences: animatingDifferences)
     }
 }
@@ -238,7 +221,7 @@ extension HelpCategoriesViewController: UICollectionViewDelegate {
         case .mainSection:
             guard let cell = collectionView.cellForItem(at: indexPath) as? HelpCategoriesCell
             else { return }
-            presenter.push(nav: navigationController ?? UINavigationController(),
+            viewModel.push(nav: navigationController ?? UINavigationController(),
                            title: cell.navBarTitle)
         }
     }
