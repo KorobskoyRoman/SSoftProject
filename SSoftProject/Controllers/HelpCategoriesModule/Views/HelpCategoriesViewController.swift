@@ -37,10 +37,60 @@ final class HelpCategoriesViewController: UIViewController {
         return label
     }()
     private var viewModel: HelpCategoriesViewModel
+    private let disposeBag = DisposeBag()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
+//        viewModel.categories
+//            .bind(to: collectionView
+//                .rx
+//                .items(cellIdentifier: HelpCategoriesCell.reuseId,
+//                       cellType: HelpCategoriesCell.self)) {
+//                row, category, cell in
+//                cell.configure(with: category)
+//            }
+//                       .disposed(by: disposeBag)
+        viewModel.categories
+            .observe(on: MainScheduler.instance)
+            .bind(to: collectionView.rx.items) { [weak self] collectionView, row, category in
+                guard let self = self else { return UICollectionViewCell() }
+                guard let cell = self.collectionView.dequeueReusableCell(
+                    withReuseIdentifier: HelpCategoriesCell.reuseId,
+                    for: IndexPath(row: row, section: 0)
+                ) as? HelpCategoriesCell else { return UICollectionViewCell() }
+                cell.configure(with: category)
+                return cell
+            }
+            .disposed(by: disposeBag)
+
+//        collectionView.rx.modelSelected(CharityCell.self)
+        collectionView.rx.modelSelected(RealmEvent.self)
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] in
+                guard let self = self else { return }
+                self.viewModel.push(nav: self.navigationController ?? UINavigationController(),
+                                    title: $0.title)
+            })
+            .disposed(by: disposeBag)
+
+//        Observable
+//            .zip(collectionView.rx.itemSelected, collectionView.rx.modelSelected(RealmEvent.self))
+//            .bind { [weak self] indexPath, model in
+//                self?.collectionView.deselectItem(at: indexPath, animated: true)
+//                self?.viewModel.push(nav: self?.navigationController ?? UINavigationController(), title: model.title)
+//            }
+//            .disposed(by: disposeBag)
+
+//        collectionView.rx.itemSelected
+//            .do(onNext: { [weak self] indexPath in
+//                self?.collectionView.deselectItem(at: indexPath, animated: true)
+//            })
+//                .map { indexPath in
+//                    return self.viewModel.categories.map { $0[indexPath.item]}
+//                }
+//                .subscribe(self.viewModel.categories.asObservable())
+//                .disposed(by: disposeBag)
     }
 
     init(viewModel: HelpCategoriesViewModel) {
@@ -74,7 +124,7 @@ final class HelpCategoriesViewController: UIViewController {
         navigationController?.navigationBar.isHidden = false
         navigationItem.hidesBackButton = true
         view.backgroundColor = .mainBackground()
-        collectionView.delegate = self
+//        collectionView.delegate = self
         setupNavBar()
         setupCollectionView()
     }
