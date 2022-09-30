@@ -29,3 +29,5 @@
 * #### Коллекции через Compositional Layout + Diffable data source
 * #### Кастомный UITabBarController
 * #### Загрузка данных происходит на сплэш-экране.
+
+### RxSwift:
