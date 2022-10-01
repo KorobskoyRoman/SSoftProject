@@ -28,6 +28,8 @@
 * #### Дизайн Pixel-Perfect по макету Zeplin
 * #### Коллекции через Compositional Layout + Diffable data source
 * #### Кастомный UITabBarController
-* #### Загрузка данных происходит на сплэш-экране.
+* #### Загрузка данных происходит на сплэш-экране
+* #### Кастомные шрифты.
 
-### RxSwift:
+### ⚛ RxSwift:
+* #### MVVM + BehaviorRelay + Bindings
