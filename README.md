@@ -34,3 +34,6 @@
 
 ### ⚛ RxSwift:
 * #### MVVM + BehaviorRelay + Bindings
+
+### 🎬 Демо:
+![alt text](https://github.com/KorobskoyRoman/SSoftProject/blob/dev/Simulator%20Screen%20Recording%20-%20iPhone%2014%20Pro%20-%202022-10-01%20at%2020.13.59.gif?raw=true)
