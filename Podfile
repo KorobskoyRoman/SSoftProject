@@ -21,4 +21,7 @@ pod 'FirebaseAnalytics'
 pod 'FirebaseAuth'
 pod 'FirebaseFirestore'
 
+pod 'RxSwift', '6.5.0'
+pod 'RxCocoa', '6.5.0'
+
 end

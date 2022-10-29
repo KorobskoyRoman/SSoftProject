@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 final class HelpCategoriesViewController: UIViewController {
     typealias DataSource = UICollectionViewDiffableDataSource<Section, RealmCategories>
@@ -34,15 +36,17 @@ final class HelpCategoriesViewController: UIViewController {
             .isActive = true
         return label
     }()
-    private var presenter: HelpCategoriesPresenter
+    private var viewModel: HelpCategoriesViewModel
+    private let disposeBag = DisposeBag()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
+        bind()
     }
 
-    init(presenter: HelpCategoriesPresenter) {
-        self.presenter = presenter
+    init(viewModel: HelpCategoriesViewModel) {
+        self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
         reload()
     }
@@ -54,9 +58,7 @@ final class HelpCategoriesViewController: UIViewController {
     private func reload() {
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
-            self.presenter.reload = {
-                self.applySnapshot()
-            }
+            self.applySnapshot()
         }
     }
 
@@ -74,10 +76,8 @@ final class HelpCategoriesViewController: UIViewController {
         navigationController?.navigationBar.isHidden = false
         navigationItem.hidesBackButton = true
         view.backgroundColor = .mainBackground()
-        collectionView.delegate = self
         setupNavBar()
         setupCollectionView()
-        getData()
     }
 
     private func setupNavBar() {
@@ -108,24 +108,28 @@ final class HelpCategoriesViewController: UIViewController {
         return appearance
     }
 
-    private func getData() {
-        DispatchQueue.main.async { [weak self] in
-            guard let self = self else { return }
-            self.view.showLoading(style: .medium, color: .grey)
-        }
-
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
-            guard let self = self else { return }
-            UIView.animate(withDuration: 0.3, delay: 0, options: .transitionCrossDissolve, animations: {
-                self.presenter.getData()
-                self.reload()
-            }, completion: nil)
-            self.view.stopLoading()
-        }
-    }
-
     @objc private func backButtonTapped() {
         exit(0)
+    }
+}
+
+// MARK: - Rx
+extension HelpCategoriesViewController {
+    private func bind() {
+        collectionView.rx.setDelegate(self).disposed(by: disposeBag)
+
+        viewModel.categories
+            .observe(on: MainScheduler.instance)
+            .bind(to: collectionView.rx.items) { [weak self] collectionView, row, category in
+                guard let self = self else { return UICollectionViewCell() }
+                guard let cell = self.collectionView.dequeueReusableCell(
+                    withReuseIdentifier: HelpCategoriesCell.reuseId,
+                    for: IndexPath(row: row, section: 0)
+                ) as? HelpCategoriesCell else { return UICollectionViewCell() }
+                cell.configure(with: category)
+                return cell
+            }
+            .disposed(by: disposeBag)
     }
 }
 
@@ -226,7 +230,7 @@ extension HelpCategoriesViewController {
         var snapshot = Snapshot()
 
         snapshot.appendSections([.mainSection])
-        snapshot.appendItems(presenter.categories, toSection: .mainSection)
+        snapshot.appendItems(viewModel.categories.value, toSection: .mainSection)
         dataSource.apply(snapshot, animatingDifferences: animatingDifferences)
     }
 }
@@ -238,7 +242,7 @@ extension HelpCategoriesViewController: UICollectionViewDelegate {
         case .mainSection:
             guard let cell = collectionView.cellForItem(at: indexPath) as? HelpCategoriesCell
             else { return }
-            presenter.push(nav: navigationController ?? UINavigationController(),
+            viewModel.push(nav: navigationController ?? UINavigationController(),
                            title: cell.navBarTitle)
         }
     }
